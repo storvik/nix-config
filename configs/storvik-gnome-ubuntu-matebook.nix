@@ -19,6 +19,10 @@
     (import ../overlays)
   ];
 
+
+  # How to allow broken for master?
+  # nixpkgs.config.master.config.allowBroken = true;
+
   # Import other stuff
   imports = [
     ../users/storvik/storvik-base.nix
@@ -28,10 +32,9 @@
     ../home-manager/profiles/tools-shell.nix
   ];
 
-  # Test cloudcompare overlay, not working
+  # Empty home.packages, useful when testing stuff
   home.packages = with pkgs; [
-    #cloudcompare
-    #ecl
+    # Add something here
   ];
 
 }

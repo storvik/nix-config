@@ -1,7 +1,5 @@
 # nix config
 
-[[https://builtwithnix.org][https://img.shields.io/badge/Built_With-Nix-5277C3.svg?logo=nixos&labelColor=73C3D5]]
-
 My nix config.
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
@@ -58,7 +56,6 @@ My nix config.
         ├── storvik-base.nix                 - my main user base tools
         |
         └── storvik-full.nix                 - my main user with all tools
-
 ```
 
 # Install
@@ -124,6 +121,18 @@ sudo ln -s /etc/nixos/nix-config/configs/CONFIGNAME /etc/nixos/configuration.nix
 
 # Notes
 
+## Using stuff from master branch in nixpkgs
+
+Ensure overlay in `overlays/nixpkgsmaster/` is included and prepend package with `master.`.
+For example
+
+``` nix
+home.packages = with pkgs; [
+  master.packagename
+];
+```
+
+
 ## Getting applications installed by nix to application menu
 
 Read more about it [here](https://discourse.nixos.org/t/home-manager-installed-apps-dont-show-up-in-applications-launcher/8523/7).
@@ -136,6 +145,7 @@ In short, not possible, these are possible workarounds:
 There are multiple tools for getting hash.
 I'm mostly using `nix-prefetch-git` and `nix-prefetch-github`.
 Example usage:
+
 ``` shell
 nix-prefetch-github --rev [REVISION] --nix [REPO OWNER] [REPO NAME]
 nix-prefetch-git --rev [REVISION] [URL TO GIT REPO]
