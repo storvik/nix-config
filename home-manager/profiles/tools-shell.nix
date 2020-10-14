@@ -6,6 +6,8 @@
     lastpass-cli
     nmap
     ripgrep
+    unixtools.netstat
+    unixtools.route
     whois
   ];
 

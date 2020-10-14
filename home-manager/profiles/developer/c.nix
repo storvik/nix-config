@@ -6,6 +6,7 @@
     astyle
     ccls
     cmake
+    gdb
     #opencv
     pcl
     protobuf
