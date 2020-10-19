@@ -12,4 +12,15 @@
     ./developer/webdev.nix
   ];
 
+  # Try lorri https://github.com/target/lorri
+  # services.lorri.enable = true;
+  # Decided to try nix-direnv first https://github.com/nix-community/nix-direnv
+  # This mostly due to the lorri daemon
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+  };
+
 }
