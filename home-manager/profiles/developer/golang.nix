@@ -18,4 +18,16 @@ in
     GOBIN = "${homedir}/developer/gopath/bin";
   };
 
+  home.sessionPath = [
+    "${config.home.sessionVariables.GOBIN}"
+  ];
+
+  #programs.fish.interactiveShellInit = ''
+  #  set PATH $PATH ${config.home.sessionVariables.GOBIN}
+  #'';
+
+  #programs.bash.initExtra = ''
+  #  PATH=$PATH:${config.home.sessionVariables.GOBIN}
+  #'';
+
 }
