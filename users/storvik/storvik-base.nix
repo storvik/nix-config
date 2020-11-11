@@ -16,6 +16,7 @@ in
     userEmail = "petterstorvik@gmail.com";
     userName = "storvik";
     extraConfig = {
+      pull.ff = "only";
       #url = {
       #  "git@github.com:" = {
       #    insteadOf = "https://github.com/";
