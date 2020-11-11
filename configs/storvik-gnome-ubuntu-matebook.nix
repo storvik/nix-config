@@ -27,6 +27,7 @@
   imports = [
     ../users/storvik/storvik-base.nix
     ../users/storvik/storvik-developer.nix
+    ../users/storvik/storvik-email.nix
     ../desktops/gnome-ubuntu/default.nix
 
     ../home-manager/profiles/tools-shell.nix

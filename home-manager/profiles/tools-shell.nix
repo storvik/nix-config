@@ -12,4 +12,8 @@
     whois
   ];
 
+  home.sessionVariables = {
+    LPASS_AGENT_TIMEOUT = 0;
+  };
+
 }
