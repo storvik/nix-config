@@ -7,6 +7,8 @@
     ccls
     cmake
     gdb
+    meson
+    ninja
     #opencv
     pcl
     protobuf
