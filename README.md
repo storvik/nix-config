@@ -84,7 +84,7 @@ nix-channel --update
 *Install [home-manager](https://github.com/nix-community/home-manager):*
 
 ``` shell
-nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
 ```
