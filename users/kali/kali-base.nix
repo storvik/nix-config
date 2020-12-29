@@ -2,10 +2,6 @@
 
 {
 
-  imports = [
-    ../../home-manager/profiles/emacs.nix # emacs
-  ];
-
   home.username = "kali";
   home.homeDirectory = "/home/kali";
 

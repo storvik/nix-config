@@ -12,20 +12,20 @@
   targets.genericLinux.enable = true;
 
   # Include overlays
-  nixpkgs.overlays = [
-    (import ../overlays)
-  ];
+  # nixpkgs.overlays = [
+  #   (import ../overlays)
+  # ];
 
   # Import other stuff
   imports = [
     ../users/kali/kali-base.nix
   ];
 
-  # Empty home.packages, useful when testing stuff
+  # Packages to install
   home.packages = with pkgs; [
-    # Add something here
+    emacs
   ];
 
-  home.stateVersion = "20.09";
+  home.stateVersion = "21.03";
 
 }
