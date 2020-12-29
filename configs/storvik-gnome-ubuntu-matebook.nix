@@ -38,4 +38,6 @@
     # Add something here
   ];
 
+  home.stateVersion = "21.03";
+
 }

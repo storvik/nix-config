@@ -10,6 +10,9 @@ in
     ../../home-manager/profiles/emacs.nix # emacs
   ];
 
+  home.username = "storvik";
+  home.homeDirectory = "/home/storvik";
+
   # Git
   programs.git = {
     enable = true;
