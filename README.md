@@ -95,7 +95,14 @@ nix-shell '<home-manager>' -A install
 ln -s ~/nix-config/configs/storvik-gnome-ubuntu-matebook.nix ~/.config/nixpkgs/home.nix
 ```
 
-*Backup bash config files:*
+or source `hm-session-vars.sh` if home-manager shouldn't manage shell.
+Add the following to `.profile` / `.zprofile`:
+
+``` shell
+. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+```
+
+*Backup bash config files if home-manager should manage shell:*
 
 This is done to avoid conflict between home-manager files and already present config files.
 
