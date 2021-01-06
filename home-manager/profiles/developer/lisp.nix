@@ -3,8 +3,9 @@
 {
 
   home.packages = with pkgs; [
-    sbcl
+    clpm
     ecl
+    sbcl
   ];
 
 }

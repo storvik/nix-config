@@ -3,6 +3,7 @@
   ./nixpkgsmaster
   ./ecl
   ./sbcl
+  ./clpm
   ./pcl
   #./cloudcompare       # NOT WORKING
   #./gopls              # NOT WORKING, inconsistent vendoring
