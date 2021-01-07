@@ -9,9 +9,9 @@ stdenv.mkDerivation rec {
   version = "0.3.5";
 
   src = fetchgit {
-    rev = "ab69cf9e3ac506ae2f139c6967f07aad20e87c38";
+    rev = "v${version}";
     url = "https://gitlab.common-lisp.net/clpm/clpm";
-    sha256 = "0icak8aqd6ljvxgcw8shwx3jhbzlbppy67d66s91b47ygp1qvvra";
+    sha256 = "0jivnnp3z148yf4c2nzzr5whz76w5kjhsb97z2vs5maiwf79y2if";
     fetchSubmodules = true;
   };
 
@@ -23,9 +23,20 @@ stdenv.mkDerivation rec {
     openssl.out
   ];
 
-  builder = ./builder.sh;
-
   libssl = openssl.out;
+
+  buildPhase = ''
+    cp $libssl/lib/libcrypto.so.* .
+    cp $libssl/lib/libssl.so.* .
+
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:. sbcl --script scripts/build.lisp
+  '';
+
+  installPhase = ''
+    INSTALL_ROOT=$out sh install.sh
+  '';
+
+  dontFixup = true;
 
   meta = {
     description = "Common Lisp Package Manager";
