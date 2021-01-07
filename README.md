@@ -2,22 +2,6 @@
 
 My nix config.
 
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-**Table of Contents**
-
-- [nix config](#nix-config)
-- [Structure](#structure)
-- [Install](#install)
-    - [Non NixOS computer](#non-nixos-computer)
-    - [NixOS computer](#nixos-computer)
-- [Notes](#notes)
-    - [Getting applications installed by nix to application menu](#getting-applications-installed-by-nix-to-application-menu)
-    - [Getting sha](#getting-sha)
-    - [Add custom package](#add-custom-package)
-- [Interesting configs](#interesting-configs)
-
-<!-- markdown-toc end -->
-
 # Structure
 
 ```
@@ -35,9 +19,7 @@ My nix config.
 |   |
 |   └── kde-nixos                            - kde nixos
 │
-├── home-manager/                            - home-manager stuff
-|   |
-|   └── profiles/                            - home-manager profiles / config collections
+├── home-manager/                            - home-manager profiles / config collections
 │
 ├── machines/                                - different configs for different physical machines, hardware dependant
 |   |

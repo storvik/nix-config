@@ -7,7 +7,7 @@ in
 {
 
   imports = [
-    ../../home-manager/profiles/emacs.nix # emacs
+    ../../home-manager/emacs.nix # emacs
   ];
 
   home.username = "storvik";

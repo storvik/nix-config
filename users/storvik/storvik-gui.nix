@@ -3,11 +3,11 @@
 {
 
   imports = [
-    ../../home-manager/profiles/browser.nix
-    ../../home-manager/profiles/fonts.nix
-    ../../home-manager/profiles/graphics.nix
-    ../../home-manager/profiles/media.nix
-    ../../home-manager/profiles/tools-ui.nix
+    ../../home-manager/browser.nix
+    ../../home-manager/fonts.nix
+    ../../home-manager/graphics.nix
+    ../../home-manager/media.nix
+    ../../home-manager/tools-ui.nix
   ];
 
   # Only enable firefox on non nixos systems

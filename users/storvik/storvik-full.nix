@@ -8,8 +8,8 @@
     ./storvik-email.nix
     ./storvik-gui.nix
 
-    ../../home-manager/profiles/avanti.nix
-    ../../home-manager/profiles/tools-shell.nix
+    ../../home-manager/avanti.nix
+    ../../home-manager/tools-shell.nix
   ];
 
   # Get all documentations too

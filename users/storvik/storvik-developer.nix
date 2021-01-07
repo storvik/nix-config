@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ../../home-manager/profiles/developer.nix # all developer packages
-    ../../home-manager/profiles/virtualization.nix # virtualization and container stuff
+    ../../home-manager/developer.nix # all developer packages
+    ../../home-manager/virtualization.nix # virtualization and container stuff
   ];
 
 }

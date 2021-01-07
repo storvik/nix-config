@@ -30,7 +30,7 @@
     ../users/storvik/storvik-email.nix
     ../desktops/gnome-ubuntu/default.nix
 
-    ../home-manager/profiles/tools-shell.nix
+    ../home-manager/tools-shell.nix
   ];
 
   # Empty home.packages, useful when testing stuff
