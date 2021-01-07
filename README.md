@@ -128,49 +128,6 @@ sudo ln -s /etc/nixos/nix-config/configs/CONFIGNAME /etc/nixos/configuration.nix
 
 # Notes
 
-## Use alternative branch or pull request as source
-
-This shows how to use pull request as package source, to use branch the approach is similar.
-First the pull request archive must be identified, this is used by running the following functions with the pull request number:
-
-``` shell
-curl -sL https://github.com/NixOS/nixpkgs/pull/${PULL_REQUEST_NUMBER}.patch | head -n 1 | grep -o -E -e "[0-9a-f]{40}"
-```
-
-The archive url will be given by the hash output from the command above, and used in nix in the following way:
-
-``` nix
-{ config, pkgs, lib, ... }:
-let
-
-  pullReq = import (fetchTarball https://github.com/NixOS/nixpkgs/archive/${HASH_FROM_ABOVE_CMD}.tar.gz) { config = config.nixpkgs.config; };
-
-in
-{
-
-  home.packages = with pkgs; [
-    pullReq.packagename
-  ];
-
-}
-```
-
-## Cleanup and garbage collection
-
-Some useful commands to clean up your system are:
-
-``` shell
-home-manager generations # list all home-manager generations
-nix-collect-garbage -d   # delete evey entry that is not useful to current system
-```
-
-To delete something from cache / path run:
-
-``` shell
-nix-store --delete --ignore-liveness /path
-```
-
-
 ## Using stuff from master branch in nixpkgs
 
 Ensure overlay in `overlays/nixpkgsmaster/` is included and prepend package with `master.`.
@@ -182,41 +139,9 @@ home.packages = with pkgs; [
 ];
 ```
 
-
 ## Getting applications installed by nix to application menu
 
 Read more about it [here](https://discourse.nixos.org/t/home-manager-installed-apps-dont-show-up-in-applications-launcher/8523/7).
 In short, not possible, these are possible workarounds:
 - Copy all .desktop files to $HOME/.local/share/applications
 - Follow instructions in the link above
-
-## Getting sha
-
-There are multiple tools for getting hash.
-I'm mostly using `nix-prefetch-git` and `nix-prefetch-github`.
-Example usage:
-
-``` shell
-nix-prefetch-github --rev [REVISION] --nix [REPO OWNER] [REPO NAME]
-nix-prefetch-git --rev [REVISION] [URL TO GIT REPO]
-```
-
-## Add custom package
-
-Read this:
-https://github.com/LnL7/nix-darwin/issues/16
-
-
-### Interesting configs
-
-- https://hugoreeves.com/posts/2019/nix-home/
-- https://github.com/HugoReeves/nix-home
-- https://github.com/srid/nix-config
-- https://github.com/rummik/nixos-config
-- https://github.com/bjornfor/nixos-config
-- https://github.com/jwiegley/nix-config
-- https://github.com/srid/nix-config
-- https://github.com/adisbladis/nixconfig
-- https://github.com/FRidh/nix-config
-- https://github.com/ghuntley/dotfiles-nixos
-- https://github.com/cmacrae/config
