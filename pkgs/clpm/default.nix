@@ -1,5 +1,6 @@
 { stdenv
 , fetchgit
+, wrapLisp
 , sbcl
 , openssl
 }:
@@ -15,27 +16,26 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
-  nativeBuildInputs = [
-    sbcl
-  ];
-
   buildInputs = [
-    openssl.out
+    (wrapLisp sbcl)
+    openssl
   ];
 
   libssl = openssl.out;
 
   buildPhase = ''
+    # Libs are copied working directory to avoid error when build script tries to deploy them
     cp $libssl/lib/libcrypto.so.* .
     cp $libssl/lib/libssl.so.* .
 
-    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:. sbcl --script scripts/build.lisp
+    common-lisp.sh --script scripts/build.lisp
   '';
 
   installPhase = ''
     INSTALL_ROOT=$out sh install.sh
   '';
 
+  # fixupPhase results in fatal error in SBCL, `Can't find sbcl.core`
   dontFixup = true;
 
   meta = {
