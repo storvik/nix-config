@@ -110,17 +110,6 @@ sudo ln -s /etc/nixos/nix-config/configs/CONFIGNAME /etc/nixos/configuration.nix
 
 # Notes
 
-## Using stuff from master branch in nixpkgs
-
-Ensure overlay in `overlays/nixpkgsmaster/` is included and prepend package with `master.`.
-For example
-
-``` nix
-home.packages = with pkgs; [
-  master.packagename
-];
-```
-
 ## Getting applications installed by nix to application menu
 
 Read more about it [here](https://discourse.nixos.org/t/home-manager-installed-apps-dont-show-up-in-applications-launcher/8523/7).
