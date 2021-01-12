@@ -6,6 +6,7 @@
     lastpass-cli
     ltunify
     nmap
+    rclone
     ripgrep
     unixtools.netstat
     unixtools.route
