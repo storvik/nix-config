@@ -5,6 +5,7 @@
   # Docker through home-manager doesn't work on non nixos systems
   home.packages = lib.mkIf (config.targets.genericLinux.enable != true) [
     pkgs.docker
+    pkgs.lxc
   ];
 
   # Useful aliases
