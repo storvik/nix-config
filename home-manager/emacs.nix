@@ -3,8 +3,8 @@
 {
 
   home.packages = with pkgs; [
-    #emacsUnstable
-    emacsGcc # emacs native compile
+    emacsUnstable
+    #emacsGcc # emacs native compile
   ];
 
 }
