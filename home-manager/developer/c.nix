@@ -9,8 +9,6 @@
     gdb
     meson
     ninja
-    #opencv
-    pcl
     protobuf
   ];
 

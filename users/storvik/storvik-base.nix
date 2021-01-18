@@ -20,33 +20,9 @@ in
     userName = "storvik";
     extraConfig = {
       pull.ff = "only";
-      #url = {
-      #  "git@github.com:" = {
-      #    insteadOf = "https://github.com/";
-      #  };
-      #};
     };
     ignores = [ ".ccls*" "npm-debug.log" ".DS_Store" "Thumbs.db" ".dir-locals.el" ];
   };
-
-  # If $HOME/emacs.d doesn't exist clone my git config read only
-  #home.file.".emacs.d" = lib.mkIf (builtins.pathExists (homedir + "/emacs.d") == false) {
-  #  source = builtins.fetchTarball https://github.com/storvik/.emacs.d/archive/master.tar.gz;
-  #  recursive = true;
-  #};
-
-  #home.activation.linkemacs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-  #  if [ -d "${builtins.toPath (homedir + "/emacs.d")}" ]; then
-  #    echo "${builtins.toPath (homedir + "/emacs.d")} exists, symlinking"
-  #    [ -d "${builtins.toPath (homedir + "/.emacs.d")}" ] && $DRY_RUN_CMD rm -rf ${builtins.toPath (homedir + "/.emacs.d")}
-  #    $DRY_RUN_CMD ln -s $VERBOSE_ARG \
-  #      ${builtins.toPath (homedir + "/emacs.d")} \
-  #      ${builtins.toPath (homedir + "/.emacs.d")}
-  #  else
-  #    echo "${builtins.toPath (homedir + "/emacs.d")} doesn't exist"
-  #  fi
-  #'';
-
 
   # I use fish
   programs.fish = {
