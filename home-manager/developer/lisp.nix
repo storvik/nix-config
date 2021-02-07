@@ -1,13 +1,9 @@
 { config, pkgs, lib, ... }:
-let
 
-  master = import (fetchTarball https://github.com/NixOS/nixpkgs/archive/master.tar.gz) { config = config.nixpkgs.config; };
-
-in
 {
 
   home.packages = with pkgs; [
-    master.clpm
+    clpm
     ecl
     sbcl
   ];
