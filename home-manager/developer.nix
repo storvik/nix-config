@@ -10,6 +10,7 @@
     ./developer/nix.nix
     ./developer/python.nix
     ./developer/powershell.nix
+    ./developer/shell.nix
     ./developer/webdev.nix
   ];
 

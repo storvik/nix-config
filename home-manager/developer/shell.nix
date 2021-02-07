@@ -3,9 +3,7 @@
 {
 
   home.packages = with pkgs; [
-    nodejs-14_x
-    yarn
-    nodePackages.prettier
+    shfmt
   ];
 
 }
