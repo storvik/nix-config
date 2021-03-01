@@ -21,7 +21,6 @@
     (import ../overlays)
   ];
 
-
   # How to allow broken for master?
   # nixpkgs.config.master.config.allowBroken = true;
 
@@ -32,6 +31,7 @@
     ../users/storvik/storvik-email.nix
     ../desktops/gnome-ubuntu/default.nix
 
+    ../home-manager/latex.nix
     ../home-manager/tools-shell.nix
   ];
 
