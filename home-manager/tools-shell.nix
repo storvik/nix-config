@@ -3,7 +3,7 @@
 {
 
   home.packages = with pkgs; [
-    lastpass-cli
+    bitwarden-cli
     ltunify
     nmap
     rclone

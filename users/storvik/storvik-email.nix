@@ -68,7 +68,11 @@ in
       from subprocess import check_output
 
       def get_pass(account):
-          return check_output("lpass show --password " + account, shell=True).strip("\n")
+          # Open a file: file
+          f = open("${homedir}/.bitwarden", mode='r')
+          bwSession = file.read()
+          f.close()
+          return check_output("bw get --session " + bwSession + " password " + account, shell=True).strip("\n")
 
       def nametrans_gmail_remote(foldername):
           return re.sub ('^\[Gmail\].', ${"''"},
