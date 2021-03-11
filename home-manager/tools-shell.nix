@@ -3,7 +3,9 @@
 {
 
   home.packages = with pkgs; [
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science nb ]))
     bitwarden-cli
+    bfg-repo-cleaner
     ltunify
     nmap
     rclone
@@ -12,9 +14,5 @@
     unixtools.route
     whois
   ];
-
-  home.sessionVariables = {
-    LPASS_AGENT_TIMEOUT = 0;
-  };
 
 }
