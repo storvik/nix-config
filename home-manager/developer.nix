@@ -18,6 +18,7 @@
     enable = true;
     enableBashIntegration = true;
     enableFishIntegration = true;
+    enableNixDirenvIntegration = true;
   };
 
 }
