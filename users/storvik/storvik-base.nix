@@ -21,7 +21,16 @@ in
     extraConfig = {
       pull.ff = "only";
     };
-    ignores = [ ".ccls*" "npm-debug.log" ".DS_Store" "Thumbs.db" ".dir-locals.el" ];
+    ignores = [
+      ".ccls*"
+      "npm-debug.log"
+      ".DS_Store"
+      "Thumbs.db"
+      ".dir-locals.el"
+      "compile_commands.json"
+      ".envrc"
+      ".direnv"
+    ];
   };
 
   # I use fish
