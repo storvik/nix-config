@@ -26,8 +26,9 @@
 
   # Import other stuff
   imports = [
+    ../modules
+
     ../users/storvik/storvik-base.nix
-    ../users/storvik/storvik-developer.nix
     ../users/storvik/storvik-email.nix
     ../desktops/gnome-ubuntu/default.nix
 
@@ -35,6 +36,9 @@
     ../home-manager/latex.nix
     ../home-manager/tools-shell.nix
   ];
+
+  # Enable all developer tools
+  storvik.developer.enable = true;
 
   # Empty home.packages, useful when testing stuff
   home.packages = with pkgs; [
