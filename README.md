@@ -2,43 +2,58 @@
 
 My nix config.
 
-# Structure
+# Structure and options
 
 ```
 ├── configs/                                 - configurations combining machine, role, user and profiles
 |   |
-|   ├── storvik-ubuntu-matebook.nix          - my Ubuntu based laptop for work
-|   |
-|   └── storvik-gnome-laptop-matebook.nix    - NOT USED, meant to be matebook with NixOS
+|   └── storvik-gnome-ubuntu-matebook.nix    - my Ubuntu based laptop for work
 |
-├── desktops/                                - desktop enviroments(gnome, kde, etc) and settings related to this
+├── modules/                                 - all config modules
 |   |
-|   ├── gnome-nixos                          - gnome 3 nixos
+|   ├── desktops/                            - desktop configs, gnome, kde, etc
 |   |
-|   ├── gnome-ubuntu                         - gnome 3 ubuntu, not NixOS
+|   ├── developer/                           - developer tools
 |   |
-|   └── kde-nixos                            - kde nixos
+|   └── users/                               - different user settings
 │
-├── home-manager/                            - home-manager profiles / config collections
+├── old/                                     - old stuff that shouldn't be here, should move stuff from here into modules
 │
 ├── machines/                                - different configs for different physical machines, hardware dependant
+|   |
+|   ├── intel-nuc                            - Intel NUC
 |   |
 |   └── matebook                             - Huawei Matebook Pro
 |
 ├── overlays/                                - overlays
 |
-├── pkgs/                                    - custom packages
-|
-└── users/                                   - config related to user, git config, home manager, etc
-    |
-    └── storvik/
-        |
-        ├── storvik-nixos.nix                - storvik user nixos config
-        |
-        ├── storvik-base.nix                 - my main user base tools
-        |
-        └── storvik-full.nix                 - my main user with all tools
+└── pkgs/                                    - custom packages
 ```
+
+For an example config file, see `storvik-gnome-ubuntu-matebook.nix`.
+Here is a list of useful settings which should be used when configuring the system.
+
+| Option                              | Default | Description                                                            |
+|-------------------------------------|---------|------------------------------------------------------------------------|
+| storvik.developer.enable            | false   | If true every developer tool are installed                             |
+| storvik.developer.android.enable    | false   | Install android tools, apktool, scrcpy                                 |
+| storvik.developer.c.enable          | false   | Install C tools, astyle, ccls, cmake, ninja, etc                       |
+| storvik.developer.go.enable         | false   | Install Go tools and set up environment, gopls, gotools, etc           |
+| storvik.developer.lisp.enable       | false   | Install clpm and SBCL                                                  |
+| storvik.developer.nix.enable        | false   | Install nix dev tools, nixpkgs-fmt, nix-prefetch-git                   |
+| storvik.developer.powershell.enable | false   | Install powershell                                                     |
+| storvik.developer.python.enable     | false   | Install python and pyright language server                             |
+| storvik.developer.shell.enable      | false   | Install shfmt                                                          |
+| storvik.developer.webdev.enable     | false   | Install node, yarn and prettier formatter                              |
+| storvik.emacs.enable                | true    | Install emacs                                                          |
+| storvik.email.enable                | false   | Install mu and offlineimap, setting configs                            |
+| storvik.genericLinux.enable         | false   | Adds some stuff that is nice to have when using non-nixos, nixGL, etc  |
+| storvik.shell.enable                | true    | Install shell tools, setup shell (fish and bash) and install Alacritty |
+| storvik.texlive.enable              | false   | Install texlive stuff                                                  |
+| storvik.virtualization.enable       | true    | Install docker if running nixos, setup aliases                         |
+| storvik.gnome.enable                | false   | Use GNOME                                                              |
+| storvik.kde.enabel                  | false   | Use KDE                                                                |
+| storvik.users.storvik.enable        | false   | Enable user storvik, setting up git, etc                               |
 
 # Install
 
