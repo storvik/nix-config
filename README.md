@@ -17,8 +17,6 @@ My nix config.
 |   |
 |   └── users/                               - different user settings
 │
-├── old/                                     - old stuff that shouldn't be here, should move stuff from here into modules
-│
 ├── machines/                                - different configs for different physical machines, hardware dependant
 |   |
 |   ├── intel-nuc                            - Intel NUC
@@ -48,12 +46,15 @@ Here is a list of useful settings which should be used when configuring the syst
 | storvik.emacs.enable                | true    | Install emacs                                                          |
 | storvik.email.enable                | false   | Install mu and offlineimap, setting configs                            |
 | storvik.genericLinux.enable         | false   | Adds some stuff that is nice to have when using non-nixos, nixGL, etc  |
+| storvik.graphics.enable             | false   | Graphics tools, gimp, inkscape, freecad                                |
+| storvik.media.enable                | false   | Media, vlc, spotify                                                    |
 | storvik.shell.enable                | true    | Install shell tools, setup shell (fish and bash) and install Alacritty |
 | storvik.texlive.enable              | false   | Install texlive stuff                                                  |
 | storvik.virtualization.enable       | true    | Install docker if running nixos, setup aliases                         |
 | storvik.gnome.enable                | false   | Use GNOME                                                              |
 | storvik.kde.enabel                  | false   | Use KDE                                                                |
 | storvik.users.storvik.enable        | false   | Enable user storvik, setting up git, etc                               |
+| storvik.work.enable                 | false   | Work related tools and such, slack, teamviewer, teams                  |
 
 # Install
 
