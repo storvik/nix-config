@@ -10,7 +10,7 @@ with lib;
 
     programs.texlive = {
       enable = true;
-      extraPackages = tpkgs: { inherit (tpkgs) collection-basic; };
+      extraPackages = tpkgs: { inherit (tpkgs) scheme-full; };
     };
 
   };
