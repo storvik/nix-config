@@ -76,12 +76,17 @@ with lib;
       enable = true;
       clock24 = true;
       newSession = true;
-      shell = "\${pkgs.fish}/bin/fish";
+      shell = "${pkgs.fish}/bin/fish";
     };
 
     # Alacritty terminal emulator
     programs.alacritty = {
       enable = true;
+      settings = {
+        shell = {
+          program = "${pkgs.fish}/bin/fish";
+        };
+      };
     };
 
     home.packages = with pkgs; [
