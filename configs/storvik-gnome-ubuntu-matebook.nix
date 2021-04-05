@@ -20,9 +20,6 @@
     ../modules
   ];
 
-  # Enable all developer tools
-  storvik.developer.enable = true;
-
   # Enable storvik user
   storvik.user.storvik.enable = true;
 
@@ -31,6 +28,12 @@
 
   # Enable email
   storvik.email.enable = true;
+
+  # Enable all developer tools
+  storvik.developer.enable = true;
+
+  # Texlive
+  storvik.texlive.enable = true;
 
   # Empty home.packages, useful when testing stuff
   home.packages = with pkgs; [
