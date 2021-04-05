@@ -35,6 +35,9 @@
   # Texlive
   storvik.texlive.enable = true;
 
+  # Graphics tools
+  storvik.graphics.enable = true;
+
   # Empty home.packages, useful when testing stuff
   home.packages = with pkgs; [
     # Add something here
