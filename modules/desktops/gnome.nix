@@ -6,53 +6,64 @@ with lib;
 
   options.storvik.gnome.enable = mkEnableOption "GNOME";
 
-  config = mkIf config.storvik.gnome.enable {
+  config = mkIf config.storvik.gnome.enable
+    (mkMerge [
 
-    # Hostname
-    #networking.networkmanager.enable = true;
+      # Common
+      {
 
-    # Select internationalisation properties.
-    #i18n.defaultLocale = "en_US.UTF-8";
-    #console = {
-    #  font = "Lat2-Terminus16";
-    #  keyMap = "no";
-    #};
+        dconf.settings = {
+          "org.gnome.desktop.input-sources" = {
+            xkb-options = [ "caps:ctrl_modifier" ];
+          };
+        };
 
-    # Set your time zone.
-    #time.timeZone = "Europe/Oslo";
+      }
 
-    #services = {
+      # If nixos
+      (optionalAttrs (import ../../helpers/if-nixos.nix) {
 
-    #xserver = {
+        # Enable network manager
+        networking.networkmanager.enable = true;
 
-    # Enable the X11 windowing system.
-    #enable = true;
-    #layout = "no";
-    # xkbOptions = "eurosign:e";
+        # Select internationalisation properties.
+        i18n.defaultLocale = "en_US.UTF-8";
+        console = {
+          font = "Lat2-Terminus16";
+          keyMap = "no";
+        };
 
-    # Enable touchpad support.
-    #libinput.enable = true;
+        # Set your time zone.
+        time.timeZone = "Europe/Oslo";
 
-    # Enable GNOME Desktop Environment
-    #displayManager.gdm.enable = true;
-    #desktopManager.gnome3.enable = true;
+        services = {
 
-    #};
+          xserver = {
 
-    #};
+            # Enable the X11 windowing system.
+            enable = true;
+            layout = "no";
+            xkbOptions = "eurosign:e";
 
-    # Install additional packages
-    #environment.systemPackages = with pkgs; [
-    #  gnome3.adwaita-icon-theme
-    #  gnome3.gnome-tweaks
-    #];
+            # Enable touchpad support.
+            libinput.enable = true;
 
-    dconf.settings = {
-      "org.gnome.desktop.input-sources" = {
-        xkb-options = [ "caps:ctrl_modifier" ];
-      };
-    };
+            # Enable GNOME Desktop Environment
+            displayManager.gdm.enable = true;
+            desktopManager.gnome3.enable = true;
 
-  };
+          };
+
+        };
+
+        # Install additional packages
+        environment.systemPackages = with pkgs; [
+          gnome3.adwaita-icon-theme
+          gnome3.gnome-tweaks
+        ];
+
+      })
+
+    ]);
 
 }

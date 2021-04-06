@@ -6,20 +6,29 @@ with lib;
 
   options.storvik.kde.enable = mkEnableOption "KDE";
 
-  config = mkIf config.storvik.kde.enable {
+  config = mkIf config.storvik.kde.enable
+    (mkMerge [
 
-    # Enable the X11 windowing system.
-    #services.xserver.enable = true;
-    #services.xserver.layout = "no";
-    # services.xserver.xkbOptions = "eurosign:e";
+      # Common
+      { }
 
-    # Enable touchpad support.
-    #services.xserver.libinput.enable = true;
+      # If nixos
+      (optionalAttrs (import ../../helpers/if-nixos.nix) {
 
-    # Enable the KDE Desktop Environment.
-    #services.xserver.displayManager.sddm.enable = true; # not needed when gdm enabled
-    #services.xserver.desktopManager.plasma5.enable = true;
+        # Enable the X11 windowing system.
+        services.xserver.enable = true;
+        services.xserver.layout = "no";
+        services.xserver.xkbOptions = "eurosign:e";
 
-  };
+        # Enable touchpad support.
+        services.xserver.libinput.enable = true;
+
+        # Enable the KDE Desktop Environment.
+        services.xserver.displayManager.sddm.enable = true; # not needed when gdm enabled
+        services.xserver.desktopManager.plasma5.enable = true;
+
+      })
+
+    ]);
 
 }
