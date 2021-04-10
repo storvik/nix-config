@@ -86,6 +86,9 @@ with lib;
         shell = {
           program = "${pkgs.fish}/bin/fish";
         };
+        scrolling = {
+          multiplier = 3;
+        };
       };
     };
 
