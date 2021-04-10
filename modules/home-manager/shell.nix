@@ -95,6 +95,7 @@ with lib;
       bfg-repo-cleaner
       ltunify
       nmap
+      pdftk
       rclone
       ripgrep
       unixtools.netstat
