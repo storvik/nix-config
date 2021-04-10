@@ -4,12 +4,6 @@ with lib;
 
 {
 
-  options.storvik.virtualization.enable = mkOption {
-    default = true;
-    description = "Enable virtualization tools";
-    type = lib.types.bool;
-  };
-
   config = {
     # Docker through home-manager doesn't work on non nixos systems
     home.packages = lib.mkIf (config.targets.genericLinux.enable != true) [

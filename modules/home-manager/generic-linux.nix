@@ -7,9 +7,8 @@ let
   nixgl = import (fetchTarball https://github.com/guibou/nixGL/archive/master.tar.gz) { };
 
 in
-{
 
-  options.storvik.genericLinux.enable = mkEnableOption "Generic linux, not nixos";
+{
 
   config = mkIf config.storvik.genericLinux.enable {
 

@@ -4,8 +4,6 @@ with lib;
 
 {
 
-  options.storvik.developer.lisp.enable = mkEnableOption "Lisp developer tools";
-
   config = mkIf (config.storvik.developer.lisp.enable || config.storvik.developer.enable)
     {
 

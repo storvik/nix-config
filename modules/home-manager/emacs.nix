@@ -4,12 +4,6 @@ with lib;
 
 {
 
-  options.storvik.emacs.enable = mkOption {
-    default = true;
-    description = "Enable emacs, enabled by default";
-    type = lib.types.bool;
-  };
-
   config = mkIf config.storvik.emacs.enable {
 
     nixpkgs.overlays = [

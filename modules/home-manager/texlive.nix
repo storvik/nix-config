@@ -4,8 +4,6 @@ with lib;
 
 {
 
-  options.storvik.texlive.enable = mkEnableOption "Install texlive";
-
   config = mkIf config.storvik.texlive.enable {
 
     programs.texlive = {

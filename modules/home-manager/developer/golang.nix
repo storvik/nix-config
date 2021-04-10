@@ -4,8 +4,6 @@ with lib;
 
 {
 
-  options.storvik.developer.go.enable = mkEnableOption "Go developer tools";
-
   config = mkIf (config.storvik.developer.go.enable || config.storvik.developer.enable)
     {
 

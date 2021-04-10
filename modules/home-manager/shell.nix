@@ -4,12 +4,6 @@ with lib;
 
 {
 
-  options.storvik.shell.enable = mkOption {
-    default = true;
-    description = "Enable shell setup and shell tools";
-    type = lib.types.bool;
-  };
-
   config = mkIf config.storvik.shell.enable {
     # I use fish as my shell
     programs.fish = {
@@ -72,12 +66,13 @@ with lib;
       enableAliases = true;
     };
 
-    programs.tmux = {
-      enable = true;
-      clock24 = true;
-      newSession = true;
-      shell = "${pkgs.fish}/bin/fish";
-    };
+    # NOT WORKING ON NIXOS
+    #programs.tmux = {
+    #  enable = true;
+    #  clock24 = true;
+    #  newSession = true;
+    #  shell = "${pkgs.fish}/bin/fish";
+    #};
 
     # Alacritty terminal emulator
     programs.alacritty = {

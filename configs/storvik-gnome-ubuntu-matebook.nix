@@ -18,6 +18,7 @@
   # Import modules
   imports = [
     ../modules
+    ../modules/home-manager
   ];
 
   # Enable storvik user

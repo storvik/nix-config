@@ -1,14 +1,41 @@
-# Nixos config for Intel NUC.
-
 { config, pkgs, lib, ... }:
 
+let
+
+  cfg = {
+
+    # Enable storvik user
+    user.storvik.enable = true;
+
+    # Use gnome desktop
+    gnome.enable = true;
+
+    # Enable all developer tools
+    developer.enable = false;
+
+    # Texlive
+    texlive.enable = false;
+
+    # Graphics tools
+    graphics.enable = false;
+
+    # Media
+    media.enable = false;
+
+    # Virtualization
+    virtualization.enable = true;
+
+  };
+
+in
+
 {
-  imports =
-    [
-      ../machines/intel-nuc
-      ../desktops/gnome-nixos
-      ../users/storvik/storvik-nixos.nix
-    ];
+  imports = [
+    <home-manager/nixos>
+    ../machines/intel-nuc
+    ../modules
+    ../modules/nixos
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -16,13 +43,24 @@
 
   networking.hostName = "storvik-nixos-nuc";
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.storvik = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
+  # Must allow unfree licence for android studio
+  nixpkgs.config.allowUnfree = true;
+
+  # Allow broken packages, used with care
+  nixpkgs.config.allowBroken = true;
+
+  # Include overlays
+  nixpkgs.overlays = [
+    (import ../overlays)
+  ];
+
+  storvik = cfg;
+  home-manager.users.storvik = { config, pkgs, ... }: {
+    imports = [
+      ../modules
+      ../modules/home-manager
     ];
+    storvik = cfg;
   };
 
   # Enable the OpenSSH daemon.

@@ -11,7 +11,7 @@ with lib;
   home.extraOutputsToInstall = [ "doc" ];
 
   # Custom fonts
-  fonts.fontconfig.enable = true;
+  #fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
     fira-code

@@ -1,26 +1,83 @@
-{ lib, ... }:
+{ config, pkgs, lib, ... }:
 
 with lib;
 
-let
-
-  # Recursively constructs an attrset of a given folder, recursing on directories, value of attrs is the filetype
-  getDir = dir: mapAttrs
-    (file: type:
-      if type == "directory" then getDir "${dir}/${file}" else type
-    )
-    (builtins.readDir dir);
-
-  # Collects all files of a directory as a list of strings of paths
-  files = dir: collect isString (mapAttrsRecursive (path: type: concatStringsSep "/" path) (getDir dir));
-
-  # Filters out directories that don't end with .nix or are this file, also makes the strings absolute
-  validFiles = dir: map (file: ./. + "/${file}") (filter (file: hasSuffix ".nix" file && file != "default.nix") (files dir));
-
-in
-
 {
 
-  imports = validFiles ./.;
+  options.storvik.emacs.enable = mkOption {
+    default = true;
+    description = "Enable the all mighty emacs";
+    type = lib.types.bool;
+  };
+
+  options.storvik.shell.enable = mkOption {
+    default = true;
+    description = "Enable shell setup and shell tools";
+    type = lib.types.bool;
+  };
+
+  ##
+  # User specific options
+  ##
+
+  options.storvik.user.storvik.enable = mkEnableOption "Enable storvik user";
+
+  options.storvik.email.enable = mkEnableOption "Email settings for storvik user";
+
+  ##
+  # OS dependant
+  ##
+
+  options.storvik.genericLinux.enable = mkEnableOption "Enable if generic linux with nix, not nixos, is used";
+
+  ##
+  # Developer tools
+  ##
+
+  options.storvik.developer.enable = mkEnableOption "Enable all developer tools";
+
+  options.storvik.developer.android.enable = mkEnableOption "Enable android developer tools";
+
+  options.storvik.developer.c.enable = mkEnableOption "Enable C / C++ developer tools";
+
+  options.storvik.developer.go.enable = mkEnableOption "Enable Go developer tools";
+
+  options.storvik.developer.lisp.enable = mkEnableOption "Enable Lisp developer tools";
+
+  options.storvik.developer.nix.enable = mkEnableOption "Enable Nix developer tools";
+
+  options.storvik.developer.powershell.enable = mkEnableOption "Enable Powershell developer tools";
+
+  options.storvik.developer.python.enable = mkEnableOption "Enable Python developer tools";
+
+  options.storvik.developer.shell.enable = mkEnableOption "Enable Shell developer tools";
+
+  options.storvik.developer.web.enable = mkEnableOption "Enabel web developer tools";
+
+  ##
+  # Desktop related settings
+  ##
+
+  options.storvik.gnome.enable = mkEnableOption "GNOME";
+
+  options.storvik.kde.enable = mkEnableOption "KDE";
+
+  ##
+  # Software collections
+  ##
+
+  options.storvik.graphics.enable = mkEnableOption "Graphics tools";
+
+  options.storvik.media.enable = mkEnableOption "Media ";
+
+  options.storvik.texlive.enable = mkEnableOption "Install texlive";
+
+  options.storvik.virtualization.enable = mkOption {
+    default = true;
+    description = "Enable virtualization tools and set some useful aliases";
+    type = lib.types.bool;
+  };
+
+  options.storvik.work.enable = mkEnableOption "Work stuff";
 
 }

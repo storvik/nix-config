@@ -10,8 +10,6 @@ in
 
 {
 
-  options.storvik.email.enable = mkEnableOption "Email settings";
-
   config = mkIf config.storvik.email.enable {
 
     home.packages = with pkgs; [
