@@ -67,12 +67,17 @@ with lib;
     };
 
     # NOT WORKING ON NIXOS
-    #programs.tmux = {
-    #  enable = true;
-    #  clock24 = true;
-    #  newSession = true;
-    #  shell = "${pkgs.fish}/bin/fish";
-    #};
+    programs.tmux = {
+      enable = true;
+      clock24 = true;
+      newSession = true;
+      prefix = "C-a";
+      shell = "${pkgs.fish}/bin/fish";
+      extraConfig = ''
+        # Mouse mode to select windows / panes
+        set -g mouse on
+      '';
+    };
 
     # Alacritty terminal emulator
     programs.alacritty = {

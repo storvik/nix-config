@@ -1,5 +1,3 @@
-# Nix config for Ubuntu
-
 { config, pkgs, ... }:
 
 {
