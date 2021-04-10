@@ -1,5 +1,3 @@
 [
-  ./nixpkgsmaster
-  ./ecl
-  ./sbcl
+  ./nixpkgs
 ]
