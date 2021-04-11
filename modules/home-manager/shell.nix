@@ -71,7 +71,6 @@ with lib;
       enable = true;
       clock24 = true;
       newSession = true;
-      prefix = "C-a";
       shell = "${pkgs.fish}/bin/fish";
       extraConfig = ''
         # Mouse mode to select windows / panes
