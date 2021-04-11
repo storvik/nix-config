@@ -2,6 +2,37 @@
 
 with lib;
 
+let
+
+  storvik-backup = pkgs.writeScriptBin "storvik-backup" ''
+    #!${pkgs.bash}/bin/bash
+
+    ts=$(date +%Y%m%d-%H%M%S)
+    hostname=$(hostname)
+
+    echo "Going to home dir"
+    pushd /home/$USER
+
+    echo "Creating backup dir in home"
+    mkdir -p backup
+
+    echo "Backing up files"
+    tar -cJvf backup/$ts.tar.xz \
+        .ssh
+
+    echo "Creating remote backup dir"
+    rclone mkdir pcloud:backup/$hostname
+
+    echo "Copying archive to remote"
+    rclone copy backup/$ts.tar.xz pcloud:backup/$hostname
+
+    notify-send "Backup complete" "Backup script run and backup is uploaded to pCloud"
+
+    popd
+  '';
+
+in
+
 {
 
   config = mkIf config.storvik.shell.enable {
@@ -100,6 +131,7 @@ with lib;
       pdftk
       rclone
       ripgrep
+      storvik-backup
       unixtools.netstat
       unixtools.route
       whois
