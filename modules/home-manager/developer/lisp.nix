@@ -9,7 +9,7 @@ with lib;
 
       home.packages = with pkgs; [
         clpm
-        # ecl
+        ecl
         sbcl
       ];
 
