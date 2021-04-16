@@ -44,6 +44,7 @@ with lib;
 
     # Install additional packages
     environment.systemPackages = with pkgs; [
+      libnotify
       gnome3.adwaita-icon-theme
       gnome3.gnome-tweaks
     ];
