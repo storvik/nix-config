@@ -137,6 +137,18 @@ in
             white = "0xbbc2cf";
           };
         };
+        font = {
+          normal = {
+            family = "Fira Code";
+          };
+          bold = {
+            family = "Fira Code";
+          };
+          italic = {
+            family = "Fira Code";
+          };
+          size = 11;
+        };
       };
     };
 
