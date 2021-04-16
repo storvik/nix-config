@@ -1,9 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  
+
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
     ];
 

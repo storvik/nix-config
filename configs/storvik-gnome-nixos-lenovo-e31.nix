@@ -1,32 +1,69 @@
-# Nixos config for Lenovo E31
-
 { config, pkgs, lib, ... }:
+
 let
-  # Import home-manager, must be done in order to use home-manager.users.<user> with mkMerge
-  home-base = import ../users/storvik/storvik-base.nix { inherit pkgs config lib; };
-  home-gui = import ../users/storvik/storvik-gui.nix { inherit pkgs config lib; };
+
+  cfg = {
+
+    # Enable storvik user
+    user.storvik.enable = true;
+
+    # Use gnome desktop
+    gnome.enable = true;
+
+    # Enable all developer tools
+    developer.enable = false;
+
+    # Texlive
+    texlive.enable = false;
+
+    # Graphics tools
+    graphics.enable = false;
+
+    # Media
+    media.enable = false;
+
+    # Virtualization
+    virtualization.enable = true;
+
+  };
 
 in
+
 {
+  imports = [
+    <home-manager/nixos>
+    ../machines/lenovo-e31
+    ../modules
+    ../modules/nixos
+  ];
+
+  networking.hostName = "storvik-nixos-lenovo";
 
   # Must allow unfree licence for android studio
   nixpkgs.config.allowUnfree = true;
 
-  imports = [
-    (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-20.03.tar.gz}/nixos")
-    ../users/storvik/storvik-nixos.nix
-    ../desktops/gnome-nixos
-    ../machines/lenovo-e31
+  # Allow broken packages, used with care
+  nixpkgs.config.allowBroken = true;
+
+  # Include overlays
+  nixpkgs.overlays = [
+    (import ../overlays)
   ];
 
-  # Merge home-manager configs
-  home-manager.users.storvik = lib.mkMerge [ home-base home-gui ];
-
-  # Computer hostname
-  networking.hostName = "storvik-nixos";
+  storvik = cfg;
+  home-manager.users.storvik = { config, pkgs, ... }: {
+    imports = [
+      ../modules
+      ../modules/home-manager
+    ];
+    storvik = cfg;
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -34,6 +71,6 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.03"; # Did you read the comment?
+  system.stateVersion = "20.09"; # Did you read the comment?
 
 }
