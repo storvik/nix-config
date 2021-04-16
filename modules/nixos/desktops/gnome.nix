@@ -21,6 +21,9 @@ with lib;
 
     services = {
 
+      # Fix for dconf
+      dbus.packages = with pkgs; [ gnome3.dconf ];
+
       xserver = {
 
         # Enable the X11 windowing system.
