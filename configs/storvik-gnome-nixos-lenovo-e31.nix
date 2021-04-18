@@ -10,8 +10,10 @@ let
     # Use gnome desktop
     gnome.enable = true;
 
-    # Enable all developer tools
-    developer.enable = false;
+    # Enable some developer tools
+    developer.c.enable = true;
+    developer.go.enable = true;
+    developer.nix.enable = true;
 
     # Texlive
     texlive.enable = false;
