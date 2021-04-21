@@ -10,7 +10,7 @@ with lib;
         pkgs.astyle
         pkgs.ccls
         pkgs.cmake
-        #pkgs.cmake-format
+        pkgs.cmake-format
         pkgs.gdb
         pkgs.protobuf
         pkgs.ninja
