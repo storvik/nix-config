@@ -27,6 +27,7 @@ with lib;
         "compile_commands.json"
         ".envrc"
         ".direnv"
+        "result"
       ];
     };
 
