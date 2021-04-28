@@ -68,7 +68,9 @@ with lib;
 
   options.storvik.graphics.enable = mkEnableOption "Graphics tools";
 
-  options.storvik.media.enable = mkEnableOption "Media ";
+  options.storvik.media.enable = mkEnableOption "Media";
+
+  options.storvik.server.enable = mkEnableOption "Server tools";
 
   options.storvik.texlive.enable = mkEnableOption "Install texlive";
 
