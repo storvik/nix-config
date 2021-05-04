@@ -70,8 +70,6 @@ with lib;
 
   options.storvik.media.enable = mkEnableOption "Media";
 
-  options.storvik.server.enable = mkEnableOption "Server tools";
-
   options.storvik.texlive.enable = mkEnableOption "Install texlive";
 
   options.storvik.virtualization.enable = mkOption {
