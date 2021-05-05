@@ -18,7 +18,8 @@ let
 
     echo "Backing up files"
     tar -cJvf backup/$ts.tar.xz \
-        .ssh
+        .ssh \
+        .netrc
 
     echo "Creating remote backup dir"
     rclone mkdir pcloud:backup/$hostname

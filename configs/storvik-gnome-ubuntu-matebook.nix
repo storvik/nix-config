@@ -31,9 +31,6 @@
   # Enable all developer tools
   storvik.developer.enable = true;
 
-  # Enable server tools
-  storvik.server.enable = true;
-
   # Texlive
   storvik.texlive.enable = true;
 
