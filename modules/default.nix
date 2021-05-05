@@ -60,6 +60,8 @@ with lib;
 
   options.storvik.gnome.enable = mkEnableOption "GNOME";
 
+  options.storvik.sway.enable = mkEnableOption "Sway";
+
   options.storvik.kde.enable = mkEnableOption "KDE";
 
   ##
