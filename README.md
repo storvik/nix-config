@@ -1,7 +1,5 @@
 # nix config
 
-[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
-
 My config for both NixOS and generic linux machines, should work with the unstable branch.
 
 ## Structure and options
