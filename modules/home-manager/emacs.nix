@@ -2,20 +2,22 @@
 
 with lib;
 
+let
+
+  emacsOverlay = import (fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz) { };
+
+in
+
 {
 
   config = mkIf config.storvik.emacs.enable {
 
-    nixpkgs.overlays = [
-      (import (builtins.fetchTarball {
-        url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-      }))
-    ];
-
-    home.packages = with pkgs; [
-      emacsUnstable
-      #emacsGcc # emacs native compile
-    ];
+    home.packages =
+      if config.storvik.emacs.nativeComp then [
+        emacsOverlay.emacsGcc
+      ] else [
+        pkgs.emacs
+      ];
 
     home.sessionVariables = {
       EDITOR = "emacs";
