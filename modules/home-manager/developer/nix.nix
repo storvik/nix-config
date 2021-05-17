@@ -8,6 +8,7 @@ with lib;
     {
       home.packages = with pkgs; [
         nixpkgs-fmt
+        nixpkgs-review
         nix-prefetch-git
         nix-prefetch-github
       ];
