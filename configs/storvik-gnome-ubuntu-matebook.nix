@@ -31,6 +31,9 @@
   # Enable all developer tools
   storvik.developer.enable = true;
 
+  # Use Emacs with the native compile
+  storvik.emacs.nativeComp = true;
+
   # Texlive
   storvik.texlive.enable = true;
 

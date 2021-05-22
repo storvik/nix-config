@@ -4,7 +4,14 @@ with lib;
 
 let
 
-  emacsOverlay = import (fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz) { };
+  nixpkgsEmacs = import <nixpkgs>
+    {
+      overlays = [
+        (import (builtins.fetchTarball {
+          url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+        }))
+      ];
+    };
 
 in
 
@@ -14,7 +21,7 @@ in
 
     home.packages =
       if config.storvik.emacs.nativeComp then [
-        emacsOverlay.emacsGcc
+        nixpkgsEmacs.emacsGcc
       ] else [
         pkgs.emacs
       ];

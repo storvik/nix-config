@@ -58,3 +58,14 @@ When not on NixOS home-manager is used to install packages user level and store 
 3. Install [home-manager](https://github.com/nix-community/home-manager)
 4. Symlink `/etc/nixos/configuration.nix` to config file
 5. Run `sudo nixos-rebuild build` followed by `switch` if everything went ok
+
+### Cachix
+
+If using emacs overlay (emacs native compile) cachix may save you for a lot of compile time.
+Read more about it [here](https://app.cachix.org/cache/nix-community).
+Run the following commands to install and setup cachix:
+
+``` shell
+nix-env -iA cachix -f https://cachix.org/api/v1/install
+cachix use nix-community
+```
