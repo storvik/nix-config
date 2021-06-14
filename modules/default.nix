@@ -12,6 +12,8 @@ with lib;
 
   options.storvik.emacs.nativeComp = mkEnableOption "Enable Emacs native compile";
 
+  options.storvik.emacs.daemon = mkEnableOption "Enable Emacs daemon";
+
   options.storvik.shell.enable = mkOption {
     default = true;
     description = "Enable shell setup and shell tools";

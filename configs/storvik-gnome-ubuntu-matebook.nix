@@ -34,6 +34,9 @@
   # Use Emacs with the native compile
   storvik.emacs.nativeComp = true;
 
+  # Enable Emacs daemon
+  storvik.emacs.daemon = true;
+
   # Texlive
   storvik.texlive.enable = true;
 

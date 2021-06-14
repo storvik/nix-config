@@ -30,6 +30,8 @@ in
       EDITOR = "emacs";
     };
 
+    services.emacs.enable = config.storvik.emacs.daemon;
+
   };
 
 }

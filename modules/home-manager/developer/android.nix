@@ -15,7 +15,6 @@ in
       home.packages = with pkgs; [
         android.platform-tools
         apktool
-        dart
         scrcpy
       ];
     };
