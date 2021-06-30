@@ -13,6 +13,12 @@ let
     # Enable all developer tools
     developer.enable = false;
 
+    # Use Emacs with the native compile
+    emacs.nativeComp = true;
+
+    # Enabel emacs daemon
+    emacs.daemon = true;
+
     # Texlive
     texlive.enable = false;
 
@@ -32,6 +38,7 @@ in
 {
   imports = [
     <home-manager/nixos>
+    /etc/nixos/cachix.nix # cachix support
     ../machines/intel-nuc
     ../modules
     ../modules/nixos
