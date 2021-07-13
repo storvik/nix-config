@@ -19,12 +19,10 @@ in
 
   config = mkIf config.storvik.emacs.enable {
 
-    home.packages =
-      if config.storvik.emacs.nativeComp then [
-        nixpkgsEmacs.emacsGcc
-      ] else [
-        pkgs.emacs
-      ];
+    programs.emacs = {
+      enable = true;
+      package = if config.storvik.emacs.nativeComp then nixpkgsEmacs.emacsGcc else pkgs.emacs;
+    };
 
     home.sessionVariables = {
       EDITOR = "emacs";
