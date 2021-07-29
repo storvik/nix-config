@@ -43,6 +43,21 @@
   # Graphics tools
   storvik.graphics.enable = true;
 
+  # pCloud sync script using rclone
+  storvik.pcloudsync.enable = true;
+
+  # Set folders to sync
+  storvik.pcloudsync.syncdirs = [
+    {
+      source = "/home/storvik/svartisenfestivalen/";
+      dest = "svartisenfestivalen/";
+    }
+    {
+      source = "/home/storvik/developer/org/";
+      dest = "org/";
+    }
+  ];
+
   # Empty home.packages, useful when testing stuff
   home.packages = with pkgs; [
     # Add something here
