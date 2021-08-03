@@ -10,13 +10,11 @@ let
     # Use gnome desktop
     gnome.enable = true;
 
-    # Enable some developer tools
-    developer.c.enable = true;
-    developer.go.enable = true;
-    developer.nix.enable = true;
+    # Enable Emacs daemon
+    emacs.daemon = true;
 
-    # Texlive
-    texlive.enable = false;
+    # Enable some developer tools
+    developer.nix.enable = true;
 
     # Graphics tools
     graphics.enable = false;
