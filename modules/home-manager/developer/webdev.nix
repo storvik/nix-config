@@ -10,6 +10,9 @@ with lib;
         nodejs-14_x
         yarn
         nodePackages.prettier
+        nodePackages.typescript
+        nodePackages.typescript-language-server
+        clojure-lsp
       ];
     };
 
