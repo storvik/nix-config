@@ -86,18 +86,20 @@ with lib;
 
   options.storvik.work.enable = mkEnableOption "Work stuff";
 
-  options.storvik.pcloudsync.enable = mkEnableOption "pCloud sync";
+  options.storvik.rclonesync.enable = mkEnableOption "pCloud sync";
 
-  options.storvik.pcloudsync.syncdirs = mkOption {
+  options.storvik.rclonesync.syncdirs = mkOption {
     default = [ ];
     description = ''
       Should be a list of attribute sets with source and dests. Example:
       [
         {
+          remote = "pcloud";
           source = "/home/storvik/svartisenfestivalen/";
           dest = "svartisenfestivalen/";
         }
         {
+          remote = "pcloud";
           source = "/home/storvik/developer/org/";
           dest = "org/";
         }

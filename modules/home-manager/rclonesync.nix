@@ -4,36 +4,36 @@ with lib;
 
 let
 
-  # bash script that syncs dirs to pcloud
-  storvik-pcloudsync = pkgs.writeScriptBin "storvik-pcloudsync" ''
+  # bash script that syncs dirs to cloud using rclone
+  storvik-rclonesync = pkgs.writeScriptBin "storvik-rclonesync" ''
     #!${pkgs.bash}/bin/bash
 
-    ${lib.strings.concatMapStrings (x: "rclone sync " + x.source + " pcloud:" + x.dest + "\n") config.storvik.pcloudsync.syncdirs}
+    ${lib.strings.concatMapStrings (x: "rclone sync " + x.source + " " + x.remote + ":" + x.dest + "\n") config.storvik.rclonesync.syncdirs}
   '';
 
 in
 
 {
 
-  config = mkIf config.storvik.pcloudsync.enable {
+  config = mkIf config.storvik.rclonesync.enable {
 
     # systemd service
-    systemd.user.services.pcloudsync = {
+    systemd.user.services.rclonesync = {
       Unit = {
-        Description = "Sync dirs to pcloud";
+        Description = "Sync dirs to cloud using rclone";
       };
       Service = {
         Type = "simple";
-        ExecStart = "${storvik-pcloudsync}/bin/storvik-pcloudsync";
+        ExecStart = "${storvik-rclonesync}/bin/storvik-rclonesync";
       };
     };
 
-    systemd.user.timers.pcloudsync = {
+    systemd.user.timers.rclonesync = {
       Unit = {
-        Description = "Timer for syncing dirs to pcloud";
+        Description = "Timer for syncing dirs to cloud using rclone";
       };
       Timer = {
-        Unit = "pcloudsync.service";
+        Unit = "rclonesync.service";
         # Run 15 minutes after boot, since the timer must run at least once
         # before OnUnitInactiveSec will trigger
         OnBootSec = "15m";
@@ -48,7 +48,7 @@ in
     };
 
     home.packages = with pkgs; [
-      storvik-pcloudsync
+      storvik-rclonesync
       rclone
     ];
 

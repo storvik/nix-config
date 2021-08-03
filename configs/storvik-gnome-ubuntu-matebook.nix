@@ -44,15 +44,17 @@
   storvik.graphics.enable = true;
 
   # pCloud sync script using rclone
-  storvik.pcloudsync.enable = true;
+  storvik.rclonesync.enable = true;
 
   # Set folders to sync
-  storvik.pcloudsync.syncdirs = [
+  storvik.rclonesync.syncdirs = [
     {
+      remote = "pcloud";
       source = "/home/storvik/svartisenfestivalen/";
       dest = "svartisenfestivalen/";
     }
     {
+      remote = "pcloud";
       source = "/home/storvik/developer/org/";
       dest = "org/";
     }
