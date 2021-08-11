@@ -13,6 +13,7 @@ in
   config = mkIf config.storvik.email.enable {
 
     home.packages = with pkgs; [
+      bitwarden-cli
       mu
     ];
 
@@ -76,9 +77,9 @@ in
         def get_pass(account):
             # Open a file: file
             f = open("${homedir}/.bitwarden", mode='r')
-            bwSession = file.read()
+            bwSession = f.read().strip("\n")
             f.close()
-            return check_output("bw get --session " + bwSession + " password " + account, shell=True).strip("\n")
+            return check_output("${pkgs.bitwarden-cli}/bin/bw get --session " + bwSession + " password " + account, shell=True).strip("\n")
 
         def nametrans_gmail_remote(foldername):
             return re.sub ('^\[Gmail\].', ${"''"},
