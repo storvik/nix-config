@@ -90,6 +90,7 @@ in
       enable = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
+      tmux.enableShellIntegration = true;
     };
 
     # lsd is a modern ls replacement
