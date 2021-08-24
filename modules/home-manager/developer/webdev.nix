@@ -7,12 +7,13 @@ with lib;
   config = mkIf (config.storvik.developer.web.enable || config.storvik.developer.enable)
     {
       home.packages = with pkgs; [
-        nodejs-14_x
-        yarn
+        clojure-lsp
+        html-tidy
+        nodejs-16_x
         nodePackages.prettier
         nodePackages.typescript
         nodePackages.typescript-language-server
-        clojure-lsp
+        yarn
       ];
     };
 
