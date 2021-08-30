@@ -22,7 +22,8 @@ with lib;
     services = {
 
       # Fix for dconf
-      dbus.packages = with pkgs; [ gnome3.dconf ];
+      dbus.packages = [ pkgs.gnome.dconf ];
+      udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
 
       xserver = {
 
@@ -36,6 +37,7 @@ with lib;
 
         # Enable GNOME Desktop Environment
         displayManager.gdm.enable = true;
+        displayManager.gdm.wayland = true;
         desktopManager.gnome.enable = true;
 
       };
@@ -45,8 +47,8 @@ with lib;
     # Install additional packages
     environment.systemPackages = with pkgs; [
       libnotify
-      gnome3.adwaita-icon-theme
-      gnome3.gnome-tweaks
+      gnome.adwaita-icon-theme
+      gnome.gnome-tweaks
     ];
 
   };

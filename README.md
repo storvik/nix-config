@@ -1,13 +1,12 @@
 # nix config
 
-My config for both NixOS and generic linux machines, should work with the unstable branch.
+My config for both NixOS and generic linux machines, now using flakes.
 
 ## Structure and options
 
 ```
-├── configs/                                 - configurations combining machine, role, user and profiles
-|   |
-|   └── storvik-gnome-ubuntu-matebook.nix    - my Ubuntu based laptop for work
+|
+├── flake.nix                                - flake file
 |
 ├── modules/                                 - all config modules
 |   |
@@ -27,6 +26,8 @@ My config for both NixOS and generic linux machines, should work with the unstab
 |   |
 |   ├── intel-nuc                            - Intel NUC
 |   |
+|   ├── lenovo-e31                           - Lenovo E31
+|   |
 |   └── matebook                             - Huawei Matebook Pro
 |
 ├── overlays/                                - overlays
@@ -35,37 +36,23 @@ My config for both NixOS and generic linux machines, should work with the unstab
 ```
 
 Modules are divided into home-manager and nixos modules.
-For up to date examples of config for both home-manager and nixos look at `configs/storvik-gnome-ubuntu-matebook.nix` and `config/storvik-gnome-nixos-nuc.nix`.
 All module options can be seen in `modules/default.nix`.
 
 ## Install
 
 ### Non NixOS computer ([home-manager](https://github.com/nix-community/home-manager))
 
-When not on NixOS home-manager is used to install packages user level and store configurations.
-
 1. Install Nix on computer, [nix manual](https://nixos.org/manual/nix/stable/)
 2. Add nixpgks unstable channel
-3. Install [home-manager](https://github.com/nix-community/home-manager)
-4. Symlink `~/.config/nixpkgs/home.nix` to config file.
-5. Backup conflicting files (`.bashrc`, `.profile`)
-6. Run `home-manager switch`
+3. Enter nix-shell using `nix-shell`
+4. Build config `nix build --impure .#storvik-ubuntu`
+5. Exit nix-shell
+6. Backup conflicting files (`.bashrc`, `.profile`)
+7. Activate config with `./result/activate`
 
 ### NixOS computer
 
 1. Install NixOS, [nixos manual](https://nixos.org/manual/nixos/stable/)
 2. Switch to unstable channel
-3. Install [home-manager](https://github.com/nix-community/home-manager)
-4. Symlink `/etc/nixos/configuration.nix` to config file
-5. Run `sudo nixos-rebuild build` followed by `switch` if everything went ok
-
-### Cachix
-
-If using emacs overlay (emacs native compile) cachix may save you for a lot of compile time.
-Read more about it [here](https://app.cachix.org/cache/nix-community).
-Run the following commands to install and setup cachix:
-
-``` shell
-nix-env -iA cachix -f https://cachix.org/api/v1/install
-cachix use nix-community
-```
+3. Install nix-flakes by importing `./modules/nixos/nixsettings.nix` in `/etc/nixos/configuration.nix`
+4. `sudo nixos-rebuild switch --impure --flake .#storvik-nixos-lenovo`

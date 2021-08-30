@@ -6,10 +6,6 @@ with lib;
 
   config = mkIf config.storvik.user.storvik.enable {
 
-    # Set username and user home dir
-    home.username = "storvik";
-    home.homeDirectory = "/home/storvik";
-
     # Git
     programs.git = {
       enable = true;

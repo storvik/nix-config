@@ -8,7 +8,7 @@ with lib;
 
     home.packages = with pkgs; [
       spotify
-      libsForQt5.vlc
+      vlc
     ];
 
   };

@@ -15,6 +15,7 @@ with lib;
         pkgs.protobuf
         pkgs.ninja
         pkgs.meson
+        pkgs.rr
       ];
     };
 

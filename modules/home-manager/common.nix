@@ -11,10 +11,11 @@ with lib;
   home.extraOutputsToInstall = [ "doc" ];
 
   # Custom fonts
-  fonts.fontconfig.enable = (config.storvik.genericLinux.enable);
+  fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
     fira-code
     fira-code-symbols
+    nerdfonts
   ];
 }
