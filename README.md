@@ -44,9 +44,9 @@ All module options can be seen in `modules/default.nix`.
 
 1. Install Nix on computer, [nix manual](https://nixos.org/manual/nix/stable/)
 2. Add nixpgks unstable channel
-3. Enter nix-shell using `nix-shell`
-4. Build config `nix build --impure .#storvik-ubuntu`
-5. Exit nix-shell
+3. Install unstable nix, `nix-env -iA nixpkgs.nixUnstable`
+4. Add `experimental-features = nix-command flakes` to `~/.config/nix/nix.conf`
+5. Build config `nix build --impure .#storvik-ubuntu`
 6. Backup conflicting files (`.bashrc`, `.profile`)
 7. Activate config with `./result/activate`
 
