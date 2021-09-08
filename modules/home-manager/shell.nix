@@ -158,14 +158,12 @@ in
     };
 
     home.packages = with pkgs; [
-      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science nb ]))
       bitwarden-cli
       bfg-repo-cleaner
       ltunify
       nmap
       pdftk
       rclone
-      ripgrep
       storvik-backup
       unixtools.netstat
       unixtools.route

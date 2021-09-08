@@ -142,6 +142,7 @@
                 nativeComp = false;
                 daemon = true;
               };
+              media.enable = true;
               developer.nix.enable = true;
               virtualization.enable = true;
             };
