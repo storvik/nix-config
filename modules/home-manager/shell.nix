@@ -82,7 +82,10 @@ in
       enable = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
-      nix-direnv.enable = true;
+      nix-direnv = {
+        enable = true;
+        enableFlakes = true;
+      };
     };
 
     # fzf overrides C-r history search
