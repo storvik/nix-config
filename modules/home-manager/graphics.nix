@@ -9,6 +9,7 @@ with lib;
     home.packages = with pkgs; [
       freecad
       gimp
+      graphviz
       inkscape
       plantuml
     ];
