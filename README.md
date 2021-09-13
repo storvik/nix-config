@@ -56,3 +56,20 @@ All module options can be seen in `modules/default.nix`.
 2. Switch to unstable channel
 3. Install nix-flakes by importing `./modules/nixos/nixsettings.nix` in `/etc/nixos/configuration.nix`
 4. `sudo nixos-rebuild switch --impure --flake .#storvik-nixos-lenovo`
+
+
+## Create live USB
+
+Build ISO and copy it to USB:
+
+``` shell
+nix build .#nixosConfigurations.live-iso.config.system.build.isoImage
+fdisk -l # to figure out path of USB, lsblk could also be used
+dd if=result/iso/nixos-*-linux.iso of=/dev/sdb status=progress
+```
+
+After setting up disks etc according to the NixOS manual, the system can be installed.
+
+``` shell
+nixos-install --flake .#storvik-nixos-lenovo
+```
