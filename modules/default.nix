@@ -4,6 +4,12 @@ with lib;
 
 {
 
+  options.storvik.browser.enable = mkOption {
+    default = true;
+    description = "Enable web browsers";
+    type = lib.types.bool;
+  };
+
   options.storvik.emacs.enable = mkOption {
     default = true;
     description = "Enable the all mighty emacs";
