@@ -144,13 +144,13 @@ in
         };
         font = {
           normal = {
-            family = "Fira Code";
+            family = "Iosevka Nerd Font";
           };
           bold = {
-            family = "Fira Code";
+            family = "Iosevka Nerd Font";
           };
           italic = {
-            family = "Fira Code";
+            family = "Iosevka Nerd Font";
           };
           size = 11;
         };
