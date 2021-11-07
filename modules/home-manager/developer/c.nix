@@ -9,8 +9,8 @@ with lib;
       home.packages = [
         pkgs.astyle
         pkgs.ccls
+        pkgs.clang-tools
         pkgs.cmake
-        pkgs.cmake-format
         pkgs.gdb
         pkgs.protobuf
         pkgs.ninja
