@@ -82,6 +82,8 @@ with lib;
 
   options.storvik.media.enable = mkEnableOption "Media";
 
+  options.storvik.social.enable = mkEnableOption "Social";
+
   options.storvik.texlive.enable = mkEnableOption "Install texlive";
 
   options.storvik.virtualization.enable = mkOption {

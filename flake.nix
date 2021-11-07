@@ -67,6 +67,7 @@
                 texlive.enable = true;
                 graphics.enable = true;
                 media.enable = true;
+                social.enable = true;
                 work.enable = true;
                 rclonesync.enable = true;
                 rclonesync.syncdirs = [
