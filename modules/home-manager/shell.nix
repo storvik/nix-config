@@ -124,6 +124,9 @@ in
         scrolling = {
           multiplier = 3;
         };
+        window = {
+          decorations = "None";
+        };
         # Colors (Doom One)
         # https://github.com/eendroroy/alacritty-theme/blob/master/themes/doom_one.yml
         colors = {
