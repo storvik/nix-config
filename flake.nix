@@ -37,6 +37,7 @@
           allowBroken = true;
         };
         overlays = [
+          (import ./overlays)
           emacs-overlay.outputs.overlay
           nixgl-overlay
         ];
