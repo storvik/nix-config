@@ -14,6 +14,7 @@ with lib;
         nodePackages.typescript
         nodePackages.typescript-language-server
         yarn
+        zprint
       ];
     };
 
