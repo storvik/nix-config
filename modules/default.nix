@@ -56,8 +56,6 @@ with lib;
 
   options.storvik.developer.nix.enable = mkEnableOption "Enable Nix developer tools";
 
-  options.storvik.developer.powershell.enable = mkEnableOption "Enable Powershell developer tools";
-
   options.storvik.developer.python.enable = mkEnableOption "Enable Python developer tools";
 
   options.storvik.developer.shell.enable = mkEnableOption "Enable Shell developer tools";
@@ -103,7 +101,7 @@ with lib;
       [
         {
           remote = "pcloud";
-          source = "/home/storvik/svartisenfestivalen/";
+          source = "/home/storvik/developer/svartisenfestivalen/";
           dest = "svartisenfestivalen/";
         }
         {
