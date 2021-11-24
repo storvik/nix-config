@@ -73,7 +73,7 @@
                 rclonesync.syncdirs = [
                   {
                     remote = "pcloud";
-                    source = "/home/storvik/svartisenfestivalen/";
+                    source = "/home/storvik/developer/svartisenfestivalen/";
                     dest = "svartisenfestivalen/";
                   }
                   {

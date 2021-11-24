@@ -12,11 +12,6 @@ with lib;
 
     home.packages = [
       pkgs.nixGL.auto.nixGLDefault # auto-detects nvidia, use intel if not found
-      # nixFlakes, this provides nix unstable as nixFlakes
-      (pkgs.writeScriptBin "nixFlakes" ''
-        #!${pkgs.bash}/bin/bash
-        exec ${pkgs.nixUnstable}/bin/nix --experimental-features "nix-command flakes" "$@"
-      '')
     ];
 
   };
