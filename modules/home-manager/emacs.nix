@@ -8,7 +8,7 @@ with lib;
 
     programs.emacs = {
       enable = true;
-      package = if config.storvik.emacs.nativeComp then pkgs.emacsGcc else pkgs.emacs;
+      package = if config.storvik.emacs.nativeComp then pkgs.emacsPgtkGcc else pkgs.emacsPgtk;
     };
 
     home.sessionVariables = {
