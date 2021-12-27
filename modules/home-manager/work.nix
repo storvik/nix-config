@@ -8,7 +8,7 @@ with lib;
 
     home.packages = with pkgs; [
       cloudcompare
-      # remmina
+      remmina
       slack
       teams
       # teamviewer
