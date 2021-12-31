@@ -76,6 +76,8 @@ with lib;
   # Software collections
   ##
 
+  options.storvik.entertainment.enable = mkEnableOption "Games";
+
   options.storvik.graphics.enable = mkEnableOption "Graphics tools";
 
   options.storvik.media.enable = mkEnableOption "Media";
