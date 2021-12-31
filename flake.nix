@@ -139,14 +139,16 @@
           let
             cfg = {
               user.storvik.enable = true;
+              entertainment.enable = true;
               gnome.enable = true;
               emacs = {
-                nativeComp = false;
+                nativeComp = true;
                 daemon = true;
               };
               media.enable = true;
               developer.nix.enable = true;
               virtualization.enable = true;
+              work.enable = true;
             };
           in
           lib.nixosSystem {
