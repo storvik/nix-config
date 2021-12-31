@@ -1,7 +1,7 @@
 {
   description = "Storviks Nix configuration";
 
-  nixConfig.bash-prompt = "❄ nix-develop $ ";
+  nixConfig.bash-prompt = "❄ nix-develop > ";
 
   inputs = {
 
@@ -192,7 +192,6 @@
               "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
               ({ config, pkgs, ... }: {
                 imports = [
-                  ./machines/intel-nuc
                   ./modules
                   ./modules/nixos
                 ];
