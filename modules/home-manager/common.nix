@@ -8,7 +8,7 @@ with lib;
   programs.home-manager.enable = true;
 
   # Get all documentations too
-  home.extraOutputsToInstall = [ "doc" ];
+  home.extraOutputsToInstall = [ "doc" "man" ];
 
   # Custom fonts
   fonts.fontconfig.enable = true;

@@ -40,6 +40,8 @@ with lib;
 
   options.storvik.genericLinux.enable = mkEnableOption "Enable if generic linux with nix, not nixos, is used";
 
+  options.storvik.remotelogin.enable = mkEnableOption "Enable remote login, ssh / vnc etc";
+
   ##
   # Developer tools
   ##

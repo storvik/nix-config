@@ -8,6 +8,14 @@ My config for both NixOS and generic linux machines, now using flakes.
 |
 ├── flake.nix                                - flake file
 |
+├── lib/                                     - helper stuff
+|   |
+|   ├── mkHome.nix                           - mkHome, helper that makes home-manager config
+|   |
+|   └── mkSystem.nix                         - mkSystem, helper thtat makes nixos system
+|
+├── hosts/                                   - host configurations
+|
 ├── modules/                                 - all config modules
 |   |
 |   ├── default.nix                          - all module options
@@ -27,6 +35,8 @@ My config for both NixOS and generic linux machines, now using flakes.
 |   ├── intel-nuc                            - Intel NUC
 |   |
 |   ├── lenovo-e31                           - Lenovo E31
+|   |
+|   ├── live                                 - Live ISO
 |   |
 |   └── matebook                             - Huawei Matebook Pro
 |
@@ -63,7 +73,7 @@ All module options can be seen in `modules/default.nix`.
 Build ISO and copy it to USB:
 
 ``` shell
-nix build .#nixosConfigurations.live-iso.config.system.build.isoImage
+nix build .#live-iso
 fdisk -l # to figure out path of USB, lsblk could also be used
 dd if=result/iso/nixos-*-linux.iso of=/dev/sdb status=progress
 ```

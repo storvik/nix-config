@@ -27,8 +27,7 @@
     let
       system = "x86_64-linux";
 
-      nixgl-overlay =
-        (final: prev: { nixGL = import nixGL { pkgs = final; }; });
+      nixgl-overlay = (final: prev: { nixGL = import nixGL { pkgs = final; }; });
 
       pkgs = import nixpkgs {
         inherit system;
@@ -43,168 +42,46 @@
         ];
       };
 
-      inherit (nixpkgs) lib;
+      mkHome = import ./lib/mkHome.nix;
+      mkSystem = import ./lib/mkSystem.nix;
     in
     {
-      homeManagerConfigurations = {
-        storvik = home-manager.lib.homeManagerConfiguration {
-          inherit system pkgs;
+      homeConfigurations = {
+        storvik = mkHome {
+          inherit self home-manager pkgs system;
           username = "storvik";
-          homeDirectory = "/home/storvik";
-          stateVersion = "21.03";
-          configuration = { config, pkgs, ... }:
-            {
-              #nixpkgs.overlays = [ emacs-overlay.outputs.overlay nixgl-overlay ];
-              storvik = {
-                user.storvik.enable = true;
-                genericLinux.enable = true;
-                email.enable = true;
-                developer.enable = true;
-                emacs = {
-                  nativeComp = true;
-                  daemon = true;
-                };
-                texlive.enable = true;
-                graphics.enable = true;
-                media.enable = true;
-                social.enable = true;
-                work.enable = true;
-                rclonesync.enable = true;
-                rclonesync.syncdirs = [
-                  {
-                    remote = "pcloud";
-                    source = "/home/storvik/developer/svartisenfestivalen/";
-                    dest = "svartisenfestivalen/";
-                  }
-                  {
-                    remote = "pcloud";
-                    source = "/home/storvik/developer/org/";
-                    dest = "org/";
-                  }
-                ];
-              };
-            };
-
-          extraModules = [
-            ./modules
-            ./modules/home-manager
-          ];
-
+          hostname = "storvik-ubuntu";
         };
       };
       nixosConfigurations = {
-        storvik-nixos-lenovo =
-          let
-            cfg = {
-              user.storvik.enable = true;
-              gnome.enable = true;
-              emacs.daemon = true;
-              developer.nix.enable = true;
-              graphics.enable = false;
-              media.enable = true;
-              virtualization.enable = true;
-            };
-          in
-          lib.nixosSystem {
-            inherit system pkgs;
-
-            modules = [
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.storvik = { config, pkgs, ... }: {
-                  imports = [
-                    ./modules
-                    ./modules/home-manager
-                  ];
-                  storvik = cfg;
-                };
-              }
-              ({ config, pkgs, ... }: {
-                imports = [
-                  ./machines/lenovo-e31
-                  ./modules
-                  ./modules/nixos
-                ];
-                storvik = cfg;
-                networking.hostName = "storvik-nixos-lenovo";
-                services.openssh.enable = true;
-                networking.firewall.enable = false;
-                system.stateVersion = "21.11";
-              })
-            ];
-          };
-        storvik-nixos-nuc =
-          let
-            cfg = {
-              user.storvik.enable = true;
-              entertainment.enable = true;
-              gnome.enable = true;
-              emacs = {
-                nativeComp = true;
-                daemon = true;
-              };
-              media.enable = true;
-              developer.nix.enable = true;
-              virtualization.enable = true;
-              work.enable = true;
-            };
-          in
-          lib.nixosSystem {
-            inherit system pkgs;
-
-            modules = [
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.storvik = { config, pkgs, ... }: {
-                  imports = [
-                    ./modules
-                    ./modules/home-manager
-                  ];
-                  storvik = cfg;
-                };
-              }
-              ({ config, pkgs, ... }: {
-                imports = [
-                  ./machines/intel-nuc
-                  ./modules
-                  ./modules/nixos
-                ];
-                storvik = cfg;
-                networking.hostName = "storvik-nixos-nuc";
-                services.openssh.enable = true;
-                networking.firewall.enable = false;
-                system.stateVersion = "21.11";
-              })
-            ];
-          };
-        live-iso =
-          let
-            cfg = {
-              gnome.enable = true;
-            };
-          in
-          lib.nixosSystem {
-            inherit system pkgs;
-
-            modules = [
-              "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
-              ({ config, pkgs, ... }: {
-                imports = [
-                  ./modules
-                  ./modules/nixos
-                ];
-                storvik = cfg;
-                networking.hostName = "storvik-nixos-live";
-              })
-            ];
-          };
+        storvik-nixos-lenovo = mkSystem {
+          inherit self home-manager pkgs system;
+          inherit (nixpkgs.lib) nixosSystem;
+          username = "storvik";
+          hostname = "storvik-nixos-lenovo";
+          machine = "lenovo-e31";
+        };
+        storvik-nixos-nuc = mkSystem {
+          inherit self home-manager pkgs system;
+          inherit (nixpkgs.lib) nixosSystem;
+          username = "storvik";
+          hostname = "storvik-nixos-nuc";
+          machine = "intel-nuc";
+        };
+        live-iso = mkSystem {
+          inherit self home-manager pkgs system;
+          inherit (nixpkgs.lib) nixosSystem;
+          username = "storvik";
+          hostname = "storvik-live";
+          machine = "live";
+          extraModules = [
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
+          ];
+        };
       };
 
       # For convenience when running nix build
-      storvik-ubuntu = self.homeManagerConfigurations.storvik.activationPackage;
+      storvik-ubuntu = self.homeConfigurations.storvik.activationPackage;
+      live-iso = self.nixosConfigurations.live-iso.config.system.build.isoImage;
     };
 }
