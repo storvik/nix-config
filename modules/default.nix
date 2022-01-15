@@ -32,8 +32,6 @@ with lib;
 
   options.storvik.user.storvik.enable = mkEnableOption "Enable storvik user";
 
-  options.storvik.email.enable = mkEnableOption "Email settings for storvik user";
-
   ##
   # OS dependant
   ##

@@ -1,7 +1,6 @@
 {
   user.storvik.enable = true;
   genericLinux.enable = true;
-  email.enable = true;
   developer.enable = true;
   emacs = {
     nativeComp = true;
