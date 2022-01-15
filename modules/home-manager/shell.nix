@@ -108,6 +108,10 @@ in
       extraConfig = ''
         # Mouse mode to select windows / panes
         set -g mouse on
+        # tmux window title
+        set-option -g status-interval 2
+        set-option -g automatic-rename on
+        set-option -g automatic-rename-format '#{?#{==:#{pane_current_command},fish},#{pane_title},#{pane_current_command}}'
       '';
     };
 
