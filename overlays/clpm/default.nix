@@ -4,13 +4,13 @@ self: super:
 
   clpm = super.clpm.overrideAttrs (oldAttrs: rec {
     pname = "clpm";
-    version = "0.5.0";
+    version = "0.4.2";
 
     src = super.fetchgit {
       url = "https://gitlab.common-lisp.net/clpm/clpm";
-      rev = "2d8108524bc3f15f10a41e3d0d717f130a121471";
+      rev = "e6b571dd5460978a3cbb81468975b7ba7469a121";
       fetchSubmodules = true;
-      sha256 = "sha256-CmfAXH6tDWPHU5eOShEPNvz0PmavKsiRRkbn8/l+nNA=";
+      sha256 = "sha256-yLVwyqDlm10aiUWq9FsLuv1X7ydPzZiU9hQE+trrlhg=";
     };
 
     installPhase = ''
