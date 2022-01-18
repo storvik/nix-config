@@ -81,7 +81,7 @@ in
     programs.direnv = {
       enable = true;
       enableBashIntegration = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true; # read-only
       nix-direnv.enable = true;
     };
 
