@@ -10,6 +10,7 @@ with lib;
       freecad
       gimp
       inkscape
+      openscad
     ];
 
   };
