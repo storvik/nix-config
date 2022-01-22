@@ -1,4 +1,15 @@
-{ self, home-manager, nixosSystem, username, hostname, machine, pkgs, system, extraModules ? [ ], ... }@inputs:
+{ self
+, home-manager
+, nixosSystem
+, username
+, hostname
+, machine
+, pkgs
+, system
+, inputs
+, extraModules ? [ ]
+, ...
+}@args:
 
 let
   hostConfig = import "${self}/hosts/${hostname}.nix";
@@ -19,6 +30,9 @@ nixosSystem {
         ];
         "${username}" = hostConfig;
       };
+      home-manager.extraSpecialArgs = {
+        inherit inputs;
+      };
     }
     ({ config, pkgs, ... }: {
       imports = [
@@ -31,4 +45,8 @@ nixosSystem {
       networking.firewall.enable = false;
     })
   ];
+
+  specialArgs = {
+    inherit inputs;
+  };
 }

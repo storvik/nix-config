@@ -1,4 +1,12 @@
-{ self, home-manager, username, hostname, pkgs, system, ... }@inputs:
+{ self
+, home-manager
+, username
+, hostname
+, pkgs
+, inputs
+, system
+, ...
+}@args:
 
 let
   hostConfig = import "${self}/hosts/${hostname}.nix";
@@ -18,5 +26,9 @@ home-manager.lib.homeManagerConfiguration {
     ("${self}/modules")
     ("${self}/modules/home-manager")
   ];
+
+  extraSpecialArgs = {
+    inherit inputs;
+  };
 
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 with lib;
 
@@ -13,6 +13,12 @@ with lib;
     home.packages = [
       pkgs.nixGL.auto.nixGLDefault # auto-detects nvidia, use intel if not found
     ];
+
+    # Change NIX_PATH in order to pin nixpkgs to current version. This way
+    # `nix shell` etc uses the same nixpkgs version as system configuration.
+    home.sessionVariables = {
+      NIX_PATH = "nixpkgs=${inputs.nixpkgs}\${NIX_PATH:+:}$NIX_PATH";
+    };
 
   };
 

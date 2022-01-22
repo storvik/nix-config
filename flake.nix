@@ -48,28 +48,28 @@
     {
       homeConfigurations = {
         storvik = mkHome {
-          inherit self home-manager pkgs system;
+          inherit self home-manager pkgs system inputs;
           username = "storvik";
           hostname = "storvik-ubuntu";
         };
       };
       nixosConfigurations = {
         storvik-nixos-lenovo = mkSystem {
-          inherit self home-manager pkgs system;
+          inherit self home-manager pkgs system inputs;
           inherit (nixpkgs.lib) nixosSystem;
           username = "storvik";
           hostname = "storvik-nixos-lenovo";
           machine = "lenovo-e31";
         };
         storvik-nixos-nuc = mkSystem {
-          inherit self home-manager pkgs system;
+          inherit self home-manager pkgs system inputs;
           inherit (nixpkgs.lib) nixosSystem;
           username = "storvik";
           hostname = "storvik-nixos-nuc";
           machine = "intel-nuc";
         };
         live-iso = mkSystem {
-          inherit self home-manager pkgs system;
+          inherit self home-manager pkgs system inputs;
           inherit (nixpkgs.lib) nixosSystem;
           username = "storvik";
           hostname = "storvik-live";
