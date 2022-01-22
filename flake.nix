@@ -42,35 +42,36 @@
         ];
       };
 
-      mkHome = import ./lib/mkHome.nix;
-      mkSystem = import ./lib/mkSystem.nix;
+      flakeLib = import ./flake {
+        inherit self inputs;
+        inherit (nixpkgs.lib) nixosSystem;
+      };
+
+      inherit (flakeLib) mkHome mkSystem;
     in
     {
       homeConfigurations = {
         storvik = mkHome {
-          inherit self home-manager pkgs system inputs;
+          inherit pkgs system;
           username = "storvik";
           hostname = "storvik-ubuntu";
         };
       };
       nixosConfigurations = {
         storvik-nixos-lenovo = mkSystem {
-          inherit self home-manager pkgs system inputs;
-          inherit (nixpkgs.lib) nixosSystem;
+          inherit pkgs system;
           username = "storvik";
           hostname = "storvik-nixos-lenovo";
           machine = "lenovo-e31";
         };
         storvik-nixos-nuc = mkSystem {
-          inherit self home-manager pkgs system inputs;
-          inherit (nixpkgs.lib) nixosSystem;
+          inherit pkgs system;
           username = "storvik";
           hostname = "storvik-nixos-nuc";
           machine = "intel-nuc";
         };
         live-iso = mkSystem {
-          inherit self home-manager pkgs system inputs;
-          inherit (nixpkgs.lib) nixosSystem;
+          inherit pkgs system;
           username = "storvik";
           hostname = "storvik-live";
           machine = "live";
