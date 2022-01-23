@@ -11,7 +11,6 @@ with lib;
       remmina
       slack
       teams
-      # teamviewer
     ];
 
   };

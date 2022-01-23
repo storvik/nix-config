@@ -8,6 +8,7 @@ with lib;
 
     environment.systemPackages = with pkgs; [
       globalprotect-openconnect
+      teamviewer
     ];
 
   };
