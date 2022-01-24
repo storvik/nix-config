@@ -15,7 +15,7 @@ with lib;
         patchelf
         radare2
         retdec
-        # volatility broken
+        volatility3
       ]
       ++ lib.optionals (builtins.elem "recon" config.storvik.forensics.modules)
       [
