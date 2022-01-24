@@ -78,6 +78,21 @@ with lib;
 
   options.storvik.entertainment.enable = mkEnableOption "Games";
 
+  options.storvik.forensics.enable = mkEnableOption "Computer forensics tools";
+
+  options.storvik.forensics.modules = mkOption {
+    default = [ ];
+    description = ''
+      List of strings that describes forensic modules to enable.
+      [
+        "reverse" # reverse engineering
+        "recon"   # reconnaissance
+        "exploit" # exploitation
+      ];
+    '';
+    type = lib.types.listOf lib.types.str;
+  };
+
   options.storvik.graphics.enable = mkEnableOption "Graphics tools";
 
   options.storvik.media.enable = mkEnableOption "Media";
