@@ -215,6 +215,7 @@ in
       pdftk
       rclone
       storvik-backup
+      tree
       unixtools.netstat
       unixtools.route
       whois
