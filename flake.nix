@@ -69,6 +69,16 @@
           username = "storvik";
           hostname = "storvik-nixos-nuc";
           machine = "intel-nuc";
+          extraModules = [
+            # TODO: Should figure out a better way to do this.
+            # Mabe add a homeConfig and sysConfig to mkHome and mkSystem.
+            ({ config, pkgs, ... }: {
+              services.xserver.displayManager.autoLogin = {
+                enable = true;
+                user = "storvik";
+              };
+            })
+          ];
         };
         live-iso = mkSystem {
           inherit pkgs system;
