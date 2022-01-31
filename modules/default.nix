@@ -4,130 +4,134 @@ with lib;
 
 {
 
-  options.storvik.browser.enable = mkOption {
-    default = true;
-    description = "Enable web browsers";
-    type = lib.types.bool;
-  };
+  options.storvik = {
 
-  options.storvik.emacs.enable = mkOption {
-    default = true;
-    description = "Enable the all mighty emacs";
-    type = lib.types.bool;
-  };
+    browser.enable = mkOption {
+      default = true;
+      description = "Enable web browsers";
+      type = lib.types.bool;
+    };
 
-  options.storvik.emacs.nativeComp = mkEnableOption "Enable Emacs native compile";
+    emacs.enable = mkOption {
+      default = true;
+      description = "Enable the all mighty emacs";
+      type = lib.types.bool;
+    };
 
-  options.storvik.emacs.daemon = mkEnableOption "Enable Emacs daemon";
+    emacs.nativeComp = mkEnableOption "Enable Emacs native compile";
 
-  options.storvik.shell.enable = mkOption {
-    default = true;
-    description = "Enable shell setup and shell tools";
-    type = lib.types.bool;
-  };
+    emacs.daemon = mkEnableOption "Enable Emacs daemon";
 
-  ##
-  # User specific options
-  ##
+    shell.enable = mkOption {
+      default = true;
+      description = "Enable shell setup and shell tools";
+      type = lib.types.bool;
+    };
 
-  options.storvik.user.storvik.enable = mkEnableOption "Enable storvik user";
+    ##
+    # User specific options
+    ##
 
-  ##
-  # OS dependant
-  ##
+    user.storvik.enable = mkEnableOption "Enable storvik user";
 
-  options.storvik.genericLinux.enable = mkEnableOption "Enable if generic linux with nix, not nixos, is used";
+    ##
+    # OS dependant
+    ##
 
-  options.storvik.remotelogin.enable = mkEnableOption "Enable remote login, ssh / vnc etc";
+    genericLinux.enable = mkEnableOption "Enable if generic linux with nix, not nixos, is used";
 
-  ##
-  # Developer tools
-  ##
+    remotelogin.enable = mkEnableOption "Enable remote login, ssh / vnc etc";
 
-  options.storvik.developer.enable = mkEnableOption "Enable all developer tools";
+    ##
+    # Developer tools
+    ##
 
-  options.storvik.developer.android.enable = mkEnableOption "Enable android developer tools";
+    developer.enable = mkEnableOption "Enable all developer tools";
 
-  options.storvik.developer.c.enable = mkEnableOption "Enable C / C++ developer tools";
+    developer.android.enable = mkEnableOption "Enable android developer tools";
 
-  options.storvik.developer.go.enable = mkEnableOption "Enable Go developer tools";
+    developer.c.enable = mkEnableOption "Enable C / C++ developer tools";
 
-  options.storvik.developer.lisp.enable = mkEnableOption "Enable Lisp developer tools";
+    developer.go.enable = mkEnableOption "Enable Go developer tools";
 
-  options.storvik.developer.nix.enable = mkEnableOption "Enable Nix developer tools";
+    developer.lisp.enable = mkEnableOption "Enable Lisp developer tools";
 
-  options.storvik.developer.python.enable = mkEnableOption "Enable Python developer tools";
+    developer.nix.enable = mkEnableOption "Enable Nix developer tools";
 
-  options.storvik.developer.shell.enable = mkEnableOption "Enable Shell developer tools";
+    developer.python.enable = mkEnableOption "Enable Python developer tools";
 
-  options.storvik.developer.web.enable = mkEnableOption "Enabel web developer tools";
+    developer.shell.enable = mkEnableOption "Enable Shell developer tools";
 
-  ##
-  # Desktop related settings
-  ##
+    developer.web.enable = mkEnableOption "Enabel web developer tools";
 
-  options.storvik.gnome.enable = mkEnableOption "GNOME";
+    ##
+    # Desktop related settings
+    ##
 
-  options.storvik.sway.enable = mkEnableOption "Sway";
+    gnome.enable = mkEnableOption "GNOME";
 
-  options.storvik.kde.enable = mkEnableOption "KDE";
+    sway.enable = mkEnableOption "Sway";
 
-  ##
-  # Software collections
-  ##
+    kde.enable = mkEnableOption "KDE";
 
-  options.storvik.entertainment.enable = mkEnableOption "Games";
+    ##
+    # Software collections
+    ##
 
-  options.storvik.forensics.enable = mkEnableOption "Computer forensics tools";
+    entertainment.enable = mkEnableOption "Games";
 
-  options.storvik.forensics.modules = mkOption {
-    default = [ ];
-    description = ''
-      List of strings that describes forensic modules to enable.
-      [
-        "reverse" # reverse engineering
-        "recon"   # reconnaissance
-        "exploit" # exploitation
-      ];
-    '';
-    type = lib.types.listOf lib.types.str;
-  };
+    forensics.enable = mkEnableOption "Computer forensics tools";
 
-  options.storvik.graphics.enable = mkEnableOption "Graphics tools";
+    forensics.modules = mkOption {
+      default = [ ];
+      description = ''
+        List of strings that describes forensic modules to enable.
+        [
+          "reverse" # reverse engineering
+          "recon"   # reconnaissance
+          "exploit" # exploitation
+        ];
+      '';
+      type = lib.types.listOf lib.types.str;
+    };
 
-  options.storvik.media.enable = mkEnableOption "Media";
+    graphics.enable = mkEnableOption "Graphics tools";
 
-  options.storvik.social.enable = mkEnableOption "Social";
+    media.enable = mkEnableOption "Media";
 
-  options.storvik.texlive.enable = mkEnableOption "Install texlive";
+    social.enable = mkEnableOption "Social";
 
-  options.storvik.virtualization.enable = mkOption {
-    default = true;
-    description = "Enable virtualization tools and set some useful aliases";
-    type = lib.types.bool;
-  };
+    texlive.enable = mkEnableOption "Install texlive";
 
-  options.storvik.work.enable = mkEnableOption "Work stuff";
+    virtualization.enable = mkOption {
+      default = true;
+      description = "Enable virtualization tools and set some useful aliases";
+      type = lib.types.bool;
+    };
 
-  options.storvik.rclonesync.enable = mkEnableOption "pCloud sync";
+    work.enable = mkEnableOption "Work stuff";
 
-  options.storvik.rclonesync.syncdirs = mkOption {
-    default = [ ];
-    description = ''
-      Should be a list of attribute sets with source and dests. Example:
-      [
-        {
-          remote = "pcloud";
-          source = "/home/storvik/developer/svartisenfestivalen/";
-          dest = "svartisenfestivalen/";
-        }
-        {
-          remote = "pcloud";
-          source = "/home/storvik/developer/org/";
-          dest = "org/";
-        }
-      ];
-    '';
+    rclonesync.enable = mkEnableOption "pCloud sync";
+
+    rclonesync.syncdirs = mkOption {
+      default = [ ];
+      description = ''
+        Should be a list of attribute sets with source and dests. Example:
+        [
+          {
+            remote = "pcloud";
+            source = "/home/storvik/developer/svartisenfestivalen/";
+            dest = "svartisenfestivalen/";
+          }
+          {
+            remote = "pcloud";
+            source = "/home/storvik/developer/org/";
+            dest = "org/";
+          }
+        ];
+      '';
+    };
+
   };
 
 }

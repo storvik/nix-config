@@ -8,7 +8,7 @@ in
 
 {
 
-  mkHome = { username, hostname, pkgs ? nixpkgs, system, ... }@args:
+  mkHome = { username, hostname, pkgs ? nixpkgs, system ? "x86_64-linux", extraModules ? [ ], ... }@args:
 
     let
       hostConfig = import "${self}/hosts/${hostname}.nix";
@@ -27,7 +27,7 @@ in
       extraModules = [
         ("${self}/modules")
         ("${self}/modules/home-manager")
-      ];
+      ] ++ extraModules;
 
       extraSpecialArgs = {
         inherit inputs;
@@ -35,7 +35,7 @@ in
 
     };
 
-  mkSystem = { username, hostname, machine, pkgs ? nixpkgs, system, extraModules ? [ ], ... }@args:
+  mkSystem = { username, hostname, machine, pkgs ? nixpkgs, system ? "x86_64-linux", extraModules ? [ ], ... }@args:
 
     let
       hostConfig = import "${self}/hosts/${hostname}.nix";
