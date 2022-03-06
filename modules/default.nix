@@ -52,6 +52,8 @@ with lib;
 
     developer.c.enable = mkEnableOption "Enable C / C++ developer tools";
 
+    developer.game.enable = mkEnableOption "Enable game development with godot";
+
     developer.go.enable = mkEnableOption "Enable Go developer tools";
 
     developer.lisp.enable = mkEnableOption "Enable Lisp developer tools";
