@@ -76,6 +76,8 @@ with lib;
 
     kde.enable = mkEnableOption "KDE";
 
+    kmonad.enable = mkEnableOption "Enable kmonad keyboard management";
+
     ##
     # Software collections
     ##

@@ -6,6 +6,7 @@
     nativeComp = true;
     daemon = true;
   };
+  kmonad.enable = true;
   texlive.enable = true;
   graphics.enable = true;
   media.enable = true;
