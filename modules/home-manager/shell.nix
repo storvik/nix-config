@@ -211,6 +211,7 @@ in
     home.packages = with pkgs; [
       bitwarden-cli
       bfg-repo-cleaner
+      dtach
       ltunify
       pdftk
       rclone
