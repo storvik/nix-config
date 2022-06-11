@@ -43,7 +43,7 @@
         overlays = [
           (import ./overlays)
           emacs-overlay.outputs.overlay
-          kmonad.overlay
+          kmonad.overlays.default
           nixgl-overlay
         ];
       };
