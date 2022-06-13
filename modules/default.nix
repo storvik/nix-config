@@ -2,6 +2,80 @@
 
 with lib;
 
+let
+
+  rcloneSyncDirsOpts = {
+    options = {
+      remote = mkOption {
+        type = types.str;
+        example = "pcloud";
+        description = ''
+          Remote to be synced from / to. Important that this remote
+          is set up using `rclone config`. This has to be done manually.
+        '';
+      };
+
+      source = mkOption {
+        type = types.str;
+        example = "/home/user/folder/";
+        description = ''
+          Source directory to be synced.
+        '';
+      };
+
+      dest = mkOption {
+        type = types.str;
+        example = "pcloud:folder/";
+        description = ''
+          Destination directory to be synced into.
+        '';
+      };
+    };
+  };
+
+  rcloneSyncOpts = { name, config, ... }: {
+    options = {
+      name = mkOption {
+        type = types.str;
+        readOnly = true;
+        description = "Unique identifier of rclone sync service.";
+      };
+
+      enableService = mkEnableOption "Enable systemd sync service.";
+
+      enableTimer = mkEnableOption "Enable systemd timer for sync service.";
+
+      afterboot = mkOption {
+        type = types.str;
+        default = "15m";
+        description = ''
+          After boot, when should the first instance of sync service
+          be run. Should match OnBootSec in systemd docs.
+        '';
+      };
+
+      interval = mkOption {
+        type = types.str;
+        default = "15m";
+        description = ''
+          Specify interval of when service should run. Should match
+          OnUnitInactiveSec in systemd docs.
+        '';
+      };
+
+      syncdirs = mkOption {
+        type = types.listOf (types.submodule rcloneSyncDirsOpts);
+        description = ''
+          Attribute sets that describes directories that should be
+          synced. Every string should match the string expected by
+          rclone sync command.
+        '';
+      };
+    };
+  };
+
+in
+
 {
 
   options.storvik = {
@@ -115,25 +189,14 @@ with lib;
 
     work.enable = mkEnableOption "Work stuff";
 
-    rclonesync.enable = mkEnableOption "pCloud sync";
+    rclone = {
+      enable = mkEnableOption "Enable rclone sync";
+      syncs = mkOption {
+        type = lib.types.attrsOf (lib.types.submodule rcloneSyncOpts);
+        default = { };
+        description = "List of rclone sync services.";
+      };
 
-    rclonesync.syncdirs = mkOption {
-      default = [ ];
-      description = ''
-        Should be a list of attribute sets with source and dests. Example:
-        [
-          {
-            remote = "pcloud";
-            source = "/home/storvik/developer/svartisenfestivalen/";
-            dest = "svartisenfestivalen/";
-          }
-          {
-            remote = "pcloud";
-            source = "/home/storvik/developer/org/";
-            dest = "org/";
-          }
-        ];
-      '';
     };
 
   };

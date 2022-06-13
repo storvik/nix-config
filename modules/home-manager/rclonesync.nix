@@ -4,53 +4,63 @@ with lib;
 
 let
 
-  # bash script that syncs dirs to cloud using rclone
-  storvik-rclonesync = pkgs.writeScriptBin "storvik-rclonesync" ''
-    #!${pkgs.bash}/bin/bash
+  storvik-rclonesyncs = lib.attrsets.mapAttrs'
+    (name: value:
+      lib.attrsets.nameValuePair ("storvik-rclonesync-" + name)
+        (pkgs.writeShellScriptBin ("storvik-rclonesync-" + name) ''
+          ${lib.strings.concatMapStrings (x: "rclone sync " + x.source + " " + x.dest + "\n") value.syncdirs}
+        '')
+    )
+    config.storvik.rclone.syncs;
 
-    ${lib.strings.concatMapStrings (x: "rclone sync " + x.source + " " + x.remote + ":" + x.dest + "\n") config.storvik.rclonesync.syncdirs}
-  '';
+
+  storvik-rclonesync-services = lib.attrsets.mapAttrs'
+    (name: value:
+      lib.attrsets.nameValuePair ("storvik-rclonesync-" + name)
+        {
+          Unit = {
+            Description = ''
+              ${name} rclone sync service.
+            '';
+          };
+          Service = {
+            Type = "simple";
+            ExecStart = "${storvik-rclonesyncs."storvik-rclonesync-${name}"}/bin/storvik-rclonesync-${name}";
+          };
+        })
+    config.storvik.rclone.syncs;
+
+  storvik-rclonesync-timers = lib.attrsets.mapAttrs'
+    (name: value:
+      lib.attrsets.nameValuePair ("storvik-rclonesync-" + name)
+        {
+          Unit = {
+            Description = "${name} rclone sync service timer.";
+          };
+          Timer = {
+            Unit = "storvik-rclonesync-${name}.service";
+            OnBootSec = value.afterboot;
+            OnUnitInactiveSec = value.interval;
+            OnActiveSec = "1s";
+          };
+          Install = {
+            WantedBy = [ "timers.target" ];
+          };
+        })
+    config.storvik.rclone.syncs;
 
 in
 
 {
 
-  config = mkIf config.storvik.rclonesync.enable {
+  config = mkIf config.storvik.rclone.enable {
 
-    # systemd service
-    systemd.user.services.rclonesync = {
-      Unit = {
-        Description = "Sync dirs to cloud using rclone";
-      };
-      Service = {
-        Type = "simple";
-        ExecStart = "${storvik-rclonesync}/bin/storvik-rclonesync";
-      };
-    };
-
-    systemd.user.timers.rclonesync = {
-      Unit = {
-        Description = "Timer for syncing dirs to cloud using rclone";
-      };
-      Timer = {
-        Unit = "rclonesync.service";
-        # Run 15 minutes after boot, since the timer must run at least once
-        # before OnUnitInactiveSec will trigger
-        OnBootSec = "15m";
-        # Run 15 minutes after rclone.service last finished
-        OnUnitInactiveSec = "15m";
-        # Run once when the timer is first started
-        OnActiveSec = "1s";
-      };
-      Install = {
-        WantedBy = [ "timers.target" ];
-      };
-    };
+    systemd.user.services = storvik-rclonesync-services;
+    systemd.user.timers = storvik-rclonesync-timers;
 
     home.packages = with pkgs; [
-      storvik-rclonesync
       rclone
-    ];
+    ] ++ lib.attrsets.attrValues storvik-rclonesyncs;
 
   };
 
