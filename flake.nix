@@ -62,6 +62,11 @@
           username = "storvik";
           hostname = "storvik-ubuntu";
         };
+        wsl = mkHome {
+          inherit pkgs system;
+          username = "storvik";
+          hostname = "storvik-wsl";
+        };
       };
       nixosConfigurations = {
         storvik-nixos-lenovo = mkSystem {
