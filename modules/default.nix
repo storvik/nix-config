@@ -114,6 +114,14 @@ in
 
     genericLinux.enable = mkEnableOption "Enable if generic linux with nix, not nixos, is used";
 
+    wsl = {
+
+      enable = mkEnableOption "Enable wsl support, genericLinux should be enabled if this is true";
+
+      gwsl = mkEnableOption "Enable graphical wsl support, setting display envs";
+
+    };
+
     remotelogin.enable = mkEnableOption "Enable remote login, ssh / vnc etc";
 
     ##

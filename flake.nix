@@ -62,7 +62,7 @@
           username = "storvik";
           hostname = "storvik-ubuntu";
         };
-        wsl = mkHome {
+        storvik-wsl = mkHome {
           inherit pkgs system;
           username = "storvik";
           hostname = "storvik-wsl";
@@ -104,6 +104,7 @@
 
       # For convenience when running nix build
       storvik-ubuntu = self.homeConfigurations.storvik.activationPackage;
+      storvik-wsl = self.homeConfigurations.storvik-wsl.activationPackage;
       live-iso = self.nixosConfigurations.live-iso.config.system.build.isoImage;
     };
 }
