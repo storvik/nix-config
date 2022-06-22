@@ -22,7 +22,7 @@ with lib;
     services = {
 
       # Fix for dconf
-      dbus.packages = [ pkgs.gnome.dconf ];
+      dbus.packages = [ pkgs.dconf ];
       udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
 
       xserver = {
