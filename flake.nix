@@ -75,6 +75,12 @@
           hostname = "storvik-nixos-lenovo";
           machine = "lenovo-e31";
         };
+        storvik-nixos-matebook = mkSystem {
+          inherit pkgs system;
+          username = "storvik";
+          hostname = "storvik-nixos-matebook";
+          machine = "matebook";
+        };
         storvik-nixos-nuc = mkSystem {
           inherit pkgs system;
           username = "storvik";
