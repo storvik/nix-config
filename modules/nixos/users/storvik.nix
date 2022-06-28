@@ -13,7 +13,7 @@ with lib;
         "networkmanager"
         "audio"
         "video"
-      ];
+      ] ++ (if config.storvik.kmonad.enable then [ "input" "uinput" ] else [ ]);
     };
 
   };
