@@ -2,6 +2,7 @@
   user.storvik.enable = true;
   entertainment.enable = true;
   gnome.enable = true;
+  sound.enable = true;
   emacs = {
     nativeComp = true;
     daemon = true;

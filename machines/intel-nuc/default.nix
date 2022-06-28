@@ -19,8 +19,4 @@
   networking.interfaces.eno1.useDHCP = true;
   networking.interfaces.wlp58s0.useDHCP = true;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
 }

@@ -158,6 +158,8 @@ in
 
     kde.enable = mkEnableOption "KDE";
 
+    sound.enable = mkEnableOption "Enable sound";
+
     kmonad.enable = mkEnableOption "Enable kmonad keyboard management";
 
     ##

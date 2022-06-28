@@ -1,6 +1,7 @@
 {
   user.storvik.enable = true;
   gnome.enable = true;
+  sound.enable = true;
   developer.enable = true;
   emacs = {
     nativeComp = true;
