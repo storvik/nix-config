@@ -9,16 +9,17 @@ with lib;
     # Enable network manager
     networking.networkmanager.enable = true;
 
-    # Select internationalisation properties.
-    i18n.defaultLocale = "en_US.UTF-8";
-    console = {
-      font = "Lat2-Terminus16";
-      keyMap = "no";
+    programs.sway = {
+      enable = true;
+      extraPackages = with pkgs; [
+        swaylock
+        swayidle
+        waybar
+        wl-clipboard
+        mako
+        wofi
+      ];
     };
-
-    # Set your time zone.
-    time.timeZone = "Europe/Oslo";
-
   };
 
 }
