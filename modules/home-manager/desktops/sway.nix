@@ -31,10 +31,6 @@ with lib;
 
           terminal = "${pkgs.alacritty}/bin/alacritty";
 
-          # Use lib.mkOptionDefault function to extend or override default
-          # keybindings instead of specifying all of them from scratch.
-          # keybindings = { };
-
           input = {
             "type:touchpad" = {
               tap = "enabled";
@@ -82,6 +78,29 @@ with lib;
             smartGaps = true;
             smartBorders = "on";
           };
+
+          modes = {
+            resize = {
+              h = "resize shrink width 10 px";
+              j = "resize grow height 10 px";
+              k = "resize shrink height 10 px";
+              l = "resize grow width 10 px";
+              Escape = "mode default";
+              Return = "mode default";
+            };
+            system = {
+              r = "reload, mode \"default\"";
+              q = "exec swaymsg exit, mode \"default\"";
+              s = "exec systemctl suspend, mode \"default\"";
+              Exclam = "exec ${lockCmd}, mode \"default\"";
+              Escape = "mode \"default\"";
+            };
+          };
+
+          keybindings = lib.mkOptionDefault {
+            "${modifier}+p" = "mode system";
+          };
+
 
         };
       };
