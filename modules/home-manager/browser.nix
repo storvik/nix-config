@@ -6,9 +6,14 @@ with lib;
 
   config = mkIf config.storvik.browser.enable {
 
-    programs.firefox = {
-      enable = true;
-    };
+    home.packages = [
+      pkgs.firefox-wayland
+    ];
+
+    # programs.firefox = {
+    #   enable = true;
+    #   package = pkgs.firefox-wayland;
+    # };
 
   };
 

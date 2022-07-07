@@ -17,7 +17,7 @@ with lib;
           base = true;
           gtk = true;
         };
-        xwayland = false; # should use only wayland apps
+        xwayland = true;
 
         config = rec {
 
