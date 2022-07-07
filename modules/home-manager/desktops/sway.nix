@@ -99,6 +99,8 @@ with lib;
 
           keybindings = lib.mkOptionDefault {
             "${modifier}+p" = "mode system";
+            "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
+            "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
           };
 
 
