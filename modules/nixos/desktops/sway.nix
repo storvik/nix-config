@@ -18,6 +18,7 @@ with lib;
         wl-clipboard
         mako
         wofi
+        sway-contrib.grimshot
         brightnessctl
       ];
     };

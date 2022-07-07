@@ -98,7 +98,18 @@ with lib;
           };
 
           keybindings = lib.mkOptionDefault {
+            # Systems
             "${modifier}+p" = "mode system";
+
+            # Screenshot
+            "Print" = "exec grimshot --notify copy active";
+            "Shift+Print" = "exec grimshot --notify copy area";
+            "Control+Print" = "exec grimshot --notify copy window";
+            "Mod4+Print" = "exec grimshot --notify save active";
+            "Mod4+Shift+Print" = "exec grimshot --notify save area";
+            "Mod4+Control+Print" = "exec grimshot --notify save window";
+
+            # Brightness
             "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
             "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
           };
