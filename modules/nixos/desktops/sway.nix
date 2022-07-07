@@ -22,6 +22,7 @@ with lib;
         wev
         brightnessctl
         pamixer
+        avizo
       ];
     };
   };

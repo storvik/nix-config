@@ -70,6 +70,7 @@ with lib;
 
           startup = [
             { command = "systemctl --user restart kmonad.service"; always = true; }
+            { command = "avizo-service"; always = true; }
           ];
 
           gaps = {
@@ -110,13 +111,14 @@ with lib;
             "Mod4+Control+Print" = "exec grimshot --notify save window";
 
             # Adio
-            "XF86AudioMute" = "exec pamixer -m";
-            "XF86AudioRaiseVolume" = "exec pamixer -i 5";
-            "XF86AudioLowerVolume" = "exec pamixer -d 5";
+            "XF86AudioMute" = "exec volumectl toggle-mute";
+            "XF86AudioRaiseVolume" = "exec volumectl -u up";
+            "XF86AudioLowerVolume" = "exec volumectl -u down";
+            "XF86AudioMicMute" = "exec volumectl -m toggle-mute";
 
             # Brightness
-            "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
-            "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
+            "XF86MonBrightnessUp" = "exec lightctl up";
+            "XF86MonBrightnessDown" = "exec lightctl down";
           };
 
 
