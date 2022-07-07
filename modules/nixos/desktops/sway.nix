@@ -19,6 +19,7 @@ with lib;
         mako
         wofi
         sway-contrib.grimshot
+        wev
         brightnessctl
       ];
     };
