@@ -21,6 +21,7 @@ with lib;
         sway-contrib.grimshot
         wev
         brightnessctl
+        pamixer
       ];
     };
   };

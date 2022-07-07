@@ -109,6 +109,11 @@ with lib;
             "Mod4+Shift+Print" = "exec grimshot --notify save area";
             "Mod4+Control+Print" = "exec grimshot --notify save window";
 
+            # Adio
+            "XF86AudioMute" = "exec pamixer -m";
+            "XF86AudioRaiseVolume" = "exec pamixer -i 5";
+            "XF86AudioLowerVolume" = "exec pamixer -d 5";
+
             # Brightness
             "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
             "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
