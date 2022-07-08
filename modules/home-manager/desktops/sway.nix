@@ -146,6 +146,7 @@ with lib;
         [dmenu]
         dmenu_command = ${pkgs.wofi}/bin/wofi -d -I -G
         wifi_chars = ▂▄▆█
+        pinentry = pinentry-qt
 
         [editor]
         terminal = ${pkgs.alacritty}/bin/alacritty

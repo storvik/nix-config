@@ -23,6 +23,7 @@ with lib;
         pamixer
         avizo
         networkmanager_dmenu
+        pinentry-qt
       ];
     };
   };
