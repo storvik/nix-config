@@ -101,6 +101,9 @@ with lib;
             # Systems
             "${modifier}+p" = "mode system";
 
+            # Networkmanager
+            "${modifier}+n" = "exec networkmanager_dmenu";
+
             # Screenshot
             "Print" = "exec grimshot --notify copy active";
             "Shift+Print" = "exec grimshot --notify copy area";
@@ -138,6 +141,16 @@ with lib;
           WantedBy = [ "sway-session.target" ];
         };
       };
+
+      home.file.".config/networkmanager-dmenu/config.ini".text = ''
+        [dmenu]
+        dmenu_command = ${pkgs.wofi}/bin/wofi -d -I -G
+        wifi_chars = ▂▄▆█
+
+        [editor]
+        terminal = ${pkgs.alacritty}/bin/alacritty
+        gui_if_available = true
+      '';
 
       programs.waybar = {
         enable = true;

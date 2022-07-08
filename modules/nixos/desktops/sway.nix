@@ -22,6 +22,7 @@ with lib;
         brightnessctl
         pamixer
         avizo
+        networkmanager_dmenu
       ];
     };
   };
