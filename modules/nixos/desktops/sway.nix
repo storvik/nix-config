@@ -16,7 +16,6 @@ with lib;
         swayidle
         waybar
         wl-clipboard
-        mako
         wofi
         sway-contrib.grimshot
         wev

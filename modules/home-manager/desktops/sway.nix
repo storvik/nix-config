@@ -54,7 +54,6 @@ with lib;
             "*".scale = "2";
           };
 
-          #menu = "${pkgs.rofi-wayland}/bin/rofi -show combi -modes combi -combi-modes \"window,drun,run\"";
           menu = "${pkgs.wofi}/bin/wofi --show drun -I -G";
 
           fonts = {
@@ -122,6 +121,21 @@ with lib;
           };
 
 
+        };
+      };
+
+      programs.mako = {
+        enable = true;
+        anchor = "top-center";
+        defaultTimeout = 5000;
+        font = "Iosevka Nerd Font";
+      };
+
+      systemd.user.services.mako = {
+        Service = { ExecStart = "${pkgs.mako}/bin/mako"; };
+        Install = {
+          After = [ "sway-session.target" ];
+          WantedBy = [ "sway-session.target" ];
         };
       };
 
