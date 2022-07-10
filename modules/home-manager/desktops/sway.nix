@@ -142,16 +142,21 @@ with lib;
         };
       };
 
-      home.file.".config/networkmanager-dmenu/config.ini".text = ''
-        [dmenu]
-        dmenu_command = ${pkgs.wofi}/bin/wofi -d -I -G
-        wifi_chars = ▂▄▆█
-        pinentry = pinentry-qt
+      xdg = {
+        enable = true;
 
-        [editor]
-        terminal = ${pkgs.alacritty}/bin/alacritty
-        gui_if_available = true
-      '';
+        configFile."networkmanager-dmenu/config.ini".text = ''
+          [dmenu]
+          dmenu_command = ${pkgs.wofi}/bin/wofi -d -I -G
+          wifi_chars = ▂▄▆█
+          pinentry = pinentry-qt
+
+          [editor]
+          terminal = ${pkgs.alacritty}/bin/alacritty
+          gui_if_available = true
+        '';
+
+      };
 
       programs.waybar = {
         enable = true;
