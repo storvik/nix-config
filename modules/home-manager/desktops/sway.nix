@@ -105,12 +105,15 @@ with lib;
             "${modifier}+n" = "exec networkmanager_dmenu";
 
             # Screenshot
-            "Print" = "exec grimshot --notify copy active";
+            "Print" = "exec grimshot --notify copy screen";
             "Shift+Print" = "exec grimshot --notify copy area";
             "Control+Print" = "exec grimshot --notify copy window";
-            "Mod4+Print" = "exec grimshot --notify save active";
+            "Mod4+Print" = "exec grimshot --notify save screen";
             "Mod4+Shift+Print" = "exec grimshot --notify save area";
             "Mod4+Control+Print" = "exec grimshot --notify save window";
+            "Mod1+Print" = "exec grimshot save screen - | swappy -f -";
+            "Mod1+Shift+Print" = "exec grimshot save area - | swappy -f -";
+            "Mod1+Control+Print" = "exec grimshot save window - | swappy -f -";
 
             # Adio
             "XF86AudioMute" = "exec volumectl toggle-mute";
@@ -144,6 +147,17 @@ with lib;
 
       xdg = {
         enable = true;
+
+        configFile."swappy/config".text = ''
+          [Default]
+          save_dir=$HOME/Pictures/Screenshots
+          save_filename_format=%Y%m%d-%H%M%S_swappy.png
+          show_panel=false
+          line_size=5
+          text_size=20
+          text_font=Iosevka Nerd Font
+          paint_mode=brush
+        '';
 
         configFile."networkmanager-dmenu/config.ini".text = ''
           [dmenu]

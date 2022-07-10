@@ -18,6 +18,7 @@ with lib;
         wl-clipboard
         wofi
         sway-contrib.grimshot
+        swappy
         wev
         brightnessctl
         pamixer
