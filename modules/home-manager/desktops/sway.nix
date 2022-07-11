@@ -7,6 +7,7 @@ with lib;
   config =
     let
       lockCmd = "${pkgs.swaylock}/bin/swaylock -f -e -c 2E3440";
+      menuCmd = "${pkgs.wofi}/bin/wofi --show drun -I -G";
     in
     mkIf config.storvik.sway.enable {
 
@@ -54,7 +55,7 @@ with lib;
             "*".scale = "2";
           };
 
-          menu = "${pkgs.wofi}/bin/wofi --show drun -I -G";
+          menu = menuCmd;
 
           fonts = {
             names = [ "Iosevka Nerd Font" ];
@@ -78,6 +79,7 @@ with lib;
 
           startup = [
             { command = "systemctl --user restart kmonad.service"; always = true; }
+            { command = "systemctl --user restart fusuma.service"; always = true; }
             { command = "avizo-service"; always = true; }
           ];
 
@@ -107,6 +109,9 @@ with lib;
           };
 
           keybindings = lib.mkOptionDefault {
+            "${modifier}+Left" = "exec swaymsg -t command workspace prev_on_output";
+            "${modifier}+Right" = "exec swaymsg -t command workspace next_on_output";
+
             # Systems
             "${modifier}+p" = "mode system";
 
@@ -202,6 +207,35 @@ with lib;
           { timeout = 1260; command = "systemctl suspend"; } # TODO: Check if this is a good way to suspend machine after screen turns off
         ];
       };
+
+      services.fusuma =
+        let
+          swaymsg = "${pkgs.sway}/bin/swaymsg";
+        in
+        {
+          enable = true;
+          settings = {
+            threshold = {
+              swipe = 0.1;
+            };
+            interval = {
+              swipe = 0.7;
+            };
+            swipe = {
+              "3" = {
+                left = {
+                  command = "${swaymsg} -t command workspace next_on_output";
+                };
+                right = {
+                  command = "${swaymsg} -t command workspace prev_on_output";
+                };
+                up = {
+                  command = menuCmd;
+                };
+              };
+            };
+          };
+        };
 
     };
 
