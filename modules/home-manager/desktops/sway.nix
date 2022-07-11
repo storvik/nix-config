@@ -67,6 +67,15 @@ with lib;
 
           bars = [ ]; # empty list disables bars
 
+          assigns = {
+            "1: web" = [{ app_id = "firefox"; }];
+            "2: emacs" = [{ app_id = "emacs"; }];
+          };
+
+          floating.criteria = [
+            { app_id = "pinentry-qt"; }
+          ];
+
           startup = [
             { command = "systemctl --user restart kmonad.service"; always = true; }
             { command = "avizo-service"; always = true; }
