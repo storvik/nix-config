@@ -8,6 +8,8 @@ with lib;
     let
       lockCmd = "${pkgs.swaylock}/bin/swaylock -f -e -c 2E3440";
       menuCmd = "${pkgs.wofi}/bin/wofi --show drun -I -G";
+      alt = "Mod1";
+      super = "Mod4";
     in
     mkIf config.storvik.sway.enable {
 
@@ -22,8 +24,7 @@ with lib;
 
         config = rec {
 
-          # Use windows key as modifier
-          modifier = "Mod4";
+          modifier = super;
 
           left = "h";
           down = "j";
@@ -109,25 +110,27 @@ with lib;
           };
 
           keybindings = lib.mkOptionDefault {
-            "${modifier}+Left" = "exec swaymsg -t command workspace prev_on_output";
-            "${modifier}+Right" = "exec swaymsg -t command workspace next_on_output";
+            "${alt}+Control+Left" = "exec swaymsg -t command workspace prev_on_output";
+            "${alt}+Control+Right" = "exec swaymsg -t command workspace next_on_output";
+
+            "${super}+Shift+t" = "exec systemctl --user restart kmonad.service";
 
             # Systems
-            "${modifier}+p" = "mode system";
+            "${super}+p" = "mode system";
 
             # Networkmanager
-            "${modifier}+n" = "exec networkmanager_dmenu";
+            "${super}+n" = "exec networkmanager_dmenu";
 
             # Screenshot
             "Print" = "exec grimshot --notify copy screen";
             "Shift+Print" = "exec grimshot --notify copy area";
             "Control+Print" = "exec grimshot --notify copy window";
-            "Mod4+Print" = "exec grimshot --notify save screen";
-            "Mod4+Shift+Print" = "exec grimshot --notify save area";
-            "Mod4+Control+Print" = "exec grimshot --notify save window";
-            "Mod1+Print" = "exec grimshot save screen - | swappy -f -";
-            "Mod1+Shift+Print" = "exec grimshot save area - | swappy -f -";
-            "Mod1+Control+Print" = "exec grimshot save window - | swappy -f -";
+            "${super}+Print" = "exec grimshot --notify save screen";
+            "${super}+Shift+Print" = "exec grimshot --notify save area";
+            "${super}+Control+Print" = "exec grimshot --notify save window";
+            "${alt}+Print" = "exec grimshot save screen - | swappy -f -";
+            "${alt}+Shift+Print" = "exec grimshot save area - | swappy -f -";
+            "${alt}+Control+Print" = "exec grimshot save window - | swappy -f -";
 
             # Adio
             "XF86AudioMute" = "exec volumectl toggle-mute";
