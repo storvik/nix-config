@@ -192,6 +192,163 @@ with lib;
           enable = true;
           target = "sway-session.target";
         };
+        settings = {
+          mainBar = {
+            layer = "top";
+            position = "top";
+            height = 30;
+            spacing = 4;
+
+            modules-left = [ "sway/workspaces" "sway/mode" ];
+            modules-center = [ "sway/window" ];
+            modules-right = [ "pulseaudio" "network" "battery" "clock" "tray" ];
+
+            "sway/workspaces" = {
+              disable-scroll = true;
+              all-outputs = true;
+            };
+
+            "tray" = {
+              icon-size = 21;
+              spacing = 10;
+            };
+
+            "clock" = {
+              tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+              format-alt = "{:%Y-%m-%d}";
+            };
+
+            "network" = {
+              format-wifi = "{essid} ({signalStrength}%) ";
+              format-ethernet = "{ipaddr}/{cidr} ";
+              tooltip-format = "{ifname} via {gwaddr} ";
+              format-linked = "{ifname} (No IP) ";
+              format-disconnected = "Disconnected ⚠";
+              format-alt = "{ifname}: {ipaddr}/{cidr}";
+            };
+
+            "pulseaudio" = {
+              format = "{volume}% {icon} {format_source}";
+              format-bluetooth = "{volume}% {icon} {format_source}";
+              format-bluetooth-muted = " {icon} {format_source}";
+              format-muted = " {format_source}";
+              format-source = "{volume}% ";
+              format-source-muted = "";
+              format-icons = {
+                headphone = "";
+                hands-free = "";
+                headset = "";
+                phone = "";
+                portable = "";
+                car = "";
+                default = [ "" "" "" ];
+              };
+              on-click = "pavucontrol";
+            };
+
+            "battery" = {
+              states = {
+                good = 95;
+                warning = 30;
+                critical = 15;
+              };
+              format = "{capacity}% {icon}";
+              format-charging = "{capacity}% ";
+              format-plugged = "{capacity}% ";
+              format-alt = "{time} {icon}";
+              format-icons = [ "" "" "" "" "" ];
+            };
+            "battery#bat2" = {
+              bat = "BAT2";
+            };
+
+          };
+        };
+        style = ''
+          * {
+            /* `otf-font-awesome` is required to be installed for icons */
+            font-family: FontAwesome, Iosevka Nerd Font;
+            font-size: 13px;
+          }
+
+          window#waybar {
+            background-color: transparent;
+            border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+            color: #ffffff;
+            transition-property: background-color;
+            transition-duration: .5s;
+          }
+
+          window#waybar.hidden {
+            opacity: 0.2;
+          }
+
+          #workspaces button {
+            padding: 0 5px;
+            background-color: transparent;
+            color: #ffffff;
+            /* Use box-shadow instead of border so the text isn't offset */
+            box-shadow: inset 0 -3px transparent;
+            /* Avoid rounded borders under each workspace name */
+            border: none;
+            border-radius: 0;
+          }
+
+          #workspaces button:hover {
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 -3px #ffffff;
+          }
+
+          #workspaces button.focused {
+            background-color: #64727D;
+            box-shadow: inset 0 -3px #ffffff;
+          }
+
+          #workspaces button.urgent {
+            background-color: #eb4d4b;
+          }
+
+          #mode {
+            background-color: #64727D;
+            border-bottom: 3px solid #ffffff;
+          }
+
+          #clock,
+          #battery,
+          #network,
+          #pulseaudio,
+          #tray,
+          #mode {
+            padding: 0 10px;
+            color: #ffffff;
+          }
+
+          #window,
+          #workspaces {
+            margin: 0 4px;
+          }
+
+          /* If workspaces is the leftmost module, omit left margin */
+          .modules-left > widget:first-child > #workspaces {
+            margin-left: 0;
+          }
+
+          /* If workspaces is the rightmost module, omit right margin */
+          .modules-right > widget:last-child > #workspaces {
+            margin-right: 0;
+          }
+
+          #battery.critical:not(.charging) {
+            background-color: #f53c3c;
+            color: #ffffff;
+            animation-name: blink;
+            animation-duration: 0.5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+          }
+
+        '';
       };
 
       services.swayidle = {
