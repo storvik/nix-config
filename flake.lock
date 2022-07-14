@@ -190,6 +190,22 @@
         "type": "gitlab"
       }
     },
+    "pr67576": {
+      "locked": {
+        "lastModified": 1656530260,
+        "narHash": "sha256-IhpUUpKJrCLhCFHp94HwKv1JxrI03oQatf/hosiLklw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ca66c0d0ae0a067689001d92753267536bc8e132",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ca66c0d0ae0a067689001d92753267536bc8e132",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "emacs-overlay": "emacs-overlay",
@@ -197,7 +213,8 @@
         "kmonad": "kmonad",
         "nixGL": "nixGL",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-master": "nixpkgs-master"
+        "nixpkgs-master": "nixpkgs-master",
+        "pr67576": "pr67576"
       }
     },
     "utils": {

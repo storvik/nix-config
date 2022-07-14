@@ -8,6 +8,9 @@
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
+    # gimp devel (with wayland support)
+    pr67576.url = "github:nixos/nixpkgs?rev=ca66c0d0ae0a067689001d92753267536bc8e132";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,17 +31,25 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, emacs-overlay, kmonad, nixGL, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, emacs-overlay, kmonad, nixGL, pr67576, ... }@inputs:
     let
       system = "x86_64-linux";
 
       nixgl-overlay = (final: prev: { nixGL = import nixGL { pkgs = final; }; });
+
+      # gimp devel pgks
+      pr67576pkgs = import pr67576 {
+        inherit system;
+      };
 
       pkgs = import nixpkgs {
         inherit system;
         config = {
           allowUnfree = true;
           allowBroken = true;
+          packageOverrides = pkgs: {
+            gimp = pr67576pkgs.gimp;
+          };
         };
         overlays = [
           (import ./overlays)

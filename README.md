@@ -83,3 +83,39 @@ After setting up disks etc according to the NixOS manual, the system can be inst
 ``` shell
 nixos-install --flake .#storvik-nixos-lenovo
 ```
+
+## Using package from pull request
+
+In order to use package from pull request git revision must be found by running:
+
+``` shell
+curl -sL https://github.com/NixOS/nixpkgs/pull/{number}.patch | head -n 1 | grep -o -E -e "[0-9a-f]{40}"
+```
+
+Then pull request has to be added as input.
+
+``` nix
+pr{number}.url = "github:nixos/nixpkgs?rev={rev-from-above-command}";
+```
+
+And pull request pkgs must be setup.
+
+``` nix
+pr{number}pkgs = import pr{number} {
+  inherit system;
+};
+```
+
+After that the package that is needed can be added to `packageOverrides` in nixpkgs.
+This is typically done with:
+
+``` nix
+pkgs = import nixpkgs {
+  inherit system;
+  config = {
+    packageOverrides = pkgs: {
+      somepackage = pr{number}pkgs.somepackage;
+    };
+  };
+};
+```
