@@ -13,21 +13,18 @@
   graphics.enable = true;
   media.enable = true;
   social.enable = true;
-  #work.enable = true;
-  #forensics.enable = true;
-  #forensics.modules = [ "reverse" ];
-  #rclone = {
-  #  enable = true;
-  #  syncs = {
-  #    "svartisenfestivalen" = {
-  #      syncdirs = [
-  #        {
-  #          remote = "pcloud";
-  #          source = "/home/storvik/developer/svartisenfestivalen/";
-  #          dest = "pcloud:svartisenfestivalen/";
-  #        }
-  #      ];
-  #    };
-  #  };
-  #};
+  rclone = {
+    enable = true;
+    syncs = {
+      "svartisenfestivalen" = {
+        syncdirs = [
+          {
+            remote = "pcloud";
+            source = "/home/storvik/developer/svartisenfestivalen/";
+            dest = "pcloud:svartisenfestivalen/";
+          }
+        ];
+      };
+    };
+  };
 }
