@@ -10,6 +10,8 @@ with lib;
   # Get all documentations too
   home.extraOutputsToInstall = [ "doc" "man" ];
 
+  home.stateVersion = "22.11";
+
   # Custom fonts
   fonts.fontconfig.enable = true;
 
