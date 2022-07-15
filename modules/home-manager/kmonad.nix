@@ -36,7 +36,7 @@ let
     echo "Using config: $cfgfile"
 
     # Start kmonad with given config file
-    kmonad $cfgfile
+    ${pkgs.kmonad}/bin/kmonad $cfgfile
   '';
 
 in
