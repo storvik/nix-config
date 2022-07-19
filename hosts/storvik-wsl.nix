@@ -6,7 +6,14 @@
     gwsl = true;
   };
   browser.enable = false;
-  developer.enable = true;
+  developer = {
+    c.enable = true;
+    go.enable = true;
+    nix.enable = true;
+    python.enable = true;
+    shell.enable = true;
+    web.enable = true;
+  };
   emacs.nativeComp = true;
   texlive.enable = false;
   social.enable = false;
