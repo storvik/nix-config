@@ -15,18 +15,20 @@ in
     in
 
     home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
 
-      inherit system pkgs;
-      username = "${username}";
-      homeDirectory = "/home/${username}";
-      configuration = { config, pkgs, ... }:
-        {
-          "${username}" = hostConfig;
-        };
-
-      extraModules = [
+      modules = [
+        # My additional modules must be imported
         ("${self}/modules")
         ("${self}/modules/home-manager")
+        # Inline module with some basic hm setup and my custom host setup
+        {
+          home = {
+            username = "${username}";
+            homeDirectory = "/home/${username}";
+          };
+          "${username}" = hostConfig;
+        }
       ] ++ extraModules;
 
       extraSpecialArgs = {
