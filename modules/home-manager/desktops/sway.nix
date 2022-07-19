@@ -72,6 +72,10 @@ with lib;
           assigns = {
             "1: web" = [{ app_id = "firefox"; }];
             "2: emacs" = [{ app_id = "emacs"; }];
+            "6: graphics" = [
+              { app_id = "gimp"; }
+              { app_id = "inkscape"; }
+            ];
           };
 
           floating.criteria = [
