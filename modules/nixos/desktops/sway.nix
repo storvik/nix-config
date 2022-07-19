@@ -25,6 +25,7 @@ with lib;
         avizo
         networkmanager_dmenu
         pinentry-qt
+        imv
       ];
     };
   };
