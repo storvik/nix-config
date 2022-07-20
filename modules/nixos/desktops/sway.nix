@@ -12,7 +12,7 @@ with lib;
     programs.sway = {
       enable = true;
       extraPackages = with pkgs; [
-        swaylock
+        swaylock-effects
         swayidle
         waybar
         wl-clipboard

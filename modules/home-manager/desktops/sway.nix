@@ -6,7 +6,22 @@ with lib;
 
   config =
     let
-      lockCmd = "${pkgs.swaylock}/bin/swaylock -f -e -c 2E3440";
+      lockCmd = ''${pkgs.swaylock-effects}/bin/swaylock -f -e -c 3b4252 \
+                                                         --clock \
+                                                         --datestr \"%a, %d.%m.%Y\" \
+                                                         --indicator \
+                                                         --indicator-radius 150 \
+                                                         --indicator-thickness 7 \
+                                                         --fade-in 1 \
+                                                         --inside-color 2e3440 \
+                                                         --ring-color ebcb8b \
+                                                         --key-hl-color b48ead \
+                                                         --inside-ver-color d08770 \
+                                                         --ring-ver-color d08770 \
+                                                         --inside-ver-color d08770 \
+                                                         --ring-ver-color d08770 \
+                                                         --inside-wrong-color bf616a \
+                                                         --ring-wrong-color d08770'';
       menuCmd = "${pkgs.wofi}/bin/wofi --show drun -I -G";
       alt = "Mod1";
       super = "Mod4";
