@@ -8,7 +8,7 @@ let
     (name: value:
       lib.attrsets.nameValuePair ("storvik-rclonesync-" + name)
         (pkgs.writeShellScriptBin ("storvik-rclonesync-" + name) ''
-          ${lib.strings.concatMapStrings (x: "rclone sync " + x.source + " " + x.dest + "\n") value.syncdirs}
+          ${lib.strings.concatMapStrings (x: "${pkgs.rclone}/bin/rclone sync " + x.source + " " + x.dest + "\n") value.syncdirs}
         '')
     )
     config.storvik.rclone.syncs;
