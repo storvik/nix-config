@@ -25,6 +25,15 @@
           }
         ];
       };
+      "org" = {
+        syncdirs = [
+          {
+            remote = "pcloud";
+            source = "/home/storvik/developer/org/";
+            dest = "pcloud:org/";
+          }
+        ];
+      };
     };
   };
 }
