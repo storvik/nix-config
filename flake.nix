@@ -5,7 +5,7 @@
 
   inputs = {
 
-    nixpkgs.url = "nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     # gimp devel (with wayland support)
@@ -16,7 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     kmonad = {
       url = "github:kmonad/kmonad?dir=nix";
