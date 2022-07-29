@@ -4,7 +4,7 @@ with lib;
 
 {
 
-  config = mkIf config.storvik.kmonad.enable {
+  config = mkIf config.storvik.kanata.enable {
 
     # Create uinput group
     users.groups = { uinput = { }; };
@@ -12,7 +12,7 @@ with lib;
     # Extra udev rules
     services.udev.extraRules =
       ''
-        # KMonad user access to /dev/uinput
+        # kanata user access to /dev/uinput
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
       '';
 

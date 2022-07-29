@@ -160,7 +160,7 @@ in
 
     sound.enable = mkEnableOption "Enable sound";
 
-    kmonad.enable = mkEnableOption "Enable kmonad keyboard management";
+    kanata.enable = mkEnableOption "Enable kanata keyboard management";
 
     ##
     # Software collections

@@ -21,11 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kmonad = {
-      url = "github:kmonad/kmonad?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # TODO: Check if it's possible to wrap packages when generic linux is used
     nixGL = {
       url = "github:guibou/nixGL";
@@ -34,7 +29,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, emacs-overlay, kmonad, nixGL, pr67576, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixGL, pr67576, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -57,7 +52,6 @@
         overlays = [
           (import ./overlays)
           emacs-overlay.outputs.overlay
-          kmonad.overlays.default
           nixgl-overlay
         ];
       };

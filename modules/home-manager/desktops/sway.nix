@@ -100,7 +100,7 @@ with lib;
           ];
 
           startup = [
-            { command = "systemctl --user restart kmonad.service"; always = true; }
+            { command = "systemctl --user restart kanata.service"; always = true; }
             { command = "systemctl --user restart fusuma.service"; always = true; }
             { command = "avizo-service"; always = true; }
           ];
@@ -134,7 +134,7 @@ with lib;
             "${alt}+Control+Left" = "exec swaymsg -t command workspace prev_on_output";
             "${alt}+Control+Right" = "exec swaymsg -t command workspace next_on_output";
 
-            "${super}+Shift+t" = "exec systemctl --user restart kmonad.service";
+            "${super}+Shift+t" = "exec systemctl --user restart kanata.service";
 
             # Systems
             "${super}+p" = "mode system";
