@@ -9,7 +9,7 @@ with lib;
       storvik-lock = pkgs.writeShellScriptBin "storvik-lock" ''
         ${pkgs.swaylock-effects}/bin/swaylock -f -e -c 3b4252 \
                                                    --clock \
-                                                   --datestr \"%a, %d.%m.%Y\" \
+                                                   --datestr %a,\ %d.%m.%Y \
                                                    --indicator \
                                                    --indicator-radius 150 \
                                                    --indicator-thickness 7 \
