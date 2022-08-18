@@ -391,6 +391,33 @@ with lib;
 
       services.blueman-applet.enable = true;
 
+      services.kanshi = {
+        enable = true;
+
+        profiles = {
+          # laptop screen
+          undocked = {
+            outputs = [
+              {
+                criteria = "eDP-1";
+              }
+            ];
+          };
+          # @home office
+          home-office = {
+            outputs = [
+              {
+                criteria = "eDP-1";
+              }
+              {
+                criteria = "Samsung Electric Company C27F390 H4ZR200230";
+                scale = 1.00;
+              }
+            ];
+          };
+        };
+      };
+
       services.fusuma =
         let
           swaymsg = "${pkgs.sway}/bin/swaymsg";
