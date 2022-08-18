@@ -389,6 +389,8 @@ with lib;
         ];
       };
 
+      services.blueman-applet.enable = true;
+
       services.fusuma =
         let
           swaymsg = "${pkgs.sway}/bin/swaymsg";

@@ -9,6 +9,10 @@ with lib;
     # Enable network manager
     networking.networkmanager.enable = true;
 
+    # Enable bluetooth
+    hardware.bluetooth.enable = true;
+    services.blueman.enable = true;
+
     programs.sway = {
       enable = true;
       extraPackages = with pkgs; [
