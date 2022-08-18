@@ -16,7 +16,6 @@
 )
 
 (defalias
-  altTD (tap-dance 1000 (lalt (layer-toggle symbols)))
   spc (tap-hold 200 500 spc (layer-toggle navigation))
 )
 
@@ -37,19 +36,84 @@
   tab     q       w       e       r       t       y       u       i       o       p       [       ]       ret     del     end     pgdn    kp7     kp8     kp9     kp+
   caps    @met_a  @alt_s  @ctl_d  @sft_f  g       h       @sft_j  @ctl_k  @alt_l  @met_;  '       \                                       kp4     kp5     kp6
   lsft    102d    z       x       c       v       b       n       m       ,       .       /       rsft                    up              kp1     kp2     kp3     ;;kprt
-          lmet    @altTD                          @spc                            rmet    rctl            left    down    rght    kp0     kp.
+          lmet    lalt                            @spc                            rmet    rctl            left    down    rght    kp0     kp.
 )
 
 (defalias
   nextd C-A-rght   ;; Next desktop in windows
   prevd C-A-lft    ;; Previous desktop in windows
+  ;;n_alt (tap-hold 200 200 lalt (layer-toggle navigation2))
+
+  ;; Focus movement
+  sh M-h
+  sj M-j
+  sk M-k
+  sl M-l
+
+  ;; Move
+  smh M-S-h
+  smj M-S-j
+  smk M-S-k
+  sml M-S-l
+
+  ;; Switch to workspace
+  s1 M-1
+  s2 M-2
+  s3 M-3
+  s4 M-4
+  s5 M-5
+  s6 M-6
+  s7 M-7
+  s8 M-8
+  s9 M-9
+
+  ;; Move to workspace
+  sm1 M-S-1
+  sm2 M-S-2
+  sm3 M-S-3
+  sm4 M-S-4
+  sm5 M-S-5
+  sm6 M-S-6
+  sm7 M-S-7
+  sm8 M-S-8
+  sm9 M-S-9
+
+
+  ;; Stacking
+  ;; k_lft (cmd komorebic.exe stack left)
+  ;; k_rgt (cmd komorebic.exe stack down)
+  ;; k_up (cmd komorebic.exe stack up)
+  ;; k_dwn (cmd komorebic.exe stack right)
+  ;; k_n (cmd komorebic.exe cycle-stack next)
+  ;; k_p (cmd komorebic.exe cycle-stack previous)
+  ;; k_u (cmd komorebic.exe unstack)
+
+  ;; k_ret (cmd komorebic.exe promote)                    ;; promote current windows
+  ;; k_m (cmd komorebic.exe toggle-monocle)               ;; toggle monocle
+  ;; k_mx (cmd komorebic.exe toggle-maximize)             ;; maximize window
+  ;; k_x (cmd komorebic.exe flip-layout horizontal)       ;; flip horizontally
+  ;; k_y (cmd komorebic.exe flip-layout vertical)         ;; flip vertically
+  ;; k_r (cmd  komorebic.exe retile)                      ;; retile
+  ;; k_q (cmd komorebic.exe toggle-pause)                 ;; pause responding to window events
+  ;; k_f (cmd komorebic.exe toggle-float)                 ;; float current window
+  ;; k_t (cmd komorebic.exe workspace-layout 0 0 bsp)     ;; bsp tiling
+  ;; k_c (cmd komorebic.exe workspace-layout 0 0 columns) ;; equal-width and max-height
 )
 
 (deflayer navigation
   _       _       _       _       _       _       _       _       _       _       _       _       _                _      _
+  _       @s1     @s2     @s3     @s4     @s5     @s6     @s7     @s8     @s9     _       _       _       _        _      _       _       _       _       _       _
   _       _       _       _       _       _       _       _       _       _       _       _       _       _        _      _       _       _       _       _       _
+  _       _       _       _       _       _       @sh     @sj     @sk     @sl     _       _       _                                       _       _       _
+  _       _       _       _       @cry    _       _       _       _       _       _       _       _                       _               _       _       _
+          _       _                       _                                       _       _       _                _      _       _       _
+)
+
+(deflayer navigation2
+  _       _       _       _       _       _       _       _       _       _       _       _       _                _      _
+  _       @sm1    @sm2    @sm3    @sm4    @sm5    @sm6    @sm7    @sm8    @sm9    _       _       _       _        _      _       _       _       _       _       _
   _       _       _       _       _       _       _       _       _       _       _       _       _       _        _      _       _       _       _       _       _
-  _       _       _       _       _       _       @prevd  _       _       @nextd  _       _       _                                       _       _       _
+  _       _       _       _       _       _       @smh    @smj    @smk    @sml    _       _       _                                       _       _       _
   _       _       _       _       @cry    _       _       _       _       _       _       _       _                       _               _       _       _
           _       _                       _                                       _       _       _                _      _       _       _
 )
