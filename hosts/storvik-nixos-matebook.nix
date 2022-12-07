@@ -4,10 +4,7 @@
   sway.enable = true;
   sound.enable = true;
   developer.enable = true;
-  emacs = {
-    nativeComp = true;
-    daemon = true;
-  };
+  emacs = daemon = true;
   kanata.enable = true;
   texlive.enable = true;
   graphics.enable = true;

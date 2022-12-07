@@ -92,8 +92,6 @@ in
       type = lib.types.bool;
     };
 
-    emacs.nativeComp = mkEnableOption "Enable Emacs native compile";
-
     emacs.daemon = mkEnableOption "Enable Emacs daemon";
 
     shell.enable = mkOption {

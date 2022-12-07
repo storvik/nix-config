@@ -14,7 +14,6 @@
     shell.enable = true;
     web.enable = true;
   };
-  emacs.nativeComp = true;
   texlive.enable = false;
   social.enable = false;
   work.enable = false;
