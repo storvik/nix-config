@@ -19,8 +19,10 @@ with lib;
 
         # Enable the X11 windowing system.
         enable = true;
-        layout = "no";
-        xkbOptions = "eurosign:e";
+        layout = "us";
+        xkbModel = "pc105";
+        xkbVariant = "altgr-intl";
+        xkbOptions = "ctrl:nocaps";
 
         # Enable touchpad support.
         libinput.enable = true;

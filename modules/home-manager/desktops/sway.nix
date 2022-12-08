@@ -62,9 +62,12 @@ with lib;
               natural_scroll = "enabled";
             };
             "type:keyboard" = {
-              xkb_layout = "no";
-              xkb_variant = "winkeys";
-              xkb_options = "ctrl:nocaps";
+              xkb_layout = "us";
+              xkb_model = "pc105";
+              xkb_variant = "altgr-intl";
+              # See kanataconfig.kbd for more info about altgr-intl
+              # xkb_variant = "colemak_dh";
+              # xkb_options = "ctrl:nocaps";
             };
           };
 
