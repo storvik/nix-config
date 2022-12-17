@@ -1,10 +1,8 @@
 {
   user.storvik.enable = true;
   genericLinux.enable = true;
-  wsl = {
-    enable = true;
-    gwsl = true;
-  };
+  wsl.enable = true;
+  emacs.enable = true;
   browser.enable = false;
   developer = {
     c.enable = true;

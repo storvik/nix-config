@@ -8,7 +8,7 @@ with lib;
 
     programs.emacs = {
       enable = true;
-      package = if config.storvik.wsl.enable then pkgs.emacsNativeComp else pkgs.emacsPgtkNativeComp;
+      package = pkgs.emacsPgtkNativeComp;
     };
 
     home.sessionVariables = {
