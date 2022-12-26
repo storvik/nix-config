@@ -4,6 +4,40 @@ with lib;
 
 let
 
+  backupSyncs = {
+    options = {
+      synctype = mkOption {
+        type = types.str;
+        example = "rclone";
+        description = ''
+          Should rclone or rsync be used.
+        '';
+      };
+
+      source = mkOption {
+        type = types.str;
+        example = "/home/user/folder/";
+        description = ''
+          Source directory to be synced.
+        '';
+      };
+
+      dest = mkOption {
+        type = types.str;
+        example = "pcloud:folder/";
+        description = ''
+          Destination directory to be synced into.
+        '';
+      };
+
+      delete = mkOption {
+        default = true;
+        description = "If true, delete files in destination";
+        type = lib.types.bool;
+      };
+    };
+  };
+
   rcloneSyncDirsOpts = {
     options = {
       remote = mkOption {
@@ -44,7 +78,6 @@ let
       enableService = mkEnableOption "Enable systemd sync service.";
 
       enableTimer = mkEnableOption "Enable systemd timer for sync service.";
-
       afterboot = mkOption {
         type = types.str;
         default = "15m";
@@ -204,7 +237,18 @@ in
         default = { };
         description = "List of rclone sync services.";
       };
+    };
 
+    backup = {
+      enable = mkEnableOption "Enable nightly backup";
+      folders = mkOption {
+        type = types.listOf (types.submodule backupSyncs);
+        description = ''
+          Attribute sets that describes directories that should be
+          backed up. Every string should match the string expected by
+          rclone or rsync command.
+        '';
+      };
     };
 
   };

@@ -4,7 +4,7 @@ with lib;
 
 let
 
-  storvik-backup = pkgs.writeScriptBin "storvik-backup" ''
+  storvik-backup = pkgs.writeScriptBin "storvik-backup-this-computer" ''
     #!${pkgs.bash}/bin/bash
 
     ts=$(date +%Y%m%d-%H%M%S)
