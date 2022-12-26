@@ -12,7 +12,7 @@
     shell.enable = true;
     web.enable = true;
   };
-  texlive.enable = false;
+  texlive.enable = true;
   social.enable = false;
   work.enable = false;
 }
