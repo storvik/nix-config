@@ -11,6 +11,10 @@ with lib;
       extraPackages = tpkgs: { inherit (tpkgs) scheme-full; };
     };
 
+    home.packages = with pkgs; [
+      evince
+    ];
+
   };
 
 }
