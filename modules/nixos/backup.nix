@@ -20,32 +20,29 @@ in
 
   config = mkIf config.storvik.backup.enable {
 
-    systemd.user.services."storvik-backup" = {
-      Unit = {
-        Description = ''
-          Backup service
-        '';
-      };
-      Service = {
+    systemd.services."storvik-backup" = {
+      enable = true;
+      description = ''
+        Backup service
+      '';
+      serviceConfig = {
         Type = "simple";
         ExecStart = "${storvik-backup}/bin/storvik-backup";
+        User = "storvik";
+        Group = "users";
       };
     };
 
-    systemd.user.timers."storvik-backup" = {
-      Unit = {
-        Description = "Storvik backup timer.";
-      };
-      Timer = {
+    systemd.timers."storvik-backup" = {
+      description = "Storvik backup timer.";
+      timerConfig = {
         Unit = "storvik-backup.service";
         OnCalendar = "*-*-* 1:30:00";
       };
-      Install = {
-        WantedBy = [ "timers.target" ];
-      };
+      wantedBy = [ "timers.target" ];
     };
 
-    home.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       rclone
       storvik-backup
     ];

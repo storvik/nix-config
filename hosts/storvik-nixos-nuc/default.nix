@@ -1,7 +1,7 @@
 {
   user.storvik.enable = true;
   entertainment.enable = true;
-  gnome.enable = true;
+  # gnome.enable = true;
   sound.enable = true;
   emacs.daemon = true;
   media.enable = true;
@@ -15,24 +15,24 @@
       {
         synctype = "rclone";
         source = "pcloud:photos/";
-        dest = "/run/media/storvik/BACKUP/backup/photos/";
+        dest = "/run/mnt/wd-external/backup/photos/";
         delete = true;
       }
       {
         synctype = "rclone";
         source = "pcloud:eBooks/";
-        dest = "/run/media/storvik/BACKUP/backup/eBooks/";
+        dest = "/run/mnt/wd-external/backup/eBooks/";
         delete = true;
       }
       {
         synctype = "rsync";
-        source = "/run/media/storvik/BACKUP/backup/";
-        dest = "/run/mnt/storvik-backup/";
+        source = "/run/mnt/wd-external/backup/";
+        dest = "/run/mnt/mybook-storvik-backup/";
         delete = true;
       }
       {
         synctype = "rclone";
-        source = "/run/media/storvik/BACKUP/backup/";
+        source = "/run/mnt/wd-external/backup/";
         dest = "s3backup:storvik-backup/";
         delete = true;
       }

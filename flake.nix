@@ -63,6 +63,11 @@
           inherit pkgs system;
           username = "storvik";
           hostname = "storvik-wsl";
+          extraModules = [
+            ({ config, pkgs, ... }: {
+              services.syncthing.enable = true;
+            })
+          ];
         };
       };
       nixosConfigurations = {
@@ -83,29 +88,6 @@
           username = "storvik";
           hostname = "storvik-nixos-nuc";
           machine = "intel-nuc";
-          extraModules = [
-            # TODO: Should figure out a better way to do this.
-            # Mabe add a homeConfig and sysConfig to mkHome and mkSystem.
-            ({ config, pkgs, ... }: {
-              services.xserver.displayManager.autoLogin = {
-                enable = true;
-                user = "storvik";
-              };
-              # Moung network drive, more info here https://nixos.wiki/wiki/Samba
-              environment.systemPackages = [ pkgs.cifs-utils ];
-              fileSystems."/run/mnt/storvik-backup" = {
-                device = "//192.168.0.96/StorvikBackup";
-                fsType = "cifs";
-                options =
-                  let
-                    # this line prevents hanging on network split
-                    automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-
-                  in
-                  [ "credentials=/etc/nixos/smb-secrets,credentials=/etc/nixos/smb-secrets,vers=1.0,rw,nounix,uid=1000,gid=100" ];
-              };
-            })
-          ];
         };
         live-iso = mkSystem {
           inherit pkgs system;

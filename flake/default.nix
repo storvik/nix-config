@@ -11,7 +11,7 @@ in
   mkHome = { username, hostname, pkgs ? nixpkgs, system ? "x86_64-linux", extraModules ? [ ], ... }@args:
 
     let
-      hostConfig = import "${self}/hosts/${hostname}.nix";
+      hostConfig = import "${self}/hosts/${hostname}/";
     in
 
     home-manager.lib.homeManagerConfiguration {
@@ -40,7 +40,11 @@ in
   mkSystem = { username, hostname, machine, pkgs ? nixpkgs, system ? "x86_64-linux", extraModules ? [ ], ... }@args:
 
     let
-      hostConfig = import "${self}/hosts/${hostname}.nix";
+      hostConfig = import "${self}/hosts/${hostname}/";
+      # TODO: Is this really the best way to add host specific nixos config??
+      nixosConfig = import "${self}/hosts/${hostname}/nixos.nix" {
+        inherit pkgs;
+      };
     in
 
     nixosSystem {
@@ -72,10 +76,10 @@ in
           networking.hostName = hostname;
           networking.firewall.enable = false;
         })
-      ];
+      ] ++ nixpkgs.lib.optional (builtins.pathExists "${self}/hosts/${hostname}/nixos.nix") nixosConfig;
 
       specialArgs = {
-        inherit inputs;
+        inherit inputs pkgs;
       };
     };
 
