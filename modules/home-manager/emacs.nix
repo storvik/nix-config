@@ -8,7 +8,7 @@ with lib;
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacsPgtkNativeComp;
+      package = pkgs.emacsPgtk;
     };
 
     home.sessionVariables = {
