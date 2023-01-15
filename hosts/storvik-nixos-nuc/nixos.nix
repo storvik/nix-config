@@ -10,17 +10,18 @@
     group = "users";
     guiAddress = "0.0.0.0:8384";
     devices = {
+      "matebook" = { id = "R2M4YYS-PR7GNS2-JZ3ACYP-VWTMPLK-WQMI3YJ-AB2HV2W-AO6QG45-KAESNQR"; };
       "lenovo" = { id = "KQB7T6Z-3QGGI4H-65YEUO4-I2OL3NG-EKG2UXA-3RWSEB2-R3RDTCZ-GFRW4AO"; };
       "samsung" = { id = "OJXWZ6F-XM2BW2J-RB5TBXI-IWBSIJ6-RNSWWBH-BZU6NZC-LNNVJYW-UMXILAR"; };
     };
     folders = {
       "org" = {
         path = "/home/storvik/syncthing/org/";
-        devices = [ "lenovo" "samsung" ];
+        devices = [ "lenovo" "samsung" "matebook" ];
       };
       "svartisenfestivalen" = {
         path = "/home/storvik/syncthing/svartisenfestivalen/";
-        devices = [ "lenovo" ];
+        devices = [ "lenovo" "matebook" ];
       };
     };
   };
