@@ -6,24 +6,7 @@ with lib;
 
   config =
     let
-      storvik-lock = pkgs.writeShellScriptBin "storvik-lock" ''
-        ${pkgs.swaylock-effects}/bin/swaylock -f -e -c 3b4252 \
-                                                   --clock \
-                                                   --datestr %a,\ %d.%m.%Y \
-                                                   --indicator \
-                                                   --indicator-radius 150 \
-                                                   --indicator-thickness 7 \
-                                                   --fade-in 1 \
-                                                   --inside-color 2e3440 \
-                                                   --ring-color ebcb8b \
-                                                   --key-hl-color b48ead \
-                                                   --inside-ver-color d08770 \
-                                                   --ring-ver-color d08770 \
-                                                   --inside-ver-color d08770 \
-                                                   --ring-ver-color d08770 \
-                                                   --inside-wrong-color bf616a \
-                                                   --ring-wrong-color d08770
-      '';
+      lockCmd = "${pkgs.gtklock}/bin/gtklock --daemonize -s ${config.xdg.configHome}/gtklock/style.css";
       menuCmd = "${pkgs.wofi}/bin/wofi --show drun -I -G";
       alt = "Mod1";
       super = "Mod4";
@@ -128,7 +111,7 @@ with lib;
               r = "reload, mode \"default\"";
               q = "exec swaymsg exit, mode \"default\"";
               s = "exec systemctl suspend, mode \"default\"";
-              Exclam = "exec ${storvik-lock}/bin/storvik-lock, mode \"default\"";
+              Exclam = "exec ${lockCmd}, mode \"default\"";
               Escape = "mode \"default\"";
             };
           };
@@ -382,11 +365,11 @@ with lib;
         enable = true;
         extraArgs = [ "-w" ];
         events = [
-          { event = "before-sleep"; command = "${storvik-lock}/bin/storvik-lock"; }
-          { event = "lock"; command = "${storvik-lock}/bin/storvik-lock"; }
+          { event = "before-sleep"; command = lockCmd; }
+          { event = "lock"; command = lockCmd; }
         ];
         timeouts = [
-          { timeout = 600; command = "${storvik-lock}/bin/storvik-lock"; }
+          { timeout = 600; command = lockCmd; }
           { timeout = 1200; command = "swaymsg \"output * dpms off\""; resumeCommand = "swaymsg \"output * dpms on\""; }
           { timeout = 1260; command = "systemctl suspend"; } # TODO: Check if this is a good way to suspend machine after screen turns off
         ];
@@ -449,6 +432,24 @@ with lib;
             };
           };
         };
+
+      xdg.configFile."gtklock/style.css".text = ''
+        @define-color bg rgb(59, 66, 82);
+        @define-color text1 #fff;
+        @define-color text2 #b48ead;
+
+        * {
+          color: @text1;
+        }
+
+        entry#input-field {
+          color: @text2;
+        }
+
+        window {
+          background-color: @bg;
+        }
+      '';
 
     };
 

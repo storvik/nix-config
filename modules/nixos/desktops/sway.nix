@@ -13,10 +13,13 @@ with lib;
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
 
+    # Fix gtklock
+    security.pam.services.gtklock = { };
+
     programs.sway = {
       enable = true;
       extraPackages = with pkgs; [
-        swaylock-effects
+        gtklock
         swayidle
         waybar
         wl-clipboard
