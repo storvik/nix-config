@@ -5,43 +5,43 @@ My config for both NixOS and generic linux machines, now using flakes.
 ## Structure and options
 
 ```
-|
+│
 ├── flake.nix                                - flake file
-|
+│
 ├── lib/                                     - helper stuff
-|   |
-|   ├── mkHome.nix                           - mkHome, helper that makes home-manager config
-|   |
-|   └── mkSystem.nix                         - mkSystem, helper thtat makes nixos system
-|
+│   │
+│   ├── mkHome.nix                           - mkHome, helper that makes home-manager config
+│   │
+│   └── mkSystem.nix                         - mkSystem, helper thtat makes nixos system
+│
 ├── hosts/                                   - host configurations
-|
+│
 ├── modules/                                 - all config modules
-|   |
-|   ├── default.nix                          - all module options
-|   |
-|   ├── home-manager/                        - home manager modules
-|   |   |
-|   |   ├── desktops/                        - desktop configs, gnome, kde, etc
-|   |   |
-|   |   ├── developer/                       - developer tools
-|   |   |
-|   |   └── users/                           - different user settings
-|   |
-|   └── nixos/                               - nixos modules, same directory structure as home manager
+│   │
+│   ├── default.nix                          - all module options
+│   │
+│   ├── home-manager/                        - home manager modules
+│   │   │
+│   │   ├── desktops/                        - desktop configs, gnome, kde, etc
+│   │   │
+│   │   ├── developer/                       - developer tools
+│   │   │
+│   │   └── users/                           - different user settings
+│   │
+│   └── nixos/                               - nixos modules, same directory structure as home manager
 │
 ├── machines/                                - hardware dependant config for different machines
-|   |
-|   ├── intel-nuc                            - Intel NUC
-|   |
-|   ├── lenovo-e31                           - Lenovo E31
-|   |
-|   ├── live                                 - Live ISO
-|   |
-|   └── matebook                             - Huawei Matebook Pro
-|
+│   │
+│   ├── intel-nuc                            - Intel NUC
+│   │
+│   ├── lenovo-e31                           - Lenovo E31
+│   │
+│   ├── live                                 - Live ISO
+│   │
+│   └── matebook                             - Huawei Matebook Pro
+│
 ├── overlays/                                - overlays
-|
+│
 └── pkgs/                                    - custom packages
 ```
 
