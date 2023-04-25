@@ -8,7 +8,7 @@ with lib;
     {
 
       home.packages = with pkgs; [
-        clpm
+        # clpm
         ecl
         sbcl
       ];
