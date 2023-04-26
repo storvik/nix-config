@@ -1,5 +1,6 @@
 {
   user.storvik.enable = true;
+  user.storvik.email.enable = true;
   genericLinux.enable = true;
   wsl.enable = true;
   emacs.enable = true;

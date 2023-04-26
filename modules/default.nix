@@ -137,7 +137,17 @@ in
     # User specific options
     ##
 
-    user.storvik.enable = mkEnableOption "Enable storvik user";
+    user.storvik = {
+
+      enable = mkEnableOption "Enable storvik user";
+
+      email = {
+
+        enable = mkEnableOption "Enable email accounts";
+
+      };
+
+    };
 
     ##
     # OS dependant
