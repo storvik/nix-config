@@ -195,13 +195,13 @@ in
         };
         font = {
           normal = {
-            family = "Iosevka Nerd Font";
+            family = "Iosevka";
           };
           bold = {
-            family = "Iosevka Nerd Font";
+            family = "Iosevka";
           };
           italic = {
-            family = "Iosevka Nerd Font";
+            family = "Iosevka";
           };
           size = 11;
         };

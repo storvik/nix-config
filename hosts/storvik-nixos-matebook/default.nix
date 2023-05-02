@@ -1,6 +1,5 @@
 {
   user.storvik.enable = true;
-  gnome.enable = true;
   sway.enable = true;
   sound.enable = true;
   developer.enable = true;

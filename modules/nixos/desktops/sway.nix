@@ -16,6 +16,16 @@ with lib;
     # Fix gtklock
     security.pam.services.gtklock = { };
 
+    # Login handled by greetd and tuigreet
+    services.greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        };
+      };
+    };
+
     programs.sway = {
       enable = true;
       extraPackages = with pkgs; [
@@ -33,6 +43,7 @@ with lib;
         networkmanager_dmenu
         pinentry-qt
         imv
+        wf-recorder
       ];
     };
   };

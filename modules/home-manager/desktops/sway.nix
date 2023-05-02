@@ -38,6 +38,7 @@ with lib;
               tap = "enabled";
               dwt = "enabled";
               scroll_method = "two_finger";
+              scroll_factor = "0.5";
               middle_emulation = "enabled";
               natural_scroll = "enabled";
             };
@@ -62,7 +63,7 @@ with lib;
           menu = menuCmd;
 
           fonts = {
-            names = [ "Iosevka Nerd Font" ];
+            names = [ "Iosevka" ];
             size = 10.5;
           };
 
@@ -154,19 +155,11 @@ with lib;
         };
       };
 
-      programs.mako = {
+      services.mako = {
         enable = true;
         anchor = "top-center";
         defaultTimeout = 5000;
-        font = "Iosevka Nerd Font";
-      };
-
-      systemd.user.services.mako = {
-        Service = { ExecStart = "${pkgs.mako}/bin/mako"; };
-        Install = {
-          After = [ "sway-session.target" ];
-          WantedBy = [ "sway-session.target" ];
-        };
+        font = "Iosevka";
       };
 
       xdg = {
@@ -179,7 +172,7 @@ with lib;
           show_panel=false
           line_size=5
           text_size=20
-          text_font=Iosevka Nerd Font
+          text_font=Iosevka
           paint_mode=brush
         '';
 
@@ -277,7 +270,7 @@ with lib;
         style = ''
           * {
             /* `otf-font-awesome` is required to be installed for icons */
-            font-family: FontAwesome, Iosevka Nerd Font;
+            font-family: FontAwesome, Iosevka;
             font-size: 13px;
           }
 
