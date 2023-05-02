@@ -197,8 +197,6 @@ in
 
     sway.enable = mkEnableOption "Sway";
 
-    kde.enable = mkEnableOption "KDE";
-
     sound.enable = mkEnableOption "Enable sound";
 
     kanata.enable = mkEnableOption "Enable kanata keyboard management";
