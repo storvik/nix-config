@@ -18,6 +18,6 @@ with lib;
   home.packages = with pkgs; [
     fira-code
     fira-code-symbols
-    nerdfonts
+    iosevka
   ];
 }
