@@ -104,13 +104,30 @@
         "type": "github"
       }
     },
+    "pr67576": {
+      "locked": {
+        "lastModified": 1679074979,
+        "narHash": "sha256-znG/8t0h1QjyrMvfoSmbpl1SYTymITujWJTZgzQchtE=",
+        "owner": "jtojnar",
+        "repo": "nixpkgs",
+        "rev": "86947c8f83a3bd593eefb8e5f433f0d045c3d9a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jtojnar",
+        "ref": "gimp-meson",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "nixGL": "nixGL",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-master": "nixpkgs-master"
+        "nixpkgs-master": "nixpkgs-master",
+        "pr67576": "pr67576"
       }
     }
   },

@@ -24,19 +24,30 @@
       flake = false;
     };
 
+    # https://github.com/NixOS/nixpkgs/pull/67576
+    pr67576.url = "github:jtojnar/nixpkgs/gimp-meson";
+
   };
 
-  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixGL, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixGL, pr67576, ... }@inputs:
     let
       system = "x86_64-linux";
 
       nixgl-overlay = (final: prev: { nixGL = import nixGL { pkgs = final; }; });
+
+      # gimp devel pgks
+      pr67576pkgs = import pr67576 {
+        inherit system;
+      };
 
       pkgs = import nixpkgs {
         inherit system;
         config = {
           allowUnfree = true;
           allowBroken = true;
+          packageOverrides = pkgs: {
+            gimp = pr67576pkgs.gimp;
+          };
         };
         overlays = [
           (import ./overlays)
