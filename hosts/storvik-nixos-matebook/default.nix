@@ -1,5 +1,6 @@
 {
   user.storvik.enable = true;
+  user.storvik.email.enable = true;
   sway.enable = true;
   sound.enable = true;
   developer.enable = true;

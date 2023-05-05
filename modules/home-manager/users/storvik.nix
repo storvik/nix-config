@@ -35,7 +35,7 @@ with lib;
           address = "petter@svartisenfestivalen.no";
           userName = "svartisenfestiv3";
           realName = "Petter S. Storvik";
-          passwordCommand = "cat ~/developer/.secrets/petter@svartisenfestivalen.no.pass";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ~/developer/.secrets/petter@svartisenfestivalen.no.pass";
           primary = true;
           signature = {
             text = ''
@@ -63,7 +63,7 @@ with lib;
           address = "petter@storvik.dev";
           userName = "storvikdev1";
           realName = "Petter S. Storvik";
-          passwordCommand = "cat ~/developer/.secrets/petter@storvik.dev.pass";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ~/developer/.secrets/petter@storvik.dev.pass";
           signature = {
             text = ''
               Med vennlig hilsen / Kind regards
