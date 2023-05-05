@@ -1,4 +1,3 @@
 [
   ./clpm
-  ./kanata
 ]

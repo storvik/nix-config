@@ -10,6 +10,7 @@ with lib;
       menuCmd = "${pkgs.wofi}/bin/wofi --show drun -I -G";
       alt = "Mod1";
       super = "Mod4";
+      swaymsg = "${pkgs.sway}/bin/swaymsg";
     in
     mkIf config.storvik.sway.enable {
 
@@ -166,6 +167,7 @@ with lib;
         };
       };
 
+      # Mako notification service
       services.mako = {
         enable = true;
         anchor = "top-center";
@@ -374,7 +376,7 @@ with lib;
         ];
         timeouts = [
           { timeout = 600; command = lockCmd; }
-          { timeout = 1200; command = "swaymsg \"output * dpms off\""; resumeCommand = "swaymsg \"output * dpms on\""; }
+          { timeout = 1200; command = "${swaymsg} \"output * dpms off\""; resumeCommand = "${swaymsg} \"output * dpms on\""; }
           { timeout = 1260; command = "systemctl suspend"; } # TODO: Check if this is a good way to suspend machine after screen turns off
         ];
       };
