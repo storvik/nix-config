@@ -6,6 +6,13 @@ with lib;
 
   config = mkIf config.storvik.sway.enable {
 
+    assertions = [
+      {
+        assertion = config.storvik.gnome.enable == false;
+        message = "Sway should not be enabled at the same time as Gnome.";
+      }
+    ];
+
     # Enable network manager
     networking.networkmanager.enable = true;
 
