@@ -27,6 +27,24 @@ with lib;
       ];
     };
 
+    home.packages =
+      let
+        ent = pkgs.writeScriptBin "github-ent" ''
+          #!${pkgs.bash}/bin/bash
+          git config user.name "petter-storvik_goodtech"
+          git config user.email "petter.storvik@goodtech.no"
+        '';
+        priv = pkgs.writeScriptBin "github-priv" ''
+          #!${pkgs.bash}/bin/bash
+          git config user.name "storvik"
+          git config user.email "petterstorvik@gmail.com"
+        '';
+      in
+      [
+        ent
+        priv
+      ];
+
     # mu init --maildir=~/developer/maildir --my-address=petter@svartisenfestivalen.no --my-address=petter@storvik.dev
     accounts.email = mkIf config.storvik.user.storvik.email.enable {
       maildirBasePath = "./developer/maildir";
