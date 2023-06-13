@@ -15,5 +15,4 @@
   };
   texlive.enable = true;
   social.enable = false;
-  work.enable = false;
 }

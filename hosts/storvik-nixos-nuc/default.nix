@@ -8,7 +8,6 @@
   developer.nix.enable = true;
   remotelogin.enable = true;
   virtualization.enable = true;
-  work.enable = true;
   backup = {
     enable = true;
     folders = [

@@ -11,7 +11,6 @@
   graphics.enable = true;
   media.enable = true;
   social.enable = true;
-  work.enable = true;
   forensics.enable = true;
   forensics.modules = [ "reverse" ];
   rclone = {

@@ -236,8 +236,6 @@ in
       type = lib.types.bool;
     };
 
-    work.enable = mkEnableOption "Work stuff";
-
     rclone = {
       enable = mkEnableOption "Enable rclone sync";
       syncs = mkOption {
