@@ -11,7 +11,7 @@ with lib;
         enable = true;
         goPath = "developer/gopath";
         goBin = "developer/gopath/bin";
-        goPrivate = [ "git.avantieng.no/*" ];
+        goPrivate = [ "git.avantieng.no/*" "github.com/Goodtech-AS" ];
       };
 
       home.packages = with pkgs; [
