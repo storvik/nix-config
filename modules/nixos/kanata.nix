@@ -105,6 +105,7 @@ with lib;
               n_l (macro A-(C-(rght)))       ;; Next desktop
               n_q (macro M-(S-(q)))          ;; Quit program
               n_ret (macro M-(ret))          ;; New terminal
+              n_p (macro M-(p))              ;; Powermenu
 
               qwr (layer-switch qwerty)      ;; Change to layer qwerty
               cmk (layer-switch colemak-dh)  ;; Change to layer colemak-dh
