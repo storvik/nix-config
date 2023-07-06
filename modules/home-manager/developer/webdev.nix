@@ -9,7 +9,6 @@ with lib;
       home.packages = with pkgs; [
         clojure-lsp
         html-tidy
-        nodejs-16_x
         nodePackages.prettier
         nodePackages.typescript
         nodePackages.typescript-language-server
