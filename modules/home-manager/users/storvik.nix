@@ -25,6 +25,12 @@ with lib;
         ".direnv"
         "result"
       ];
+    programs.git-cliff = {
+      enable = true;
+      settings = {
+        header = "Changelog";
+        trim = true;
+      };
     };
 
     home.packages =
