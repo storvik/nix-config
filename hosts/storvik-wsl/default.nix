@@ -4,7 +4,7 @@
   genericLinux.enable = true;
   wsl.enable = true;
   emacs.enable = true;
-  browser.enable = false;
+  browser.enable = true;
   developer = {
     c.enable = true;
     go.enable = true;
