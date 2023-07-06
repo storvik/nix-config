@@ -35,6 +35,12 @@
         dest = "s3backup:storvik-backup/";
         delete = true;
       }
+      {
+        synctype = "rclone";
+        source = "/home/storvik/syncthing/svartisenfestivalen/";
+        dest = "pcloud:svartisenfestivalen/";
+        delete = false;
+      }
     ];
   };
 }
