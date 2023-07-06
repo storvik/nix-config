@@ -7,13 +7,75 @@ with lib;
   config =
     let
       lockCmd = "${pkgs.gtklock}/bin/gtklock --daemonize -s ${config.xdg.configHome}/gtklock/style.css";
-      menuCmd = "${pkgs.wofi}/bin/wofi --show drun -I -G";
+      menuCmd = "${pkgs.wofi}/bin/wofi --show drun -I -G -M fuzzy";
+      dmenuCommand = "${pkgs.wofi}/bin/wofi -d -I -G -M fuzzy";
       alt = "Mod1";
       super = "Mod4";
       swaymsg = "${pkgs.sway}/bin/swaymsg";
+      powermenu = pkgs.writeScriptBin "powermenu" ''
+        op=$( echo -e " Poweroff\n Reboot\n Suspend\n Lock\n Logout" | ${dmenuCommand} | awk '{print tolower($2)}' )
+        case $op in
+          poweroff)
+            ;&
+          reboot)
+            ;&
+          suspend)
+            exec systemctl suspend
+            ;;
+          lock)
+            exec ${lockCmd}
+            ;;
+          logout)
+            exec ${pkgs.sway}/bin/swaymsg exit
+            ;;
+        esac
+      '';
+      screenshotMenu = pkgs.writeScriptBin "screenshotmenu" ''
+        op=$( echo -e " 1. Print screen to buffer (Print)\n \
+        2. Print area to buffer (Shift+Print)\n \
+        3. Print window to buffer (Ctrl+Print)\n \
+        4. Print screen to file (Super+Print)\n \
+        5. Print area to file (Super+Shift+Print)\n \
+        6. Print window to file (Super+Ctrl+Print)\n \
+        7. Print screen and edit (Alt+Print)\n \
+        8. Print area and edit (Alt+Shift+Print)\n \
+        9. Print window and edit (Alt+Ctrl+Print)" \
+        | ${dmenuCommand})
+        case ''${op:1:1} in
+            1)
+                exec grimshot --notify copy screen
+                ;;
+            2)
+                exec grimshot --notify copy area
+                ;;
+            3)
+                exec grimshot --notify copy window
+                ;;
+            4)
+                exec grimshot --notify save screen
+                ;;
+            5)
+                exec grimshot --notify save area
+                ;;
+            6)
+                exec grimshot --notify save window
+                ;;
+            7)
+                exec grimshot save screen - | swappy -f -
+                ;;
+            8)
+                exec grimshot save area - | swappy -f -
+                ;;
+            9)
+                exec grimshot save window - | swappy -f -
+                ;;
+        esac
+      '';
+
     in
     mkIf config.storvik.sway.enable {
 
+      home.packages = [ screenshotMenu ];
       wayland.windowManager.sway = {
         enable = true;
         systemdIntegration = true;
@@ -69,7 +131,7 @@ with lib;
           };
 
           focus = {
-            followMouse = "always";
+            followMouse = "no";
           };
 
           bars = [ ]; # empty list disables bars
@@ -102,19 +164,13 @@ with lib;
 
           modes = {
             resize = {
-              h = "resize shrink width 10 px";
-              j = "resize grow height 10 px";
-              k = "resize shrink height 10 px";
-              l = "resize grow width 10 px";
+              # Set to match colemak-dh
+              m = "resize shrink width 10 px";
+              n = "resize grow height 10 px";
+              e = "resize shrink height 10 px";
+              i = "resize grow width 10 px";
               Escape = "mode default";
               Return = "mode default";
-            };
-            system = {
-              r = "reload, mode \"default\"";
-              q = "exec swaymsg exit, mode \"default\"";
-              s = "exec systemctl suspend, mode \"default\"";
-              Exclam = "exec ${lockCmd}, mode \"default\"";
-              Escape = "mode \"default\"";
             };
           };
 
@@ -123,14 +179,11 @@ with lib;
             "${alt}+Control+Right" = "exec swaymsg -t command workspace next_on_output";
 
             "${super}+Shift+t" = "exec systemctl --user restart kanata.service";
-
-            # Systems
-            "${super}+p" = "mode system";
-
-            # Networkmanager
-            "${super}+n" = "exec networkmanager_dmenu";
+            "${super}+p" = "exec ${powermenu}/bin/powermenu";
+            "${super}+k" = "exec networkmanager_dmenu";
 
             # Screenshot
+            "${super}+m" = "exec ${screenshotMenu}/bin/screenshotmenu";
             "Print" = "exec grimshot --notify copy screen";
             "Shift+Print" = "exec grimshot --notify copy area";
             "Control+Print" = "exec grimshot --notify copy window";

@@ -51,6 +51,7 @@ with lib;
         pinentry-qt
         imv
         wf-recorder
+        gnome.nautilus
       ];
     };
   };
