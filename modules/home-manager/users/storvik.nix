@@ -25,6 +25,22 @@ with lib;
         ".direnv"
         "result"
       ];
+      hooks =
+        let
+          pre-commit-hook = pkgs.writeShellScriptBin "git-pre-commit-check-gpg" ''
+            (git remote -v | grep -Eq  github) || exit 0  # If not in a github repo, gpg is not used
+            git config user.signingkey > /dev/null 2>&1
+          '';
+        in
+        {
+          pre-commit = "${pre-commit-hook}/bin/git-pre-commit-check-gpg";
+        };
+      signing = {
+        key = null;
+        signByDefault = true;
+      };
+    };
+
     programs.git-cliff = {
       enable = true;
       settings = {
@@ -128,6 +144,16 @@ with lib;
 
     programs.mu = mkIf config.storvik.user.storvik.email.enable {
       enable = true;
+    };
+
+    programs.gpg.enable = true;
+
+    services.gpg-agent = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      pinentryFlavor = if config.storvik.wsl.enable then null else "gtk2"; # When set to null it does not set pinentry-program in conf
+      extraConfig = if config.storvik.wsl.enable then "pinentry-program /mnt/c/Users/petter.storvik/scoop/apps/gpg4win/current/Gpg4win/bin/pinentry.exe" else "";
     };
 
   };
