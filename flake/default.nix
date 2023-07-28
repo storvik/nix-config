@@ -2,7 +2,7 @@
 
 let
 
-  inherit (inputs) home-manager nixpkgs;
+  inherit (inputs) home-manager nixpkgs hyprland;
 
 in
 
@@ -18,6 +18,8 @@ in
       inherit pkgs;
 
       modules = [
+        # Hyprland modules
+        hyprland.homeManagerModules.default
         # My additional modules must be imported
         ("${self}/modules")
         ("${self}/modules/home-manager")
@@ -57,6 +59,8 @@ in
           home-manager.useUserPackages = true;
           home-manager.users."${username}" = { config, pkgs, ... }: {
             imports = [
+              # Hyprland modules
+              (hyprland.homeManagerModules.default)
               ("${self}/modules")
               ("${self}/modules/home-manager")
             ];

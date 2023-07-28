@@ -197,6 +197,8 @@ in
 
     sway.enable = mkEnableOption "Sway";
 
+    hyprland.enable = mkEnableOption "Hyprland";
+
     sound.enable = mkEnableOption "Enable sound";
 
     kanata.enable = mkEnableOption "Enable kanata keyboard management";

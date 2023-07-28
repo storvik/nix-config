@@ -1,0 +1,82 @@
+*{
+	all: unset;
+	font-family: feather;
+	font-family: Iosevka;
+}
+
+.clock-bg {
+	background-color: #474D59;
+	opacity: 0.7;
+    border-radius: 10px;
+}
+
+.clock-text {
+    color: #81A1C1;
+	font-size : 70px;
+	font-weight : bold;
+    margin-top: 30px;
+}
+
+.clock-day {
+	color: #EBCB8B;
+	font-size : 20px;
+    margin-bottom: 20px;
+	opacity: 1;
+}
+
+.clock-divider {
+	color: #EBCB8B;
+	font-size : 76px;
+    margin-top: 18px;
+}
+
+.leftdash-bg {
+	background-color: #474D59;
+	opacity: 0.9;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.leftdash-heading {
+    color: #81A1C1;
+	font-size : 32px;
+	font-weight : bold;
+    margin-top: 30px;
+}
+
+.leftdash-scales {
+	// background-color: #3A404C;
+    min-height: 180px;
+}
+
+.leftdash-scalebox {
+	background-color: #3A404C;
+}
+
+.leftdash-scale {
+	background-color: #3AF04C;
+	border-radius: 16px;
+}
+
+
+
+.sys_bat {
+    color: #bfc9db;
+    background-color: #0f0f17;
+    border-radius: 10px;
+}
+
+.sysbars scale trough highlight {
+	all: unset;
+    background-color: #bfc9db;
+	border-radius: 24px;
+}
+
+scale trough {
+	all: unset;
+	background-color: #232232;
+	border-radius: 24px;
+	min-height: 130px;
+	min-width: 14px;
+	margin : 10px 0px 0px 0px;
+}

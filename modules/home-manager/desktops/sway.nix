@@ -78,7 +78,7 @@ with lib;
       home.packages = [ screenshotMenu ];
       wayland.windowManager.sway = {
         enable = true;
-        systemdIntegration = true;
+        systemd.enable = true;
         wrapperFeatures = {
           base = true;
           gtk = true;
@@ -94,7 +94,7 @@ with lib;
           up = "k";
           right = "l";
 
-          terminal = "${pkgs.alacritty}/bin/alacritty";
+          terminal = "${pkgs.foot}/bin/foot";
 
           input = {
             "type:touchpad" = {
@@ -249,7 +249,7 @@ with lib;
           pinentry = pinentry-qt
 
           [editor]
-          terminal = ${pkgs.alacritty}/bin/alacritty
+          terminal = ${pkgs.foot}/bin/foot
           gui_if_available = true
         '';
 

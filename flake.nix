@@ -18,6 +18,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
+
     # TODO: Check if it's possible to wrap packages when generic linux is used
     nixGL = {
       url = "github:guibou/nixGL";
