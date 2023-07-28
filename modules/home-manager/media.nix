@@ -9,6 +9,7 @@ with lib;
     home.packages = with pkgs; [
       calibre
       geeqie
+      handbrake
       spotify
       vlc
     ];
