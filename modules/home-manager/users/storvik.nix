@@ -153,7 +153,7 @@ with lib;
       enableBashIntegration = true;
       enableFishIntegration = true;
       pinentryFlavor = if config.storvik.wsl.enable then null else "gtk2"; # When set to null it does not set pinentry-program in conf
-      extraConfig = if config.storvik.wsl.enable then "pinentry-program /mnt/c/Users/petter.storvik/scoop/apps/gpg4win/current/Gpg4win/bin/pinentry.exe" else "";
+      extraConfig = if config.storvik.wsl.enable then "pinentry-program /mnt/c/Users/petter.storvik/scoop/apps/gpg4win/current/Gpg4win/bin/pinentry.exe" else "allow-loopback-pinentry";
     };
 
   };
