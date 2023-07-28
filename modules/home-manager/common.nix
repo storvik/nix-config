@@ -8,7 +8,7 @@ with lib;
   programs.home-manager.enable = true;
 
   # Get all documentations too
-  home.extraOutputsToInstall = [ "doc" "man" ];
+  home.extraOutputsToInstall = [ "man" ];
 
   home.stateVersion = "22.11";
 
