@@ -16,6 +16,8 @@ with lib;
       lockCmd = "${pkgs.gtklock}/bin/gtklock --daemonize -s ${config.xdg.configHome}/gtklock/style.css";
       menuCmd = "${pkgs.wofi}/bin/wofi --show drun -I -G -M fuzzy";
       dmenuCommand = "${pkgs.wofi}/bin/wofi -d -I -G -M fuzzy";
+      grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
+      swappy = "${pkgs.swappy}/bin/swappy";
       ewwCmd = pkgs.writeScriptBin "launch-eww" ''
                 ## Files and cwd
                 FILE="$HOME/.cache/eww_launch.dashboard"
@@ -61,6 +63,8 @@ with lib;
           bind = $mod, L, exec, ${lockCmd}
           bind = $mod, H, exec, ${ewwCmd}/bin/launch-eww
           bind = $mod, K, exec, ${pkgs.networkmanager_dmenu}/bin/networkmanager_dmenu
+          bind = , Print, exec, ${grimshot} --notify save screen - | ${swappy} -f -
+          bind = SHIFT, Print, exec, ${grimshot} --notify save area - | ${swappy} -f -
 
           # workspaces
           # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
@@ -89,8 +93,8 @@ with lib;
           # Brightness
           bind = , XF86MonBrightnessUp, exec, ${pkgs.avizo}/bin/lightctl up
           bind = , XF86MonBrightnessDown, exec, ${pkgs.avizo}/bin/lightctl down
-          # "XF86MonBrightnessUp" = "exec lightctl up";
-          # "" = "exec lightctl down";
+
+          exec-once=systemctl --user start avizo.service
 
           general {
             gaps_in = 5
