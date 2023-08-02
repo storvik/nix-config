@@ -5,6 +5,7 @@ with lib;
 {
 
   config = mkIf config.storvik.user.storvik.enable {
+    programs.adb.enable = true;
 
     users.users.storvik = {
       isNormalUser = true;
@@ -13,7 +14,8 @@ with lib;
         "networkmanager"
         "audio"
         "video"
-      ] ++ (if config.storvik.kanata.enable then [ "input" "uinput" ] else [ ]);
+        "adbusers"
+      ];
     };
 
   };
