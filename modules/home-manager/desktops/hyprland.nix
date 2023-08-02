@@ -163,12 +163,14 @@ with lib;
         configFile."swappy/config".text = ''
           [Default]
           save_dir=$HOME/Pictures/Screenshots
-          save_filename_format=%Y%m%d-%H%M%S_swappy.png
+          save_filename_format=%Y%m%d-%H%M%S.png
           show_panel=false
           line_size=5
           text_size=20
           text_font=Iosevka
           paint_mode=brush
+          early_exit=false
+          fill_shape=false
         '';
 
         configFile."networkmanager-dmenu/config.ini".text = ''
@@ -182,27 +184,28 @@ with lib;
           gui_if_available = true
         '';
 
+        configFile."gtklock/style.css".text = ''
+          @define-color bg rgb(59, 66, 82);
+          @define-color text1 #fff;
+          @define-color text2 #b48ead;
+
+          * {
+            color: @text1;
+          }
+
+          entry#input-field {
+            color: @text2;
+          }
+
+          window {
+            background-color: @bg;
+          }
+        '';
+
+
       };
 
       services.blueman-applet.enable = true;
-
-      xdg.configFile."gtklock/style.css".text = ''
-        @define-color bg rgb(59, 66, 82);
-        @define-color text1 #fff;
-        @define-color text2 #b48ead;
-
-        * {
-          color: @text1;
-        }
-
-        entry#input-field {
-          color: @text2;
-        }
-
-        window {
-          background-color: @bg;
-        }
-      '';
 
       # Fix for small cursor issue
       home.pointerCursor = {
