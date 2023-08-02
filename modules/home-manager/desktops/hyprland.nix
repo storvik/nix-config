@@ -220,6 +220,10 @@ with lib;
         systemdTarget = "hyprland-session.target";
       };
 
+      services.udiskie = {
+        enable = true;
+        tray = "never";
+      };
 
     };
 

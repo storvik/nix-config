@@ -37,10 +37,13 @@ with lib;
       enable = true;
     };
 
+    services.udisks2.enable = true;
+
     environment.systemPackages = with pkgs; [
       pamixer
       brightnessctl
       gnome.nautilus
+      pinentry-qt # needed to use from scripts
       wl-clipboard # needed for copy paste in swappy etc
       wofi # must be installed in order to reach it from scripts or clipman
     ];
