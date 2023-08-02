@@ -63,6 +63,7 @@ with lib;
           bind = $mod, L, exec, ${lockCmd}
           bind = $mod, H, exec, ${ewwCmd}/bin/launch-eww
           bind = $mod, K, exec, ${pkgs.networkmanager_dmenu}/bin/networkmanager_dmenu
+          bind = $mod, V, exec,  clipman pick --tool wofi -T'-d -I -G -M fuzzy'
           bind = , Print, exec, ${grimshot} --notify save screen - | ${swappy} -f -
           bind = SHIFT, Print, exec, ${grimshot} --notify save area - | ${swappy} -f -
 
@@ -214,6 +215,10 @@ with lib;
         };
       };
 
+      services.clipman = {
+        enable = true;
+        systemdTarget = "hyprland-session.target";
+      };
 
 
     };

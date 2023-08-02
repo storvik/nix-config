@@ -41,6 +41,8 @@ with lib;
       pamixer
       brightnessctl
       gnome.nautilus
+      wl-clipboard # needed for copy paste in swappy etc
+      wofi # must be installed in order to reach it from scripts or clipman
     ];
 
   };
