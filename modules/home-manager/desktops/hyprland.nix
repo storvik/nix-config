@@ -51,8 +51,6 @@ with lib;
 
           bind = $mod, RETURN, exec, foot
           bind = $mod SHIFT, RETURN, exec, emacsclient -c -a emacs
-          bind = $mod, Q, killactive,
-          bind = $mod SHIFT, M, exit,
           bind = $mod, D, exec, ${menuCmd}
           bind = $mod, L, exec, ${lockCmd}
           bind = $mod, H, exec, ${ewwCmd}/bin/launch-eww
@@ -75,6 +73,33 @@ with lib;
               ''
             )
             10)}
+
+          # compositor cmds
+          bind = $mod, Q, killactive,
+          bind = $mod SHIFT, M, exit,
+          bind = $mod, F, fullscreen,
+          bind = $mod, G, togglesplit,
+          bind = $mod SHIFT, F, togglefloating,
+          bind = $mod SHIFT, G, togglegroup,
+          # bind = $mod SHIFT, G, exec, $notifycmd 'Toggled Group Mode'
+          bind = $mod SHIFT, N, changegroupactive, f
+          bind = $mod SHIFT, P, changegroupactive, b
+
+          # move focus
+          bind = $mod, M, movefocus, l
+          bind = $mod, I, movefocus, r
+          bind = $mod, E, movefocus, u
+          bind = $mod, N, movefocus, d
+
+          # window resize
+          bind = $mod, R, submap, resize
+          submap = resize
+          binde = , M, resizeactive, -10 0
+          binde = , I, resizeactive, 10 0
+          binde = , E, resizeactive, 0 -10
+          binde = , N, resizeactive, 0 10
+          bind = , escape, submap, reset
+          submap = reset
 
           bind = CONTROL_ALT, left, workspace, -1
           bind = CONTROL_ALT, right, workspace, +1
