@@ -214,6 +214,18 @@ with lib;
         };
       };
 
+      gtk = {
+        enable = true;
+        theme = {
+          name = "Materia-dark";
+          package = pkgs.materia-theme;
+        };
+        iconTheme = {
+          name = "Vimix-Black";
+          package = pkgs.vimix-icon-theme;
+        };
+      };
+
       services.clipman = {
         enable = true;
         systemdTarget = "hyprland-session.target";
