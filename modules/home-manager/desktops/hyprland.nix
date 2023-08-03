@@ -224,6 +224,8 @@ with lib;
         tray = "never";
       };
 
+      programs.zathura.enable = true;
+
     };
 
 }
