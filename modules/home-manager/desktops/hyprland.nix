@@ -2,12 +2,6 @@
 
 with lib;
 
-# TODO
-# [X] Image viewer
-# [ ] Clipboard manager
-# [ ] Screenshot menu etc, in eww?
-# [ ] Hyprpaper
-
 {
 
   config =
@@ -20,8 +14,8 @@ with lib;
       swappy = "${pkgs.swappy}/bin/swappy";
       ewwCmd = pkgs.writeScriptBin "launch-eww" ''
                 ## Files and cwd
-                FILE="$HOME/.cache/eww_launch.dashboard"
-                CFG="$HOME/.config/eww"
+                FILE="${config.home.homeDirectory}/.cache/eww_launch.dashboard"
+                CFG="${config.xdg.configHome}/eww"
 
                 ## Run eww daemon if not running already
                 if [[ ! `pidof eww` ]]; then
@@ -95,6 +89,7 @@ with lib;
           bind = , XF86MonBrightnessUp, exec, ${pkgs.avizo}/bin/lightctl up
           bind = , XF86MonBrightnessDown, exec, ${pkgs.avizo}/bin/lightctl down
 
+          exec-once=${pkgs.eww-wayland}/bin/eww daemon
           exec-once=systemctl --user start avizo.service
 
           general {
@@ -140,9 +135,10 @@ with lib;
           { event = "lock"; command = lockCmd; }
         ];
         timeouts = [
-          { timeout = 600; command = lockCmd; }
-          { timeout = 1200; command = "${hyprctl} dispatch dpms off"; resumeCommand = "${hyprctl} dispatch dpms on"; }
-          { timeout = 1260; command = "systemctl suspend"; } # TODO: Check if this is a good way to suspend machine after screen turns off
+          { timeout = 600; command = "${ewwCmd}/bin/launch-eww"; }
+          { timeout = 900; command = lockCmd; }
+          { timeout = 1800; command = "${hyprctl} dispatch dpms off"; resumeCommand = "${hyprctl} dispatch dpms on"; }
+          { timeout = 1860; command = "systemctl suspend"; } # TODO: Check if this is a good way to suspend machine after screen turns off
         ];
       };
 
