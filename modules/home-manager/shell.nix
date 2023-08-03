@@ -148,6 +148,11 @@ in
       };
     };
 
+    programs.starship = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
     home.packages = with pkgs; [
       bitwarden-cli
       bfg-repo-cleaner
