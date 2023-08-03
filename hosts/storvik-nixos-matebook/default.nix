@@ -2,7 +2,10 @@
   user.storvik.enable = true;
   user.storvik.email.enable = true;
   sway.enable = false;
-  hyprland.enable = true;
+  hyprland = {
+    enable = true;
+    loginManager = true;
+  };
   sound.enable = true;
   developer.enable = true;
   emacs = {
