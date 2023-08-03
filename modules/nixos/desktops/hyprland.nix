@@ -25,7 +25,7 @@ with lib;
 
     # Login handled by greetd and tuigreet
     services.greetd = {
-      enable = true;
+      enable = config.storvik.hyprland.loginManager;
       settings = {
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";

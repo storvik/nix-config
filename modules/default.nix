@@ -197,7 +197,10 @@ in
 
     sway.enable = mkEnableOption "Sway";
 
-    hyprland.enable = mkEnableOption "Hyprland";
+    hyprland = {
+      enable = mkEnableOption "Hyprland window manager";
+      loginManager = mkEnableOption "Enable greetd login manager";
+    };
 
     sound.enable = mkEnableOption "Enable sound";
 
