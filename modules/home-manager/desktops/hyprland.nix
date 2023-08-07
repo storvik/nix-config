@@ -85,6 +85,10 @@ with lib;
           bind = $mod SHIFT, N, changegroupactive, f
           bind = $mod SHIFT, P, changegroupactive, b
 
+          # move/resize windows
+          bindm = $mod, mouse:272, movewindow
+          bindm = $mod SHIFT, mouse:272, resizewindow
+
           # move focus
           bind = $mod, M, movefocus, l
           bind = $mod, I, movefocus, r
