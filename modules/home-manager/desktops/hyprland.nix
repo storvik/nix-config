@@ -7,6 +7,7 @@ with lib;
   config =
     let
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+      notify = "${pkgs.libnotify}/bin/notify-send";
       lockCmd = "${pkgs.gtklock}/bin/gtklock --daemonize -s ${config.xdg.configHome}/gtklock/style.css";
       menuCmd = "${pkgs.wofi}/bin/wofi --show drun -I -G -M fuzzy";
       dmenuCommand = "${pkgs.wofi}/bin/wofi -d -I -G -M fuzzy";
@@ -194,7 +195,7 @@ with lib;
           text_size=20
           text_font=Iosevka
           paint_mode=brush
-          early_exit=false
+          early_exit=true
           fill_shape=false
         '';
 
