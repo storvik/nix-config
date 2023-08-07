@@ -146,7 +146,13 @@ with lib;
       enable = true;
     };
 
-    programs.gpg.enable = true;
+    programs.gpg = {
+      enable = true;
+      settings = {
+        pinentry-mode = "loopback"; # This is needed in order to allow emacs to act as pinentry
+      };
+    };
+
 
     services.gpg-agent = {
       enable = true;
