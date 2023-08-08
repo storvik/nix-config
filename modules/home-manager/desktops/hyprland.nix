@@ -173,7 +173,38 @@ with lib;
       };
 
       # imv image viewer
-      programs.imv.enable = true;
+      programs.imv = {
+        enable = true;
+        settings =
+          let
+            imv-delete = pkgs.writeScriptBin "delete" ''
+              ${notify} "$1 deleted"
+              rm $1
+              ${pkgs.imv}/bin/imv-msg $2 next
+            '';
+            imv-copypath = pkgs.writeScriptBin "copypath" ''
+              ${notify} "Path $1 copied to clipboard"
+              ${pkgs.wl-clipboard}/bin/wl-copy $1
+            '';
+            imv-copyimage = pkgs.writeScriptBin "copyimage" ''
+              ${notify} "Image $1 copied to clipboard"
+              ${pkgs.wl-clipboard}/bin/wl-copy < $1
+            '';
+          in
+          {
+            options = {
+              background = "263238";
+              overlay_font = "Iosevka:12";
+            };
+            binds = {
+              p = "prev";
+              n = "next";
+              "<Shift+D>" = "exec ${imv-delete}/bin/delete $imv_current_file $imv_pid";
+              "<Shift+I>" = "exec ${imv-copyimage}/bin/copyimage $imv_current_file";
+              "<Shift+P>" = "exec ${imv-copypath}/bin/copypath $imv_current_file";
+            };
+          };
+      };
 
       # Mako notification service
       services.mako = {
