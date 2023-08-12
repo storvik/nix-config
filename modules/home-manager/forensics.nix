@@ -16,15 +16,20 @@ with lib;
         radare2
         retdec
         volatility3
+        netcat-openbsd
       ]
       ++ lib.optionals (builtins.elem "recon" config.storvik.forensics.modules)
       [
         nmap
         wireshark
+
       ]
       ++ lib.optionals (builtins.elem "exploit" config.storvik.forensics.modules)
       [
         metasploit
+        burpsuite
+        john
+        chntpw
       ];
 
   };
