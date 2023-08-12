@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   services.syncthing = {
     enable = true;
@@ -26,4 +26,40 @@
       };
     };
   };
+
+  sops.gnupg.home = "/home/storvik/.gnupg";
+  sops.defaultSopsFile = ./secrets.yaml;
+
+  sops.secrets.mullvad_privateKey = { };
+  sops.secrets.swg_privateKey = { };
+
+  networking.wg-quick.interfaces.mullvad = {
+    address = [ "10.67.191.187/32" "fc00:bbbb:bbbb:bb01::4:bfba/128" ];
+    privateKeyFile = config.sops.secrets.mullvad_privateKey.path;
+    autostart = false;
+    dns = [ "10.64.0.1" ];
+    peers = [
+      {
+        allowedIPs = [ "0.0.0.0/0" "::0/0" ];
+        endpoint = "185.213.154.68:3556";
+        publicKey = "qZbwfoY4LHhDPzUROFbG+LqOjB0+Odwjg/Nv3kGolWc=";
+      }
+    ];
+  };
+
+  networking.wg-quick.interfaces.swg = {
+    address = [ "10.0.10.4/32" ];
+    privateKeyFile = config.sops.secrets.swg_privateKey.path;
+    autostart = false;
+    dns = [ "1.1.1.1" "10.0.10.1" ];
+    peers = [
+      {
+        allowedIPs = [ "0.0.0.0/0" "::0/0" ];
+        endpoint = "wg.storvik.dev:51820";
+        publicKey = "dlocQXIsZmwtVd8ogaYFoI2Jsjn32Lzj4Qb7xGJXmUM=";
+      }
+    ];
+  };
+
+
 }

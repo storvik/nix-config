@@ -1,0 +1,18 @@
+keys:
+  - &user_storvik_matebook E331E028418C84083868F8C99B6E461A1028E09A
+
+creation_rules:
+  - path_regex: secrets/secrets.ya?ml$
+    key_groups:
+      - pgp:
+          - *user_storvik_matebook
+  - path_regex: hosts/storvik-nixos-matebook/secrets.ya?ml$
+    key_groups:
+      - pgp:
+          - *user_storvik_matebook
+#  - path_regex: hosts/name/secrets.ya?ml$
+#    key_groups:
+#      - pgp:
+#          - *user_storvik_matebook
+#        age:
+#          - *user_storvik_nuc

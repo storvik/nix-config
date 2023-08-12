@@ -2,7 +2,7 @@
 
 let
 
-  inherit (inputs) home-manager nixpkgs hyprland;
+  inherit (inputs) home-manager nixpkgs hyprland sops-nix;
 
 in
 
@@ -72,15 +72,16 @@ in
         }
         ({ config, pkgs, ... }: {
           imports = [
+            (sops-nix.nixosModules.sops)
             ("${self}/machines/${machine}")
             ("${self}/modules")
             ("${self}/modules/nixos")
-          ] ++ extraModules;
+          ] ++ extraModules ++ nixpkgs.lib.optional (builtins.pathExists "${self}/hosts/${hostname}/nixos.nix") ("${self}/hosts/${hostname}/nixos.nix");
           "${username}" = hostConfig;
           networking.hostName = hostname;
           networking.firewall.enable = false;
         })
-      ] ++ nixpkgs.lib.optional (builtins.pathExists "${self}/hosts/${hostname}/nixos.nix") nixosConfig;
+      ];
 
       specialArgs = {
         inherit inputs pkgs;
