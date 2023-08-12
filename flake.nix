@@ -113,7 +113,11 @@
           hostname = "storvik-live";
           machine = "live";
           extraModules = [
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            ({ config, pkgs, ... }: {
+              # less compression to save time when building image
+              isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+            })
           ];
         };
       };
