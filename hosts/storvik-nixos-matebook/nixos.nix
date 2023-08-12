@@ -33,7 +33,7 @@
   sops.secrets.mullvad_privateKey = { };
   sops.secrets.swg_privateKey = { };
 
-  networking.wg-quick.interfaces.mullvad = {
+  networking.wg-quick.interfaces.mull = {
     address = [ "10.67.191.187/32" "fc00:bbbb:bbbb:bb01::4:bfba/128" ];
     privateKeyFile = config.sops.secrets.mullvad_privateKey.path;
     autostart = false;
@@ -43,6 +43,20 @@
         allowedIPs = [ "0.0.0.0/0" "::0/0" ];
         endpoint = "185.213.154.68:3556";
         publicKey = "qZbwfoY4LHhDPzUROFbG+LqOjB0+Odwjg/Nv3kGolWc=";
+      }
+    ];
+  };
+
+  networking.wg-quick.interfaces.mullblock = {
+    address = [ "10.67.191.187/32" "fc00:bbbb:bbbb:bb01::4:bfba/128" ];
+    privateKeyFile = config.sops.secrets.mullvad_privateKey.path;
+    autostart = false;
+    dns = [ "100.64.0.7" ];
+    peers = [
+      {
+        allowedIPs = [ "0.0.0.0/0" "::0/0" ];
+        endpoint = "185.65.135.67:3065";
+        publicKey = "veGD6/aEY6sMfN3Ls7YWPmNgu3AheO7nQqsFT47YSws=";
       }
     ];
   };
