@@ -21,6 +21,8 @@
 
   environment.systemPackages = with pkgs; [
     debootstrap
+    gparted
+    ventoy-full
   ];
 
 }
