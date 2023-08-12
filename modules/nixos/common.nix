@@ -11,7 +11,7 @@
     registry.nixpkgs.flake = inputs.nixpkgs;
   };
 
-  console.keyMap = "no";
+  console.keyMap = "us";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
