@@ -12,7 +12,7 @@ with lib;
     };
 
     home.sessionVariables = {
-      EDITOR = "emacs";
+      EDITOR = "emacsclient -c -a emacs";
     };
 
     services.emacs.enable = config.storvik.emacs.daemon;
