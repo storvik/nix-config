@@ -25,18 +25,8 @@ with lib;
         ".direnv"
         "result"
       ];
-      hooks =
-        let
-          pre-commit-hook = pkgs.writeShellScriptBin "git-pre-commit-check-gpg" ''
-            (git remote -v | grep -Eq  github) || exit 0  # If not in a github repo, gpg is not used
-            git config user.signingkey > /dev/null 2>&1
-          '';
-        in
-        {
-          pre-commit = "${pre-commit-hook}/bin/git-pre-commit-check-gpg";
-        };
-      signing = {
-        key = null;
+      signing = mkIf (config.storvik.user.storvik.gitSigningKey != null) {
+        key = config.storvik.user.storvik.gitSigningKey;
         signByDefault = true;
       };
     };
@@ -48,24 +38,6 @@ with lib;
         trim = true;
       };
     };
-
-    home.packages =
-      let
-        ent = pkgs.writeScriptBin "github-ent" ''
-          #!${pkgs.bash}/bin/bash
-          git config user.name "petter-storvik_goodtech"
-          git config user.email "petter.storvik@goodtech.no"
-        '';
-        priv = pkgs.writeScriptBin "github-priv" ''
-          #!${pkgs.bash}/bin/bash
-          git config user.name "storvik"
-          git config user.email "petterstorvik@gmail.com"
-        '';
-      in
-      [
-        ent
-        priv
-      ];
 
     # mu init --maildir=~/developer/maildir --my-address=petter@svartisenfestivalen.no --my-address=petter@storvik.dev
     accounts.email = mkIf config.storvik.user.storvik.email.enable {

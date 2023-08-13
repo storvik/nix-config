@@ -147,6 +147,12 @@ in
 
       };
 
+      gitSigningKey = mkOption {
+        default = null;
+        description = "Key used to sign git commits";
+        type = types.nullOr types.str;
+      };
+
     };
 
     ##
