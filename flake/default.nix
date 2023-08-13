@@ -31,7 +31,7 @@ in
           };
           "${username}" = hostConfig;
         }
-      ] ++ extraModules;
+      ] ++ extraModules ++ nixpkgs.lib.optional (builtins.pathExists "${self}/hosts/${hostname}/home.nix") ("${self}/hosts/${hostname}/home.nix");
 
       extraSpecialArgs = {
         inherit inputs;
@@ -63,7 +63,7 @@ in
               (hyprland.homeManagerModules.default)
               ("${self}/modules")
               ("${self}/modules/home-manager")
-            ];
+            ] ++ nixpkgs.lib.optional (builtins.pathExists "${self}/hosts/${hostname}/home.nix") ("${self}/hosts/${hostname}/home.nix");
             "${username}" = hostConfig;
           };
           home-manager.extraSpecialArgs = {
