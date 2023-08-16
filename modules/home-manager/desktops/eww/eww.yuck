@@ -3,21 +3,28 @@
 (defpoll clock_minute :interval "5s" "date +\%M")
 (defpoll clock_day :interval "60s" "date +\%A")
 
-(defpoll battery :interval "15s" "./eww-script --bat")
+;;(defpoll battery :interval "15s" "./eww-script --bat")
 (defpoll volume :interval "15s" "pamixer --get-volume")
 (defpoll brightness :interval "15s" "brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}'")
 
 (defpoll ssid :interval "15s" "nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\: -f2")
-(defpoll ip :interval "15s" "ip -f inet addr show wlp60s0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'")
+(defpoll ip :interval "15s" "ip -f inet addr show wlp60s0 | sed -En -e 's/.*inet ([0-9.]+).*/\\1/p'")
 
-;; background
-(defwidget bg []
+(defwindow bg
+  :monitor 0
+  :geometry (geometry
+              :x "0"
+              :y "0"
+              :width "100%"
+              :height "100%"
+              :anchor "left top")
+  :stacking "fg"
   (box :class "bg"))
 
 ;; Clock widget / window
 (defwidget clock []
   (box :class "clock-bg" :orientation "v" :space-evenly "false"
-    (box :class "bg" :orientation "h" :space-evenly "false" :halign "center"
+    (box :orientation "h" :space-evenly "false" :halign "center"
       (label :class "clock-text" :text clock_time)
       (label :class "clock-divider" :text ":")
       (label :class "clock-text" :text clock_minute))
@@ -51,20 +58,29 @@
   :stacking "fg"
   (leftdash))
 
+(defwidget battery-icon [battery status]
+  (label :text {status == 'Charging' ? "󰂄" :
+      battery < 15 ? "󰁺" :
+        battery < 30 ? "󰁼" :
+          battery < 45 ? "󰁽" :
+            battery < 60 ? "󰁿" :
+              battery < 75 ? "󰂁" :
+                battery < 95 ? "󰂂" : "󰁹"}))
+
 (defwidget sysbars []
   (box :orientation "h" :space-evenly "true" :spacing 60 :class "leftdash-scales" :halign "center"
       (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 20 :vexpand "false" :hexpand "false"
 				(scale :min 0 :max 101 :value brightness :flipped "true" :orientation "v")
-                (label :class "iconcpu" :text "🔆"))
+                (label :class "sysbars-icon" :text "󰃠"))
       (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 20 :vexpand "false" :hexpand "false"
-				(scale :min 0 :max 101 :value 20 :flipped "true" :orientation "v")
+		   (scale :min 0 :max 101 :value 20 :flipped "true" :orientation "v")
                 (label :class "iconcpu" :text ""))
       (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 20 :vexpand "false" :hexpand "false"
 				(scale :min 0 :max 101 :value volume :flipped "true" :orientation "v")
                 (label :class "iconcpu" :text ""))
       (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 20 :vexpand "false" :hexpand "false"
-				(scale :min 0 :max 101 :value battery :flipped "true" :orientation "v")
-                (label :class "iconcpu" :text ""))))
+				(scale :min 0 :max 101 :value {EWW_BATTERY.BAT0.capacity} :flipped "true" :orientation "v")
+                (battery-icon :status {EWW_BATTERY.BAT0.status} :battery {EWW_BATTERY.BAT0.capacity}))))
 
 (defwindow sysbars
   :monitor 0
@@ -78,17 +94,37 @@
   (sysbars))
 
 (defwidget network []
-  (box :orientation "v" :space-evenly "false" :spacing 10 :halign "center"
+  (box :orientation "h" :space-evenly "false" :spacing 40 :valign "center"
+    (label :class "network-icon" :text "󰖩")
+    (box :orientation "v" :space-evenly "false" :spacing 10 :halign "center" :valign "center"
       (label :text ssid)
-      (label :text ip)))
+      (label :text ip))))
 
 (defwindow network
   :monitor 0
   :geometry (geometry
-              :x "20"
-              :y "180"
+              :x "110"
+              :y "240"
               :width "380px"
               :height "180px"
               :anchor "left bottom")
   :stacking "fg"
   (network))
+
+(defwidget power-buttons []
+  (box :orientation "v" :class "power-bg" :space-evenly "false" :spacing 25 :halign "center" :valign "center"
+      (label :class "power-icons" :text "󰐥")
+      (label :class "power-icons" :text "󰑐")
+      (label :class "power-icons" :text "󰌾")
+      (label :class "power-icons" :text "󰤄")))
+
+(defwindow power-buttons
+  :monitor 0
+  :geometry (geometry
+              :x "0"
+              :y "0"
+              :width "100px"
+              :height "180px"
+              :anchor "right center")
+  :stacking "fg"
+  (power-buttons))

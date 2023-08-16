@@ -19,5 +19,6 @@ with lib;
     fira-code
     fira-code-symbols
     iosevka
+    nerdfonts
   ];
 }

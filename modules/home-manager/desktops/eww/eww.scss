@@ -1,12 +1,15 @@
 *{
 	all: unset;
-	font-family: feather;
-	font-family: Iosevka;
+	// font-family: feather;
+	font-family: 'Iosevka Nerd Font';
+}
+
+.bg {
+	background-color: #2d3138;
 }
 
 .clock-bg {
 	background-color: #474D59;
-	opacity: 0.7;
     border-radius: 10px;
 }
 
@@ -21,7 +24,6 @@
 	color: #EBCB8B;
 	font-size : 20px;
     margin-bottom: 20px;
-	opacity: 1;
 }
 
 .clock-divider {
@@ -32,7 +34,6 @@
 
 .leftdash-bg {
 	background-color: #474D59;
-	opacity: 0.9;
     border-radius: 10px;
     margin-left: 20px;
 }
@@ -79,4 +80,26 @@ scale trough {
 	min-height: 130px;
 	min-width: 14px;
 	margin : 10px 0px 0px 0px;
+}
+
+.sysbars-icon {
+    font-family: 'Iosevka Nerd Font';
+}
+
+.network-icon {
+    font-size: 42px;
+    font-family: 'Iosevka Nerd Font';
+}
+
+.power-bg {
+	background-color: #474D59;
+    min-width: 80px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.power-icons {
+    padding-right: 9px;
+    font-size: 60px;
+    font-family: 'Iosevka Nerd Font';
 }

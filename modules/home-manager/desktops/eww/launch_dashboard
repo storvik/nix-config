@@ -1,7 +1,7 @@
 ## Files and cwd
 FILE="$HOME/.cache/eww_launch.dashboard"
 # CFG="$HOME/.config/eww"
-CFG="$HOME/developer/nix/nix-config/modules/home-manager/desktops/eww/dashboard"
+CFG="$HOME/developer/nix/nix-config/modules/home-manager/desktops/eww"
 EWW=`which eww`
 
 ## Run eww daemon if not running already
@@ -13,7 +13,7 @@ fi
 ## Open widgets
 run_eww() {
 	${EWW} --config "$CFG" open-many \
-		   clock leftdash sysbars network
+		   bg clock leftdash sysbars network power-buttons
 }
 
 ## Launch or close widgets accordingly
@@ -22,6 +22,6 @@ if [[ ! -f "$FILE" ]]; then
 	run_eww
 else
 	${EWW} --config "$CFG" close \
-					clock leftdash sysbars network
+					bg clock leftdash sysbars network power-buttons
 	rm "$FILE"
 fi

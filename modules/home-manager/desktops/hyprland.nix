@@ -27,7 +27,7 @@ with lib;
                 ## Open widgets
                 run_eww() {
         	        ${pkgs.eww-wayland}/bin/eww --config "$CFG" open-many \
-                  		   clock leftdash sysbars network
+                  		   bg clock leftdash sysbars network power-buttons
                 }
 
                 ## Launch or close widgets accordingly
@@ -36,7 +36,7 @@ with lib;
                  	run_eww
                 else
                 	${pkgs.eww-wayland}/bin/eww --config "$CFG" close \
-        					       clock leftdash sysbars network
+        					       bg clock leftdash sysbars network power-buttons
                   rm "$FILE"
                 fi
       '';
