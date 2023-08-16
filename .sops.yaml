@@ -1,16 +1,16 @@
 keys:
   - &user_storvik E331E028418C84083868F8C99B6E461A1028E09A
   - &user_storvik_work 1F9E158F9C72BC95FD81269380576D012891404E
+  - &host_live_usb age156y45hq8vhyjn00u5h2czqqwa85luhtqk7u9ztw9a7zwqx27jp6qd0zqw6
 
 creation_rules:
   - path_regex: hosts/storvik-nixos-matebook/secrets.ya?ml$
     key_groups:
       - pgp:
           - *user_storvik
-          - *user_storvik_work
-#  - path_regex: hosts/name/secrets.ya?ml$
-#    key_groups:
-#      - pgp:
-#          - *user_storvik_matebook
-#        age:
-#          - *user_storvik_nuc
+  - path_regex: hosts/storvik-live/secrets.ya?ml$
+    key_groups:
+      - pgp:
+          - *user_storvik
+        age:
+          - *host_live_usb
