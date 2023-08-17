@@ -31,6 +31,24 @@ with lib;
       };
     };
 
+    home.packages =
+      let
+        ent = pkgs.writeScriptBin "github-ent" ''
+          #!${pkgs.bash}/bin/bash
+          git config user.name "petter-storvik_goodtech"
+          git config user.email "petter.storvik@goodtech.no"
+        '';
+        priv = pkgs.writeScriptBin "github-priv" ''
+          #!${pkgs.bash}/bin/bash
+          git config user.name "storvik"
+          git config user.email "petterstorvik@gmail.com"
+        '';
+      in
+      [
+        ent
+        priv
+      ];
+
     programs.git-cliff = {
       enable = true;
       settings = {
