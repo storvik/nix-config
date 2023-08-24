@@ -11,7 +11,7 @@
     settings = {
       devices = {
         "nuc" = { id = "2WKOIHN-4NIGV6L-SODARH5-XWA4EVV-PCFZ4YC-ADU7DBU-EBKNP6J-QJKKMAB"; };
-        "lenovo" = { id = "KQB7T6Z-3QGGI4H-65YEUO4-I2OL3NG-EKG2UXA-3RWSEB2-R3RDTCZ-GFRW4AO"; };
+        "lenovo" = { id = "UPXX42G-U3JIKZG-IR7BJON-EASWQ4C-TC7KOLZ-NG7MPGK-EG3GU55-F36QNQB"; };
         "samsung" = { id = "OJXWZ6F-XM2BW2J-RB5TBXI-IWBSIJ6-RNSWWBH-BZU6NZC-LNNVJYW-UMXILAR"; };
       };
       folders = {
