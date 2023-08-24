@@ -2,7 +2,7 @@
   user.storvik.enable = true;
   user.storvik.email.enable = true;
   user.storvik.gitSigningKey = "0x9DE06C73577F75A5!";
-  genericLinux.enable = true;
+  genericLinux.enable = false;
   wsl.enable = true;
   emacs = {
     enable = true;

@@ -13,6 +13,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     sops-nix = {
@@ -33,7 +38,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixGL, pr67576, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixos-wsl, nixGL, pr67576, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -103,6 +108,15 @@
           username = "storvik";
           hostname = "storvik-nixos-nuc";
           machine = "intel-nuc";
+        };
+        storvik-nixos-wsl = mkSystem {
+          inherit pkgs system;
+          username = "storvik";
+          hostname = "storvik-nixos-wsl";
+          machine = "wsl";
+          extraModules = [
+            nixos-wsl.nixosModules.wsl
+          ];
         };
         live-iso = mkSystem {
           inherit pkgs system;
