@@ -2,6 +2,7 @@
 
 {
 
+  # TODO: Maype these should moved into a module?
   users.users.storvik = {
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG/cetz89/SRWucBZPsARH8pnHwXCW9MGrHmNJyhHMCC petterstorvik@gmail.com" # matebook
