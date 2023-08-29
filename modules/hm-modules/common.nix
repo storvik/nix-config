@@ -30,7 +30,7 @@ in
     # home.extraOutputsToInstall = [ "man" ];
 
     # Custom fonts
-    fonts.fontconfig.enable = (cfg.desktop != "none");
+    fonts.fontconfig.enable = (cfg.desktop != "none" || cfg.enableWSL);
 
     # Fish shell
     programs.fish = {
@@ -211,10 +211,10 @@ in
         unixtools.netstat
         unixtools.route
         whois
-      ] ++ lib.optionals (cfg.desktop != "none" && cfg.enableWSL) [
+      ] ++ lib.optionals (cfg.desktop != "none" || cfg.enableWSL) [
         fira-code
         fira-code-symbols
-        iosevkas
+        iosevka
         nerdfonts
       ];
 
