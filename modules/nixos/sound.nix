@@ -1,10 +1,10 @@
-{ config, pkgs, lib, ... }:
-
-with lib;
-
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.storvik;
+in
 {
 
-  config = mkIf config.storvik.sound.enable {
+  config = lib.mkIf cfg.sound {
 
     # Enable sound with pipewire.
     sound.enable = true;

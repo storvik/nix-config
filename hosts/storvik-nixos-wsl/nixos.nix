@@ -1,7 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  system.stateVersion = "23.11";
+
+  storvik = {
+    desktop = "none";
+    enableWSL = true;
+  };
 
   services.syncthing = {
     enable = true;

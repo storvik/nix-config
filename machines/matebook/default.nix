@@ -15,6 +15,4 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  system.stateVersion = "22.05";
 }

@@ -27,7 +27,8 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
-    # TODO: Check if it's possible to wrap packages when generic linux is used
+    deploy-rs.url = "github:serokell/deploy-rs";
+
     nixGL = {
       url = "github:guibou/nixGL";
       flake = false;
@@ -38,7 +39,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixos-wsl, nixGL, pr67576, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixos-wsl, deploy-rs, nixGL, pr67576, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -67,29 +68,20 @@
 
       flakeLib = import ./flake {
         inherit self inputs;
-        inherit (nixpkgs.lib) nixosSystem;
       };
 
-      inherit (flakeLib) mkHome mkSystem;
+      inherit (flakeLib) mkSystem;
     in
     {
-      homeConfigurations = {
-        storvik = mkHome {
-          inherit pkgs system;
-          username = "storvik";
-          hostname = "storvik-ubuntu";
-        };
-        storvik-wsl = mkHome {
-          inherit pkgs system;
-          username = "storvik";
-          hostname = "storvik-wsl";
-          extraModules = [
-            ({ config, pkgs, ... }: {
-              services.syncthing.enable = true;
-            })
-          ];
-        };
+
+      nixosModules.default = import ./modules/module.nix inputs { };
+      homeManagerModules.default = import ./modules/hm-module.nix inputs { };
+
+      packages = {
+        hm-docs = pkgs.callPackage ./pkgs/hm-docs.nix { inherit nixpkgs; };
+        nixos-docs = pkgs.callPackage ./pkgs/nixos-docs.nix { inherit nixpkgs; };
       };
+
       nixosConfigurations = {
         storvik-nixos-lenovo = mkSystem {
           inherit pkgs system;
@@ -111,12 +103,8 @@
         };
         storvik-nixos-wsl = mkSystem {
           inherit pkgs system;
-          username = "storvik";
           hostname = "storvik-nixos-wsl";
           machine = "wsl";
-          extraModules = [
-            nixos-wsl.nixosModules.wsl
-          ];
         };
         live-iso = mkSystem {
           inherit pkgs system;
@@ -134,8 +122,22 @@
       };
 
       # For convenience when running nix build
-      storvik-ubuntu = self.homeConfigurations.storvik.activationPackage;
-      storvik-wsl = self.homeConfigurations.storvik-wsl.activationPackage;
       live-iso = self.nixosConfigurations.live-iso.config.system.build.isoImage;
+
+      deploy.nodes.dev-server = {
+        sshUser = "root";
+        hostname = "192.168.0.121";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.storvik-nixos-nuc;
+        };
+      };
+
+      devShell."${system}" = pkgs.mkShell {
+        buildInputs = [
+          deploy-rs.defaultPackage."${system}"
+        ];
+      };
+
     };
 }

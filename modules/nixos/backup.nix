@@ -4,6 +4,8 @@ with lib;
 
 let
 
+  cfg = config.storvik;
+
   storvik-backup = pkgs.writeShellScriptBin "storvik-backup" ''
     ${lib.strings.concatMapStrings
       (x: (if x.synctype == "rsync"
@@ -13,12 +15,11 @@ let
           + x.dest + "\n")
       config.storvik.backup.folders}
   '';
-
 in
 
 {
 
-  config = mkIf config.storvik.backup.enable {
+  config = lib.mkIf config.storvik.backup.enable {
 
     systemd.services."storvik-backup" = {
       enable = true;

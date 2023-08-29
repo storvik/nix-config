@@ -1,19 +1,10 @@
-{ config, pkgs, lib, ... }:
-
-with lib;
-
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.storvik;
+in
 {
 
-  config = mkIf config.storvik.kanata.enable {
-
-    # Create uinput group
-    # users.groups = { uinput = { }; };
-    # Extra udev rules
-    # services.udev.extraRules =
-    #   ''
-    #     # kanata user access to /dev/uinput
-    #     KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-    #   '';
+  config = lib.mkIf cfg.kanata {
 
     services.kanata = {
       enable = true;
