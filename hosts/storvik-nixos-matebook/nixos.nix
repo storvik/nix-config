@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
+
 {
+
+  storvik = {
+    desktop = "hyprland";
+    kanata = true;
+  };
+
   services.syncthing = {
     enable = true;
     dataDir = "/home/storvik";
