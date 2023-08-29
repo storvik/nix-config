@@ -1,40 +1,44 @@
 # nix config
 
-My config for both NixOS and generic linux machines, now using flakes.
+My NixOS configuration using nix flakes.
 
-## Structure and options
+## Structure
 
 ```
 │
-├── flake.nix                                - flake file
+├── flake.nix                                - flake
 │
-├── lib/                                     - helper stuff
-│   │
-│   ├── mkHome.nix                           - mkHome, helper that makes home-manager config
-│   │
-│   └── mkSystem.nix                         - mkSystem, helper thtat makes nixos system
+├── docs/                                    - documentation for modules
+│
+├── flake/                                   - helper stuff, mkSystem etc
 │
 ├── hosts/                                   - host configurations
+│   │
+│   ├── storvik-live/                        - custom live usb config
+│   │
+│   ├── storvik-nixos-matebook/              - main laptop, huawei matebook with nixos
+│   │
+│   ├── storvik-nixos-nuc/                   - home server, nuc i3
+│   │
+│   └── storvik-nixos-wsl/                   - work computer running windows with nixos-wsl
+│       │
+│       ├── home.nix                         - home-manager configurations
+│       │
+│       └── nixos.nix                        - nixos configurations
 │
-├── modules/                                 - all config modules
+├── modules/                                 - custom modules which turns on / off settings
 │   │
-│   ├── default.nix                          - all module options
+│   ├── hm-module.nix                        - home-manager modules entrypoint
 │   │
-│   ├── home-manager/                        - home manager modules
-│   │   │
-│   │   ├── desktops/                        - desktop configs, gnome, kde, etc
-│   │   │
-│   │   ├── developer/                       - developer tools
-│   │   │
-│   │   └── users/                           - different user settings
+│   ├── module.nix                           - nixos modules entrypoint
 │   │
-│   └── nixos/                               - nixos modules, same directory structure as home manager
+│   ├── hm-module/                           - home-manager modules
+│   │
+│   └── nixos/                               - nixos modules
 │
 ├── machines/                                - hardware dependant config for different machines
 │   │
 │   ├── intel-nuc                            - Intel NUC
-│   │
-│   ├── lenovo-e31                           - Lenovo E31
 │   │
 │   ├── live                                 - Live ISO
 │   │
@@ -46,7 +50,8 @@ My config for both NixOS and generic linux machines, now using flakes.
 ```
 
 Modules are divided into home-manager and nixos modules.
-All module options can be seen in `modules/default.nix`.
+All module options can be seen in `modules/hm-module/options.nix` and `modules/nixos/options.nix`.
+Each should contain `home.nix` and / or `nixos.nix`, which should define host configuration.
 
 ## Install
 
