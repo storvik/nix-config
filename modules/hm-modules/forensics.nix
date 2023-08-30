@@ -15,6 +15,7 @@ in
       retdec
       volatility3
       netcat-openbsd
+      imhex
     ] ++ lib.optionals (!builtins.elem "recon" cfg.forensics.disabledModules) [
       nmap
       wireshark
