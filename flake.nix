@@ -124,8 +124,8 @@
       # For convenience when running nix build
       live-iso = self.nixosConfigurations.live-iso.config.system.build.isoImage;
 
-      deploy.nodes.dev-server = {
-        sshUser = "root";
+      deploy.nodes.storvik-nixos-nuc = {
+        sshUser = "storvik";
         hostname = "192.168.0.121";
         profiles.system = {
           user = "root";

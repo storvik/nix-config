@@ -50,19 +50,21 @@
     user = "storvik";
     group = "users";
     guiAddress = "0.0.0.0:8384";
-    devices = {
-      "matebook" = { id = "R2M4YYS-PR7GNS2-JZ3ACYP-VWTMPLK-WQMI3YJ-AB2HV2W-AO6QG45-KAESNQR"; };
-      "lenovo" = { id = "UPXX42G-U3JIKZG-IR7BJON-EASWQ4C-TC7KOLZ-NG7MPGK-EG3GU55-F36QNQB"; };
-      "samsung" = { id = "OJXWZ6F-XM2BW2J-RB5TBXI-IWBSIJ6-RNSWWBH-BZU6NZC-LNNVJYW-UMXILAR"; };
-    };
-    folders = {
-      "org" = {
-        path = "/home/storvik/syncthing/org/";
-        devices = [ "lenovo" "samsung" "matebook" ];
+    settings = {
+      devices = {
+        "matebook" = { id = "R2M4YYS-PR7GNS2-JZ3ACYP-VWTMPLK-WQMI3YJ-AB2HV2W-AO6QG45-KAESNQR"; };
+        "lenovo" = { id = "UPXX42G-U3JIKZG-IR7BJON-EASWQ4C-TC7KOLZ-NG7MPGK-EG3GU55-F36QNQB"; };
+        "samsung" = { id = "OJXWZ6F-XM2BW2J-RB5TBXI-IWBSIJ6-RNSWWBH-BZU6NZC-LNNVJYW-UMXILAR"; };
       };
-      "svartisenfestivalen" = {
-        path = "/home/storvik/syncthing/svartisenfestivalen/";
-        devices = [ "lenovo" "matebook" ];
+      folders = {
+        "org" = {
+          path = "/home/storvik/syncthing/org/";
+          devices = [ "lenovo" "samsung" "matebook" ];
+        };
+        "svartisenfestivalen" = {
+          path = "/home/storvik/syncthing/svartisenfestivalen/";
+          devices = [ "lenovo" "matebook" ];
+        };
       };
     };
   };
