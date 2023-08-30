@@ -2,6 +2,15 @@
 
 {
 
+  storvik = {
+    desktop = "hyprland";
+    disableLoginManager = true;
+    kanata = true;
+    remoteLogon = true;
+  };
+
+  system.stateVersion = pkgs.lib.mkForce "22.05";
+
   isoImage.contents = [
     {
       source = ./live_id_ed25519;

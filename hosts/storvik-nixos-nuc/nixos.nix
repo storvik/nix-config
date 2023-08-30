@@ -2,12 +2,44 @@
 
 {
 
-  # TODO: Maype these should moved into a module?
-  users.users.storvik = {
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG/cetz89/SRWucBZPsARH8pnHwXCW9MGrHmNJyhHMCC petterstorvik@gmail.com" # matebook
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBoFq88oaivkC4bqCUINV6DRwg6Qfkd+a8gC6Mc68EKB petter.storvik@goodtech.no" # lenovo
-    ];
+  storvik = {
+    remoteLogon = true;
+    kanata = true;
+    backup = {
+      enable = true;
+      folders = [
+        {
+          synctype = "rclone";
+          source = "pcloud:photos/";
+          dest = "/run/mnt/wd-external/backup/photos/";
+          delete = true;
+        }
+        {
+          synctype = "rclone";
+          source = "pcloud:eBooks/";
+          dest = "/run/mnt/wd-external/backup/eBooks/";
+          delete = true;
+        }
+        {
+          synctype = "rsync";
+          source = "/run/mnt/wd-external/backup/";
+          dest = "/run/mnt/mybook-storvik-backup/";
+          delete = true;
+        }
+        {
+          synctype = "rclone";
+          source = "/run/mnt/wd-external/backup/";
+          dest = "s3backup:storvik-backup/";
+          delete = true;
+        }
+        {
+          synctype = "rclone";
+          source = "/home/storvik/syncthing/svartisenfestivalen/";
+          dest = "pcloud:svartisenfestivalen/";
+          delete = false;
+        }
+      ];
+    };
   };
 
   services.syncthing = {

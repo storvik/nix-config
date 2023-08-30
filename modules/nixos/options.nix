@@ -85,6 +85,14 @@ in
           Enable WSL specific config.
         '';
       };
+    remoteLogon =
+      lib.mkEnableOption null
+      // {
+        default = false;
+        description = lib.mdDoc ''
+          Enable SSH.
+        '';
+      };
     backup = {
       enable = lib.mkEnableOption "Enable nightly backup";
       folders = lib.mkOption {
