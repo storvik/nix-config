@@ -11,6 +11,7 @@ inputs: { ... }:
     ./nixos/sound.nix
     ./nixos/wsl.nix
     ./nixos/backup.nix
+    ./nixos/remote.nix
   ];
 
 }

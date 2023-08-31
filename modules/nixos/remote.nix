@@ -5,7 +5,12 @@ in
 {
 
   config = lib.mkIf cfg.remoteLogon {
-    services.sshd.enable = true;
+    services.openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+      settings.KbdInteractiveAuthentication = false;
+      # settings.PermitRootLogin = "yes";
+    };
     users.users.storvik = {
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG/cetz89/SRWucBZPsARH8pnHwXCW9MGrHmNJyhHMCC petterstorvik@gmail.com" # matebook
