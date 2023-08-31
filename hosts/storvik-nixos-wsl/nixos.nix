@@ -26,8 +26,8 @@
           path = "/home/storvik/developer/org/";
           devices = [ "matebook" "samsung" "nuc" ];
         };
-        "svartisenfestivalen" = {
-          path = "/home/storvik/developer/svartisenfestivalen/";
+        "rbul" = {
+          path = "/home/storvik/developer/rbul/";
           devices = [ "matebook" "nuc" "samsung" ];
         };
       };

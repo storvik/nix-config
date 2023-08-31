@@ -61,9 +61,9 @@
           path = "/home/storvik/syncthing/org/";
           devices = [ "lenovo" "samsung" "matebook" ];
         };
-        "svartisenfestivalen" = {
-          path = "/home/storvik/syncthing/svartisenfestivalen/";
-          devices = [ "lenovo" "matebook" ];
+        "rbul" = {
+          path = "/home/storvik/syncthing/rbul/";
+          devices = [ "lenovo" "matebook" "samsung" ];
         };
       };
     };
