@@ -28,7 +28,7 @@
         };
         "rbul" = {
           path = "/home/storvik/developer/rbul/";
-          devices = [ "matebook" "nuc" "samsung" ];
+          devices = [ "lenovo" "nuc" "samsung" ];
         };
       };
     };
