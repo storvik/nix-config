@@ -40,7 +40,6 @@ in
       cinnamon.nemo
       pinentry-qt # needed to use from scripts
       wl-clipboard # needed for copy paste in swappy etc
-      wofi # must be installed in order to reach it from scripts or clipman
     ];
 
 

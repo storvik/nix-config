@@ -9,8 +9,7 @@ in
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
       notify = "${pkgs.libnotify}/bin/notify-send";
       lockCmd = "${pkgs.gtklock}/bin/gtklock --daemonize -s ${config.xdg.configHome}/gtklock/style.css";
-      menuCmd = "${pkgs.wofi}/bin/wofi --show drun -I -G -M fuzzy";
-      dmenuCommand = "${pkgs.wofi}/bin/wofi -d -I -G -M fuzzy";
+      fuzzel = "${pkgs.fuzzel}/bin/fuzzel";
       grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
       swappy = "${pkgs.swappy}/bin/swappy";
       ewwCmd = pkgs.writeScriptBin "launch-eww" ''
@@ -54,11 +53,11 @@ in
 
           bind = $mod, RETURN, exec, foot
           bind = $mod SHIFT, RETURN, exec, emacsclient -c -a emacs
-          bind = $mod, D, exec, ${menuCmd}
+          bind = $mod, D, exec, ${fuzzel}
           bind = $mod, L, exec, ${lockCmd}
           bind = $mod, H, exec, ${ewwCmd}/bin/launch-eww
           bind = $mod, K, exec, ${pkgs.networkmanager_dmenu}/bin/networkmanager_dmenu
-          bind = $mod, V, exec,  clipman pick --tool wofi -T'-d -I -G -M fuzzy'
+          bind = $mod, V, exec,  clipman pick --tool=CUSTOM --tool-args="${fuzzel} -d"
           bind = , Print, exec, ${grimshot} --notify save screen - | ${swappy} -f -
           bind = SHIFT, Print, exec, ${grimshot} --notify save area - | ${swappy} -f -
 
@@ -148,6 +147,19 @@ in
         '';
       };
 
+      programs.fuzzel = {
+        enable = true;
+        settings = {
+          main = {
+            terminal = "${pkgs.foot}/bin/foot";
+            layer = "overlay";
+            font = "Iosevka Nerd Font:size=12";
+            width = 55;
+          };
+          colors.background = "d8dee9ff";
+        };
+      };
+
       # Volume and brightness indicator
       services.avizo.enable = true;
 
@@ -200,7 +212,7 @@ in
 
         configFile."networkmanager-dmenu/config.ini".text = ''
           [dmenu]
-          dmenu_command = ${pkgs.wofi}/bin/wofi -d -I -G
+          dmenu_command = ${fuzzel} -d
           wifi_chars = ▂▄▆█
           pinentry = pinentry-qt
 
