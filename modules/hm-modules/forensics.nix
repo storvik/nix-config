@@ -18,6 +18,7 @@ in
       imhex
     ] ++ lib.optionals (!builtins.elem "recon" cfg.forensics.disabledModules) [
       nmap
+      opcua-client-gui
       wireshark
     ] ++ lib.optionals (!builtins.elem "exploit" cfg.forensics.disabledModules) [
       metasploit
