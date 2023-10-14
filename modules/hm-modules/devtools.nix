@@ -20,6 +20,7 @@ in
       tree-sitter
     ] ++ lib.optionals (!builtins.elem "android" cfg.devtools.disabledModules) [
       android.platform-tools
+      android-studio
       apktool
       scrcpy
     ] ++ lib.optionals (!builtins.elem "c" cfg.devtools.disabledModules) [
@@ -34,6 +35,7 @@ in
       gopls
       gotools
     ] ++ lib.optionals (!builtins.elem "nix" cfg.devtools.disabledModules) [
+      nil
       nixpkgs-fmt
       nixpkgs-review
       nix-prefetch-git
