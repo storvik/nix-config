@@ -20,7 +20,6 @@ in
           home-manager.useUserPackages = true;
           home-manager.users.storvik = { config, pkgs, ... }: {
             imports = [
-              # Hyprland modules
               (hyprland.homeManagerModules.default)
               (self.outputs.homeManagerModules.default)
               ("${self}/hosts/${hostname}/home.nix")
@@ -29,6 +28,9 @@ in
           home-manager.extraSpecialArgs = {
             inherit inputs;
           };
+          home-manager.sharedModules = [
+            (sops-nix.homeManagerModules.sops)
+          ];
         }
         ({ config, pkgs, ... }: {
           imports = [

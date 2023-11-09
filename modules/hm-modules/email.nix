@@ -14,7 +14,7 @@ in
           address = "petter@svartisenfestivalen.no";
           userName = "svartisenfestiv3";
           realName = "Petter S. Storvik";
-          passwordCommand = "${pkgs.coreutils}/bin/cat ~/developer/.secrets/petter@svartisenfestivalen.no.pass";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.petter_svartisenfestivalen_no.path}";
           primary = true;
           signature = {
             text = ''
@@ -42,7 +42,7 @@ in
           address = "petter@storvik.dev";
           userName = "storvikdev1";
           realName = "Petter S. Storvik";
-          passwordCommand = "${pkgs.coreutils}/bin/cat ~/developer/.secrets/petter@storvik.dev.pass";
+          passwordCommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.petter_storvik_dev.path}";
           signature = {
             text = ''
               Med vennlig hilsen / Kind regards
@@ -80,6 +80,9 @@ in
 
     # https://github.com/nix-community/home-manager/issues/642
     programs.mbsync.enable = true;
+
+    # this is needed in order to start mbsync after sops
+    systemd.user.services.mbsync.Unit.After = [ "sops-nix.service" ];
 
     programs.mu.enable = true;
 
