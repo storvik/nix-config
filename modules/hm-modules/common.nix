@@ -15,7 +15,6 @@ in
 
     home.stateVersion = lib.mkDefault "22.11";
 
-
     # Change NIX_PATH in order to pin nixpkgs to current version. This way
     # `nix shell` etc uses the same nixpkgs version as system configuration.
     home.sessionVariables = {
@@ -178,11 +177,17 @@ in
       package = pkgs.emacs-pgtk;
     };
 
-    home.sessionVariables = {
-      EDITOR = "emacsclient -c -a emacs";
+    services.emacs = {
+      enable = (!cfg.disableEmacsDaemon);
+      defaultEditor = true;
+      client = {
+        enable = true;
+        arguments = [
+          "-c"
+          "-a emacs"
+        ];
+      };
     };
-
-    services.emacs.enable = (!cfg.disableEmacsDaemon);
 
     home.packages =
       with pkgs; let
