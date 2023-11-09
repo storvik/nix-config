@@ -34,12 +34,16 @@ in
       delve
       gopls
       gotools
+    ] ++ lib.optionals (!builtins.elem "kotlin" cfg.devtools.disabledModules) [
+      kotlin-language-server
     ] ++ lib.optionals (!builtins.elem "nix" cfg.devtools.disabledModules) [
       nil
       nixpkgs-fmt
       nixpkgs-review
       nix-prefetch-git
       nix-prefetch-github
+    ] ++ lib.optionals (!builtins.elem "python" cfg.devtools.disabledModules) [
+      nodePackages.pyright
     ] ++ lib.optionals (!builtins.elem "web" cfg.devtools.disabledModules) [
       clojure-lsp
       html-tidy
