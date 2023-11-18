@@ -31,6 +31,15 @@ in
     # Custom fonts
     fonts.fontconfig.enable = (cfg.desktop != "none" || cfg.enableWSL);
 
+    # SSH config
+    programs.ssh = {
+      enable = true;
+      # forwardAgent = true; # security wise it's probably smart to don't enable this, but use it per connection
+      includes = [ "~/.ssh/config.d/*" ];
+    };
+
+    services.ssh-agent.enable = true;
+
     # Fish shell
     programs.fish = {
       enable = true;
