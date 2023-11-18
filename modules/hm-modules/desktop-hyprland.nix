@@ -153,7 +153,7 @@ in
           main = {
             terminal = "${pkgs.foot}/bin/foot";
             layer = "overlay";
-            font = "Iosevka Nerd Font:size=12";
+            font = if cfg.disableNerdfonts then "Iosevka:size=12" else "Iosevka Nerd Font:size=12";
             width = 55;
           };
           colors.background = "d8dee9ff";
@@ -191,7 +191,7 @@ in
         enable = true;
         anchor = "top-center";
         defaultTimeout = 5000;
-        font = "Iosevka";
+        font = if cfg.disableNerdfonts then "Iosevka" else "Iosevka Nerd Font";
       };
 
       xdg = {

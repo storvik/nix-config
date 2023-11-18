@@ -22,6 +22,14 @@
           Disable Emacs daemon.
         '';
       };
+    disableNerdfonts =
+      lib.mkEnableOption null
+      // {
+        default = false;
+        description = lib.mdDoc ''
+          Disable nerdfonts, useful when system is supposed to be deployed with deploy-rs.
+        '';
+      };
     disableGPG =
       lib.mkEnableOption null
       // {

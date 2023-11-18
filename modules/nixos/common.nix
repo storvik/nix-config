@@ -23,6 +23,7 @@ in
       nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
       registry.nixpkgs.flake = inputs.nixpkgs;
       settings = {
+        trusted-users = [ "@wheel" ]; # allow users with sudo access run nix commands without sudo
         substituters = [
           "https://cache.nixos.org"
           "https://nix-community.cachix.org"

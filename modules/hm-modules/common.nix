@@ -141,7 +141,7 @@ in
           shell = "${pkgs.fish}/bin/fish";
           term = "xterm-256color";
 
-          font = "Iosevka:size=8";
+          font = "${if cfg.disableNerdfonts then "Iosevka" else "Iosevka Nerd Font"}:size=8";
           dpi-aware = "yes";
         };
         colors = {
@@ -220,6 +220,7 @@ in
         fira-code
         fira-code-symbols
         iosevka
+      ] ++ lib.optionals (!cfg.disableNerdfonts) [
         nerdfonts
       ];
 

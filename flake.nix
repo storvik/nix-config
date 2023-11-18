@@ -29,21 +29,14 @@
 
     deploy-rs.url = "github:serokell/deploy-rs";
 
-    nixGL = {
-      url = "github:guibou/nixGL";
-      flake = false;
-    };
-
     # https://github.com/NixOS/nixpkgs/pull/67576
     pr67576.url = "github:jtojnar/nixpkgs/gimp-meson";
 
   };
 
-  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixos-wsl, deploy-rs, nixGL, pr67576, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixos-wsl, deploy-rs, pr67576, ... }@inputs:
     let
       system = "x86_64-linux";
-
-      nixgl-overlay = (final: prev: { nixGL = import nixGL { pkgs = final; }; });
 
       # gimp devel pgks
       pr67576pkgs = import pr67576 {
@@ -62,7 +55,6 @@
         overlays = [
           (import ./overlays)
           emacs-overlay.outputs.overlay
-          nixgl-overlay
         ];
       };
 
@@ -101,6 +93,12 @@
           hostname = "storvik-nixos-nuc";
           machine = "intel-nuc";
         };
+        retronix = mkSystem {
+          inherit pkgs system;
+          username = "storvik";
+          hostname = "retronix";
+          machine = "samsung-rc720";
+        };
         storvik-nixos-wsl = mkSystem {
           inherit pkgs system;
           hostname = "storvik-nixos-wsl";
@@ -124,18 +122,34 @@
       # For convenience when running nix build
       live-iso = self.nixosConfigurations.live-iso.config.system.build.isoImage;
 
-      deploy.nodes.storvik-nixos-nuc = {
-        sshUser = "storvik";
-        hostname = "192.168.0.121";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.storvik-nixos-nuc;
+      deploy.nodes = {
+        storvik-nixos-nuc = {
+          sshUser = "storvik";
+          sshOpts = [ "-A" ];
+          hostname = "192.168.0.121";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.storvik-nixos-nuc;
+          };
+        };
+        retronix = {
+          sshUser = "storvik";
+          sshOpts = [ "-A" ];
+          hostname = "192.168.0.69";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.retronix;
+          };
         };
       };
 
-      devShell."${system}" = pkgs.mkShell {
+      # This is highly advised, and will prevent many possible mistakes, taken from deploy-rs docs
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+
+      devShells."${system}".default = pkgs.mkShell {
         buildInputs = [
           deploy-rs.defaultPackage."${system}"
+          pkgs.sops
         ];
       };
 

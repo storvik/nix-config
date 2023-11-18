@@ -27,7 +27,7 @@ in
         {
           options = {
             background = "263238";
-            overlay_font = "Iosevka:12";
+            overlay_font = "${if cfg.disableNerdfonts then "Iosevka" else "Iosevka Nerd Font"}:12";
           };
           binds = {
             p = "prev";
