@@ -4,6 +4,8 @@
 
   storvik = {
     desktop = "none";
+    disableEmail = true;
+    disableNerdfonts = true;
   };
 
 }

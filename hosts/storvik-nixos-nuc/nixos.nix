@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-
   storvik = {
     remoteLogon = true;
     kanata = true;

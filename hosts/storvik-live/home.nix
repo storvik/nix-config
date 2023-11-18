@@ -5,6 +5,7 @@
   storvik = {
     desktop = "hyprland";
     waylandTools = true;
+    disableEmail = true;
   };
 
 }

@@ -6,6 +6,7 @@
     desktop = "hyprland";
     waylandTools = true;
     devtools.enable = true;
+    disableEmail = true;
   };
 
 }

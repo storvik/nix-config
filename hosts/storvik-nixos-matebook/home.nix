@@ -11,6 +11,7 @@
     social = true;
     media = true;
     texlive = true;
+    disableEmail = true;
   };
 
 }
