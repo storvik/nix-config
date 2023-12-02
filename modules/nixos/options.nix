@@ -46,6 +46,7 @@ in
         "none"
         "gnome"
         "hyprland"
+        "retroarch"
       ];
       default = "none";
       description = lib.mdDoc ''
@@ -85,6 +86,13 @@ in
           Enable WSL specific config.
         '';
       };
+    autoLoginUser = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      example = "retro";
+      description = ''
+        Enable autologin for user.
+      '';
+    };
     remoteLogon =
       lib.mkEnableOption null
       // {

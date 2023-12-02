@@ -1,10 +1,28 @@
 { config, lib, pkgs, ... }:
 let
+
   cfg = config.storvik;
+
+  custom-retroarch = with pkgs; (retroarch.override {
+    cores = with libretro; [
+      beetle-psx-hw
+      dolphin
+      genesis-plus-gx
+      mgba
+      mupen64plus
+      nestopia
+      pcsx2
+      pcsx-rearmed
+      snes9x
+      quicknes
+      vba-next
+    ];
+  });
+
 in
 {
 
-  config = lib.mkIf (cfg.desktop == "gnome") {
+  config = lib.mkIf (cfg.desktop == "retroarch") {
 
     storvik.sound = lib.mkDefault true;
 
@@ -12,10 +30,6 @@ in
     networking.networkmanager.enable = true;
 
     services = {
-
-      # Fix for dconf
-      dbus.packages = [ pkgs.dconf ];
-      udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
 
       xserver = {
 
@@ -29,10 +43,8 @@ in
         # Enable touchpad support.
         libinput.enable = true;
 
-        # Enable GNOME Desktop Environment
         displayManager.gdm.enable = true;
         displayManager.gdm.wayland = true;
-        desktopManager.gnome.enable = true;
 
       };
 
@@ -43,12 +55,10 @@ in
       user = cfg.autoLoginUser;
     };
 
-    # Install additional packages
-    environment.systemPackages = with pkgs; [
-      libnotify
-      gnome.adwaita-icon-theme
-      gnome.gnome-tweaks
-    ];
+    services.xserver.desktopManager.retroarch = {
+      enable = true;
+      package = custom-retroarch;
+    };
 
   };
 

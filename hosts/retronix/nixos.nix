@@ -4,8 +4,8 @@
 
   storvik = {
     remoteLogon = true;
-    desktop = "gnome";
-    kanata = true;
+    desktop = "retroarch";
+    autoLoginUser = "retro";
   };
 
   sops = {
@@ -31,30 +31,5 @@
       "audio"
     ];
   };
-
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "retro";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
-
-  # TODO: Move this into its own module
-  environment.systemPackages = with pkgs; [
-    (retroarch.override {
-      cores = with libretro; [
-        beetle-psx-hw
-        dolphin
-        genesis-plus-gx
-        mgba
-        mupen64plus
-        pcsx2
-        pcsx-rearmed
-        snes9x
-        vba-next
-      ];
-    })
-  ];
 
 }
