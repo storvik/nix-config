@@ -8,6 +8,7 @@
         "none"
         "gnome"
         "hyprland"
+        "retroarch"
       ];
       default = "none";
       description = lib.mdDoc ''
@@ -98,6 +99,12 @@
           [ "reverse" "recon" "exploit" ]
         '';
       };
+    };
+    gnomeAutostartPkgs = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = [ ];
+      description = ''
+        '';
     };
     disableEmail =
       lib.mkEnableOption null

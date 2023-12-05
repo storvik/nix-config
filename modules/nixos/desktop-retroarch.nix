@@ -24,41 +24,11 @@ in
 
   config = lib.mkIf (cfg.desktop == "retroarch") {
 
-    storvik.sound = lib.mkDefault true;
+    storvik.gnome = lib.mkDefault true;
 
-    # Enable network manager
-    networking.networkmanager.enable = true;
-
-    services = {
-
-      xserver = {
-
-        # Enable the X11 windowing system.
-        enable = true;
-        layout = "us";
-        xkbModel = "pc105";
-        xkbVariant = "altgr-intl";
-        xkbOptions = "ctrl:nocaps";
-
-        # Enable touchpad support.
-        libinput.enable = true;
-
-        displayManager.gdm.enable = true;
-        displayManager.gdm.wayland = true;
-
-      };
-
-    };
-
-    services.xserver.displayManager.autoLogin = lib.mkIf (cfg.autoLoginUser) {
-      enable = true;
-      user = cfg.autoLoginUser;
-    };
-
-    services.xserver.desktopManager.retroarch = {
-      enable = true;
-      package = custom-retroarch;
-    };
+    environment.systemPackages = with pkgs; [
+      custom-retroarch
+    ];
 
   };
 

@@ -43,7 +43,12 @@ in
       user = cfg.autoLoginUser;
     };
 
-    # Install additional packages
+    # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+    systemd.services = lib.mkIf (cfg.autoLoginUser) {
+      "getty@tty1".enable = false;
+      "autovt@tty1".enable = false;
+    };
+
     environment.systemPackages = with pkgs; [
       libnotify
       gnome.adwaita-icon-theme

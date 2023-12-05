@@ -83,7 +83,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -109,7 +109,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -122,7 +122,7 @@ Which desktop environment to use, if any\.
 
 
 *Type:*
-one of “none”, “gnome”, “hyprland”
+one of “none”, “gnome”, “hyprland”, “retroarch”
 
 
 
@@ -130,7 +130,7 @@ one of “none”, “gnome”, “hyprland”
 ` "none" `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -156,7 +156,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -180,7 +180,7 @@ list of string
 ` [ ] `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -206,7 +206,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -232,7 +232,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -258,7 +258,33 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
+
+
+
+## storvik\.disableNerdfonts
+
+
+
+Disable nerdfonts, useful when system is supposed to be deployed with deploy-rs\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -284,7 +310,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -308,7 +334,7 @@ list of string
 ` [ ] `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -331,7 +357,24 @@ null or string
 ` null `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
+
+
+
+## storvik\.gnomeAutostartPkgs
+
+
+
+*Type:*
+list of package
+
+
+
+*Default:*
+` [ ] `
+
+*Declared by:*
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -357,7 +400,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -383,7 +426,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -409,7 +452,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
 
@@ -440,6 +483,6 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options\.nix](file:///nix/store/1lfawzvkc0qzaiz0nbcmzqsw3q069llf-source/modules/hm-modules/options.nix)
+ - [/nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options\.nix](file:///nix/store/q02pkrqvr5j20r0zxdk6zj0wdixklrm4-source/modules/hm-modules/options.nix)
 
 
