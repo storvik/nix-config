@@ -3,7 +3,7 @@
 {
   storvik = {
     remoteLogon = true;
-    kanata = true;
+    kanata.enable = true;
     backup = {
       enable = true;
       folders = [

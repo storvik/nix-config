@@ -5,7 +5,7 @@
   storvik = {
     desktop = "hyprland";
     disableLoginManager = true;
-    kanata = true;
+    kanata.enable = true;
     remoteLogon = true;
   };
 

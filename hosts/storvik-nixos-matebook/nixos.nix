@@ -4,7 +4,12 @@
 
   storvik = {
     desktop = "hyprland";
-    kanata = true;
+    kanata = {
+      enable = true;
+      devices = [
+        "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+      ];
+    };
   };
 
   services.syncthing = {
