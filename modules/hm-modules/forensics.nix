@@ -26,6 +26,12 @@ in
       burpsuite
       john
       chntpw
+    ] ++ lib.optionals (!builtins.elem "nfc" cfg.forensics.disabledModules) [
+      libnfc
+      imhex
+      mfcuk
+      mfoc
+      mfoc-hardnested
     ];
   };
 
