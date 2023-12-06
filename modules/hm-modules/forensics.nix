@@ -4,7 +4,8 @@ let
 in
 {
 
-  config = lib.mkIf (cfg.forensics) {
+  # TODO: As this one grows it should be split in several files?
+  config = lib.mkIf (cfg.forensics.enable) {
     home.packages = with pkgs; [
     ] ++ lib.optionals (!builtins.elem "reverse" cfg.forensics.disabledModules) [
       binutils

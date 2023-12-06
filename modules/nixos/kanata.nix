@@ -4,16 +4,13 @@ let
 in
 {
 
-  config = lib.mkIf cfg.kanata {
+  config = lib.mkIf cfg.kanata.enable {
 
     services.kanata = {
       enable = true;
       package = pkgs.kanata-with-cmd;
       keyboards.default = {
-        devices = [
-          # TODO: This will only work on my matebook, should be set somewhere
-          "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-        ];
+        devices = cfg.kanata.devices;
         # extraArgs = [ "--debug" ];
         extraDefCfg = "danger-enable-cmd yes";
         config =

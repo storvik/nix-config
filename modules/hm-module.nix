@@ -14,6 +14,7 @@ inputs: { ... }:
     ./hm-modules/social.nix
     ./hm-modules/media.nix
     ./hm-modules/texlive.nix
+    ./hm-modules/forensics.nix
   ];
 
 }

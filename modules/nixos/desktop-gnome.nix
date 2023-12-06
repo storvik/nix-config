@@ -38,13 +38,13 @@ in
 
     };
 
-    services.xserver.displayManager.autoLogin = lib.mkIf (cfg.autoLoginUser) {
+    services.xserver.displayManager.autoLogin = lib.mkIf (cfg.autoLoginUser != null) {
       enable = true;
       user = cfg.autoLoginUser;
     };
 
     # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-    systemd.services = lib.mkIf (cfg.autoLoginUser) {
+    systemd.services = lib.mkIf (cfg.autoLoginUser != null) {
       "getty@tty1".enable = false;
       "autovt@tty1".enable = false;
     };

@@ -75,10 +75,10 @@
       };
 
       nixosConfigurations = {
-        storvik-nixos-lenovo = mkSystem {
+        kalinix = mkSystem {
           inherit pkgs system;
           username = "storvik";
-          hostname = "storvik-nixos-lenovo";
+          hostname = "kalinix";
           machine = "lenovo-e31";
         };
         storvik-nixos-matebook = mkSystem {
@@ -139,6 +139,15 @@
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.retronix;
+          };
+        };
+        kalinix = {
+          sshUser = "storvik";
+          sshOpts = [ "-A" ];
+          hostname = "192.168.0.187";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.kalinix;
           };
         };
       };

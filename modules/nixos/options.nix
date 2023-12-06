@@ -61,15 +61,24 @@ in
           Disable login manager.
         '';
       };
-    kanata =
-      lib.mkEnableOption null
-      // {
-        default = false;
+    kanata = {
+      enable =
+        lib.mkEnableOption null
+        // {
+          default = false;
+          description = lib.mdDoc ''
+            Enable kanata, a software keyboard remapper.
+            https://github.com/jtroo/kanata
+          '';
+        };
+      devices = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
         description = lib.mdDoc ''
-          Enable kanata, a software keyboard remapper.
-          https://github.com/jtroo/kanata
+          List of devices used by kanata
         '';
       };
+    };
     sound =
       lib.mkEnableOption null
       // {
@@ -88,6 +97,7 @@ in
       };
     autoLoginUser = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
+      default = null;
       example = "retro";
       description = ''
         Enable autologin for user.
