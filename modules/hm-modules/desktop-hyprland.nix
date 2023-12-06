@@ -122,6 +122,7 @@ in
 
           exec-once=${pkgs.eww-wayland}/bin/eww daemon
           exec-once=systemctl --user start avizo.service
+          exec-once=${pkgs.hyprpaper}/bin/hyprpaper
 
           general {
             gaps_in = 5
@@ -196,6 +197,21 @@ in
 
       xdg = {
         enable = true;
+
+        # TODO: This should be made configurable
+        configFile."hypr/hyprpaper.conf" = {
+          text = ''
+            preload = ~/.config/hypr/hyprpaper.png
+            wallpaper = , ~/.config/hypr/hyprpaper.png
+            ipc = off
+          '';
+          recursive = true;
+        };
+
+        configFile."hypr/hyprpaper.png" = {
+          source = ../../assets/kalinix.png;
+          recursive = true;
+        };
 
         configFile."swappy/config".text = ''
           [Default]
