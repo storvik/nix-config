@@ -4,7 +4,7 @@
 
   storvik = {
     remoteLogon = true;
-    desktop = "retroarch";
+    desktop = "gnome";
     autoLoginUser = "retro";
   };
 
