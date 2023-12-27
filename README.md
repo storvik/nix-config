@@ -1,6 +1,19 @@
 # nix config
 
+[![nix flake check](https://github.com/storvik/nix-config/actions/workflows/flake-check.yml/badge.svg)](https://github.com/storvik/nix-config/actions/workflows/flake-check.yml)
+
 My NixOS configuration using nix flakes.
+
+## Hosts
+
+| Host                   | Machine       | Description                                            | Features            |
+|------------------------|---------------|--------------------------------------------------------|---------------------|
+| storvik-nixos-wsl      | wsl           | NixOS config used on Windows Subsystem for Linux       |                     |
+| storvik-nixos-matebook | matebook      | Config used on Huawei Matebook, my main Linux computer | hyprland emacs foot |
+| retronix               | samsung-rc720 | Retro gaming computer using RetroArch                  | gnome retroarch     |
+| kalinix                | lenovo-e31    | Laptop set up with various forensics tooling           | hyprland forensics  |
+| storvik-nixos-nuc      | intel-nuc     | NUC used as home server for backup etc                 |                     |
+| storvik-live           | live          | Live USB with my config                                |                     |
 
 ## Structure
 
@@ -14,13 +27,9 @@ My NixOS configuration using nix flakes.
 │
 ├── hosts/                                   - host configurations
 │   │
-│   ├── storvik-live/                        - custom live usb config
-│   │
-│   ├── storvik-nixos-matebook/              - main laptop, huawei matebook with nixos
-│   │
-│   ├── storvik-nixos-nuc/                   - home server, nuc i3
-│   │
-│   └── storvik-nixos-wsl/                   - work computer running windows with nixos-wsl
+│   └── storvik-nixos-wsl/                   - host computer
+│       │
+│       ├── secrets.yml                      - host specific secrets used by sops-nixs
 │       │
 │       ├── home.nix                         - home-manager configurations
 │       │
@@ -37,12 +46,6 @@ My NixOS configuration using nix flakes.
 │   └── nixos/                               - nixos modules
 │
 ├── machines/                                - hardware dependant config for different machines
-│   │
-│   ├── intel-nuc                            - Intel NUC
-│   │
-│   ├── live                                 - Live ISO
-│   │
-│   └── matebook                             - Huawei Matebook Pro
 │
 ├── overlays/                                - overlays
 │
