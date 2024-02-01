@@ -184,7 +184,7 @@ in
     programs.emacs = {
       enable = true;
       package = pkgs.emacs-pgtk;
-    };
+    } // lib.optionalAttrs (!cfg.disableEmail) { extraPackages = epkgs: [ epkgs.mu4e ]; };
 
     services.emacs = {
       enable = (!cfg.disableEmacsDaemon);
