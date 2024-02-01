@@ -34,6 +34,7 @@ in
       delve
       gopls
       gotools
+      govulncheck
     ] ++ lib.optionals (!builtins.elem "kotlin" cfg.devtools.disabledModules) [
       kotlin-language-server
     ] ++ lib.optionals (!builtins.elem "nix" cfg.devtools.disabledModules) [
