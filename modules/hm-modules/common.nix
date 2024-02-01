@@ -221,6 +221,7 @@ in
         ltunify
         pdftk
         rclone
+        simple-http-server
         tree
         unixtools.netstat
         unixtools.route
