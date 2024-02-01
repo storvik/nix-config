@@ -6,6 +6,7 @@
     remoteLogon = true;
     desktop = "gnome";
     autoLoginUser = "retro";
+    retroarch = true;
   };
 
   sops = {

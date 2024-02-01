@@ -22,9 +22,7 @@ let
 in
 {
 
-  config = lib.mkIf (cfg.desktop == "retroarch") {
-
-    storvik.gnome = lib.mkDefault true;
+  config = lib.mkIf (cfg.retroarch) {
 
     environment.systemPackages = with pkgs; [
       custom-retroarch

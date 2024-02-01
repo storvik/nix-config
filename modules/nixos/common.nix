@@ -8,7 +8,7 @@ in
 
     assertions = [
       {
-        assertion = builtins.elem cfg.desktop [ "none" "gnome" "hyprland" "retroarch" ];
+        assertion = builtins.elem cfg.desktop [ "none" "gnome" "hyprland" ];
         message = "storvik.desktop got invalid value.";
       }
     ];

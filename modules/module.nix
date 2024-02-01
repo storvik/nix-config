@@ -12,6 +12,7 @@ inputs: { ... }:
     ./nixos/wsl.nix
     ./nixos/backup.nix
     ./nixos/remote.nix
+    ./nixos/retroarch.nix
   ];
 
 }

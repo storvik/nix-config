@@ -8,7 +8,6 @@
         "none"
         "gnome"
         "hyprland"
-        "retroarch"
       ];
       default = "none";
       description = lib.mdDoc ''

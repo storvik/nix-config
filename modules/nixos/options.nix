@@ -46,7 +46,6 @@ in
         "none"
         "gnome"
         "hyprland"
-        "retroarch"
       ];
       default = "none";
       description = lib.mdDoc ''
@@ -109,6 +108,14 @@ in
         default = false;
         description = lib.mdDoc ''
           Enable SSH.
+        '';
+      };
+    retroarch =
+      lib.mkEnableOption null
+      // {
+        default = false;
+        description = lib.mdDoc ''
+          Enable retroarch.
         '';
       };
     backup = {

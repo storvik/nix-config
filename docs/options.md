@@ -83,7 +83,33 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+
+
+
+## storvik\.autoLoginUser
+
+
+
+Enable autologin for user\.
+
+
+
+*Type:*
+null or string
+
+
+
+*Default:*
+` null `
+
+
+
+*Example:*
+` "retro" `
+
+*Declared by:*
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
 
@@ -109,7 +135,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
 
@@ -127,7 +153,7 @@ rclone or rsync command\.
 list of (submodule)
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
 
@@ -148,7 +174,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
 
@@ -169,7 +195,7 @@ string
 ` "pcloud:folder/" `
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
 
@@ -190,7 +216,7 @@ string
 ` "/home/user/folder/" `
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
 
@@ -211,7 +237,7 @@ string
 ` "rclone" `
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
 
@@ -232,7 +258,7 @@ one of “none”, “gnome”, “hyprland”
 ` "none" `
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
 
@@ -258,11 +284,11 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
 
-## storvik\.kanata
+## storvik\.kanata\.enable
 
 
 
@@ -285,7 +311,80 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+
+
+
+## storvik\.kanata\.devices
+
+
+
+List of devices used by kanata
+
+
+
+*Type:*
+list of string
+
+
+
+*Default:*
+` [ ] `
+
+*Declared by:*
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+
+
+
+## storvik\.remoteLogon
+
+
+
+Enable SSH\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+
+
+
+## storvik\.retroarch
+
+
+
+Enable retroarch\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
 
@@ -311,6 +410,6 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options\.nix](file:///nix/store/5z6c3v0dx1wiicxjznbf7j6rsvm6syxg-source/modules/nixos/options.nix)
+ - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
 
 
