@@ -83,7 +83,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -109,7 +109,7 @@ null or string
 ` "retro" `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -135,7 +135,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -153,7 +153,7 @@ rclone or rsync command\.
 list of (submodule)
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -174,7 +174,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -195,7 +195,7 @@ string
 ` "pcloud:folder/" `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -216,7 +216,7 @@ string
 ` "/home/user/folder/" `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -237,7 +237,7 @@ string
 ` "rclone" `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -258,7 +258,7 @@ one of “none”, “gnome”, “hyprland”
 ` "none" `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -284,7 +284,57 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+
+
+
+## storvik\.games\.enable
+
+
+
+Enable games\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+
+
+
+## storvik\.games\.disabledModules
+
+
+
+List of strings that describes game modules to disable\.
+
+Possible values:
+\[ “steam” “retroarch” ]
+
+
+
+*Type:*
+list of string
+
+
+
+*Default:*
+` [ ] `
+
+*Declared by:*
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -311,7 +361,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -332,7 +382,7 @@ list of string
 ` [ ] `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -358,33 +408,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
-
-
-
-## storvik\.retroarch
-
-
-
-Enable retroarch\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-` false `
-
-
-
-*Example:*
-` true `
-
-*Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 
 
@@ -410,6 +434,6 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options\.nix](file:///nix/store/czabybq2xksyxrjm7j7azjlr9a6d9gr2-source/modules/nixos/options.nix)
+ - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
 
 

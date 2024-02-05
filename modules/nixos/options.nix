@@ -110,14 +110,27 @@ in
           Enable SSH.
         '';
       };
-    retroarch =
-      lib.mkEnableOption null
-      // {
-        default = false;
+    games = {
+      enable =
+        lib.mkEnableOption null
+        // {
+          default = false;
+          description = lib.mdDoc ''
+            Enable games.
+          '';
+        };
+
+      disabledModules = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
         description = lib.mdDoc ''
-          Enable retroarch.
+          List of strings that describes game modules to disable.
+
+          Possible values:
+          [ "steam" "retroarch" ]
         '';
       };
+    };
     backup = {
       enable = lib.mkEnableOption "Enable nightly backup";
       folders = lib.mkOption {

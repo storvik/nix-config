@@ -22,9 +22,14 @@ let
 in
 {
 
-  config = lib.mkIf (cfg.retroarch) {
+  config = lib.mkIf (cfg.games.enable) {
+
+    programs.steam = {
+      enable = (!builtins.elem "steam" cfg.games.disabledModules);
+    };
 
     environment.systemPackages = with pkgs; [
+    ] ++ lib.optionals (!builtins.elem "retroarch" cfg.games.disabledModules) [
       custom-retroarch
     ];
 
