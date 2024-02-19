@@ -18,6 +18,7 @@ in
       netcat-openbsd
       imhex
     ] ++ lib.optionals (!builtins.elem "recon" cfg.forensics.disabledModules) [
+      mitmproxy
       nmap
       opcua-client-gui
       wireshark
