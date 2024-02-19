@@ -126,7 +126,7 @@
         storvik-nixos-nuc = {
           sshUser = "storvik";
           sshOpts = [ "-A" ];
-          hostname = "192.168.0.121";
+          hostname = "192.168.1.14";
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.storvik-nixos-nuc;

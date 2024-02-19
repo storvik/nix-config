@@ -74,7 +74,7 @@
   # Mount network drive, more info here https://nixos.wiki/wiki/Samba
   environment.systemPackages = [ pkgs.cifs-utils ];
   fileSystems."/run/mnt/mybook-storvik-backup" = {
-    device = "//192.168.0.96/StorvikBackup";
+    device = "//192.168.1.180/StorvikBackup";
     fsType = "cifs";
     options =
       let
