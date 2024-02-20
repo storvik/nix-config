@@ -20,7 +20,9 @@ in
     };
 
     # TODO: Make this possible to toggle
-    security.pam.enableSSHAgentAuth = true;
+    # TODO: Figure out how to use this, see
+    # https://github.com/NixOS/nixpkgs/issues/31611
+    security.pam.sshAgentAuth.enable = true;
     security.pam.services.sudo.sshAgentAuth = true;
     security.pam.services.su.requireWheel = true;
 

@@ -21,10 +21,12 @@ in
 
         # Enable the X11 windowing system.
         enable = true;
-        layout = "us";
-        xkbModel = "pc105";
-        xkbVariant = "altgr-intl";
-        xkbOptions = "ctrl:nocaps";
+        xkb = {
+          layout = "us";
+          model = "pc105";
+          variant = "altgr-intl";
+          options = "ctrl:nocaps";
+        };
 
         # Enable touchpad support.
         libinput.enable = true;

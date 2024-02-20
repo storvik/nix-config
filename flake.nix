@@ -87,10 +87,10 @@
           hostname = "storvik-nixos-matebook";
           machine = "matebook";
         };
-        storvik-nixos-nuc = mkSystem {
+        home-server = mkSystem {
           inherit pkgs system;
           username = "storvik";
-          hostname = "storvik-nixos-nuc";
+          hostname = "home-server";
           machine = "intel-nuc";
         };
         retronix = mkSystem {
@@ -123,13 +123,13 @@
       live-iso = self.nixosConfigurations.live-iso.config.system.build.isoImage;
 
       deploy.nodes = {
-        storvik-nixos-nuc = {
+        home-server = {
           sshUser = "storvik";
           sshOpts = [ "-A" ];
           hostname = "192.168.1.14";
           profiles.system = {
             user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.storvik-nixos-nuc;
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.home-server;
           };
         };
         retronix = {
