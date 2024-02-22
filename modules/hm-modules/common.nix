@@ -184,7 +184,10 @@ in
     programs.emacs = {
       enable = true;
       package = pkgs.emacs-pgtk;
-    } // lib.optionalAttrs (!cfg.disableEmail) { extraPackages = epkgs: [ epkgs.mu4e ]; };
+      extraPackages = epkgs: [
+        epkgs.jinx
+      ] ++ lib.optionalAttrs (!cfg.disableEmail) [ epkgs.mu4e ];
+    };
 
     services.emacs = {
       enable = (!cfg.disableEmacsDaemon);
@@ -215,6 +218,12 @@ in
         ent
         priv
         (aspellWithDicts (dicts: with dicts; [ en en-computers en-science nb ]))
+        (hunspellWithDicts (with hunspellDicts; [ en-us-large nb-no ]))
+        # have to install dictionaries separately in order for enchant (used by emacs jinx) to find them
+        hunspellDicts.en-us-large
+        hunspellDicts.nb-no
+        nuspell
+        enchant
         graphviz
         ripgrep
         dtach
