@@ -186,7 +186,7 @@ in
       package = pkgs.emacs-pgtk;
       extraPackages = epkgs: [
         epkgs.jinx
-      ] ++ lib.optionalAttrs (!cfg.disableEmail) [ epkgs.mu4e ];
+      ] ++ lib.optionals (!cfg.disableEmail) [ epkgs.mu4e ];
     };
 
     services.emacs = {
