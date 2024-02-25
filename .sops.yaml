@@ -10,10 +10,12 @@ creation_rules:
     key_groups:
       - pgp:
           - *user_storvik
+          - *user_storvik_work
   - path_regex: hosts/storvik-live/secrets.ya?ml$
     key_groups:
       - pgp:
           - *user_storvik
+          - *user_storvik_work
         age:
           - *host_live_usb
   - path_regex: hosts/storvik-nixos-wsl/secrets.ya?ml$
