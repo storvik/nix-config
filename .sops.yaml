@@ -4,6 +4,7 @@ keys:
   - &user_storvik_work_age age1dlkh7r5rx56ma6uz4s0m8k8t7hz0em2mrc8xl9y4uxsg4cjmwvcqetxua2
   - &user_retronix_age age1uep5c7y7p5c7vz6d4nqqhuuvrt29ankedcctdn4x9sudyvpgxghs4lancv
   - &host_live_usb age156y45hq8vhyjn00u5h2czqqwa85luhtqk7u9ztw9a7zwqx27jp6qd0zqw6
+  - &host_home_server age1zw49tk9u6kyhtfawj2qrkltgcu9fetz4dmg9dxhe2lnrqfvltq0qydudx8
 
 creation_rules:
   - path_regex: hosts/storvik-nixos-matebook/secrets.ya?ml$
@@ -24,6 +25,12 @@ creation_rules:
           - *user_storvik_work
         age:
           - *user_storvik_work_age
+  - path_regex: hosts/home-server/secrets.ya?ml$
+    key_groups:
+      - pgp:
+          - *user_storvik_work
+        age:
+          - *host_home_server
   - path_regex: hosts/retronix/secrets.ya?ml$
     key_groups:
       - pgp:

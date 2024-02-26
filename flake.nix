@@ -135,7 +135,7 @@
         retronix = {
           sshUser = "storvik";
           sshOpts = [ "-A" ];
-          hostname = "192.168.0.69";
+          hostname = "192.168.1.181";
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.retronix;

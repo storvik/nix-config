@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   storvik = {
@@ -84,4 +84,27 @@
       in
       [ "credentials=/etc/nixos/smb-secrets,credentials=/etc/nixos/smb-secrets,vers=1.0,rw,nounix,uid=1000,gid=100" ];
   };
+
+  sops = {
+    age.sshKeyPaths = [ "/home/storvik/.ssh/id_ed25519" ];
+    defaultSopsFile = ./secrets.yaml;
+
+    secrets.swg_privateKey = { };
+  };
+
+  networking.wg-quick.interfaces.swg = {
+    address = [ "10.0.10.6/32" ];
+    privateKeyFile = config.sops.secrets.swg_privateKey.path;
+    autostart = true;
+    dns = [ "1.1.1.1" "10.0.10.1" ];
+    peers = [
+      {
+        allowedIPs = [ "0.0.0.0/0" "::0/0" ];
+        endpoint = "wg.storvik.dev:51820";
+        publicKey = "dlocQXIsZmwtVd8ogaYFoI2Jsjn32Lzj4Qb7xGJXmUM=";
+      }
+    ];
+  };
+
+
 }
