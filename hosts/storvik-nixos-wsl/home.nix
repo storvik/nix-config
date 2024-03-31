@@ -10,6 +10,7 @@
     waylandTools = true;
     devtools.enable = true;
     texlive = true;
+    cad = true;
   };
 
   sops = {

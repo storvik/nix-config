@@ -137,6 +137,14 @@
           Enable graphics designer tools.
         '';
       };
+    cad =
+      lib.mkEnableOption null
+      // {
+        default = false;
+        description = lib.mdDoc ''
+          Enable cad tools.
+        '';
+      };
     media =
       lib.mkEnableOption null
       // {
