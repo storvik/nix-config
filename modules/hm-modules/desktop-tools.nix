@@ -39,7 +39,15 @@ in
         };
     };
 
-    programs.sioyek.enable = true;
+    programs.sioyek = {
+      enable = true;
+      bindings = {
+        "move_up" = "e";
+        "move_down" = "n";
+        "move_left" = "m";
+        "move_right" = "i";
+      };
+    };
 
   };
 
