@@ -185,6 +185,7 @@ in
       enable = true;
       package = pkgs.emacs-pgtk;
       extraPackages = epkgs: [
+        epkgs.treesit-grammars.with-all-grammars
         epkgs.jinx
       ] ++ lib.optionals (!cfg.disableEmail) [ epkgs.mu4e ];
     };

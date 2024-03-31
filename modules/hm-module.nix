@@ -11,6 +11,7 @@ inputs: { ... }:
     ./hm-modules/devtools.nix
     ./hm-modules/wsl.nix
     ./hm-modules/designer.nix
+    ./hm-modules/cad.nix
     ./hm-modules/social.nix
     ./hm-modules/media.nix
     ./hm-modules/texlive.nix
