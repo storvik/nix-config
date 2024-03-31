@@ -19,6 +19,7 @@ in
       imhex
     ] ++ lib.optionals (!builtins.elem "recon" cfg.forensics.disabledModules) [
       mitmproxy
+      mqttx
       nmap
       opcua-client-gui
       wireshark
