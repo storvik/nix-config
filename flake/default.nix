@@ -2,7 +2,7 @@
 
 let
 
-  inherit (inputs) home-manager nixpkgs hyprland sops-nix nixos-wsl;
+  inherit (inputs) home-manager nixpkgs hyprland sops-nix nixos-wsl nix-index-database;
 
 in
 
@@ -20,6 +20,7 @@ in
           home-manager.useUserPackages = true;
           home-manager.users.storvik = { config, pkgs, ... }: {
             imports = [
+              (nix-index-database.hmModules.nix-index)
               (hyprland.homeManagerModules.default)
               (self.outputs.homeManagerModules.default)
               ("${self}/hosts/${hostname}/home.nix")
@@ -34,6 +35,7 @@ in
         }
         ({ config, pkgs, ... }: {
           imports = [
+            # (nix-index-database.nixosModules.nix-index)
             (sops-nix.nixosModules.sops)
             (nixos-wsl.nixosModules.wsl)
             (self.outputs.nixosModules.default)

@@ -75,7 +75,8 @@ in
       '';
     };
 
-    # direnv
+    programs.nix-index.enable = true;
+
     programs.direnv = {
       enable = true;
       enableBashIntegration = true;
@@ -83,7 +84,6 @@ in
       nix-direnv.enable = true;
     };
 
-    # fzf overrides C-r history search
     programs.fzf = {
       enable = true;
       enableBashIntegration = true;
@@ -91,7 +91,6 @@ in
       tmux.enableShellIntegration = true;
     };
 
-    # lsd is a modern ls replacement
     programs.lsd = {
       enable = true;
       enableAliases = true;
