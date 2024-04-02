@@ -101,8 +101,15 @@ in
       enableFishIntegration = true;
     };
 
+    programs.atuin = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      settings = {
+        search_mode = "prefix";
+      };
+    };
 
-    # Git settings
     programs.git = {
       enable = true;
       userEmail = "petterstorvik@gmail.com";
