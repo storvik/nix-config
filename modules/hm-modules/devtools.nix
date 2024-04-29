@@ -17,7 +17,6 @@ in
     };
 
     home.packages = with pkgs; [
-      tree-sitter
     ] ++ lib.optionals (!builtins.elem "android" cfg.devtools.disabledModules) [
       android.platform-tools
       android-studio
@@ -35,6 +34,7 @@ in
       gopls
       gotools
       govulncheck
+      golangci-lint
     ] ++ lib.optionals (!builtins.elem "kotlin" cfg.devtools.disabledModules) [
       kotlin-language-server
     ] ++ lib.optionals (!builtins.elem "nix" cfg.devtools.disabledModules) [
@@ -45,14 +45,16 @@ in
       nix-prefetch-github
     ] ++ lib.optionals (!builtins.elem "python" cfg.devtools.disabledModules) [
       nodePackages.pyright
+    ] ++ lib.optionals (!builtins.elem "rust" cfg.devtools.disabledModules) [
+      rust-analyzer-unwrapped
+      clippy
     ] ++ lib.optionals (!builtins.elem "web" cfg.devtools.disabledModules) [
+      cljfmt
       clojure-lsp
       html-tidy
-      nodePackages.prettier
-      nodePackages.typescript
-      nodePackages.typescript-language-server
+      clojure
+      nodejs
       yarn
-      zprint
     ];
 
     programs.go = {
