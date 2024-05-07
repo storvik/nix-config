@@ -145,7 +145,7 @@ in
       enable = (!cfg.disableGPG);
       enableBashIntegration = true;
       enableFishIntegration = true;
-      pinentryFlavor = "qt";
+      pinentryPackage = pkgs.pinentry-qt;
       extraConfig = "allow-loopback-pinentry";
     };
 
