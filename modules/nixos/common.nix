@@ -16,7 +16,7 @@ in
     system.stateVersion = lib.mkDefault "22.05";
 
     nix = {
-      package = pkgs.nixUnstable;
+      package = pkgs.nixVersions.git;
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
