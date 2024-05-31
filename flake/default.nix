@@ -18,6 +18,7 @@ in
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
           home-manager.users.storvik = { config, pkgs, ... }: {
             imports = [
               (nix-index-database.hmModules.nix-index)

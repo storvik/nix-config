@@ -19,13 +19,13 @@ in
 
                 ## Run eww daemon if not running already
                 if [[ ! `pidof eww` ]]; then
-                	${pkgs.eww-wayland}/bin/eww daemon
+                	${pkgs.eww}/bin/eww daemon
                   sleep 1
                 fi
 
                 ## Open widgets
                 run_eww() {
-        	        ${pkgs.eww-wayland}/bin/eww --config "$CFG" open-many \
+        	        ${pkgs.eww}/bin/eww --config "$CFG" open-many \
                   		   bg clock leftdash sysbars network power-buttons
                 }
 
@@ -34,7 +34,7 @@ in
                 	touch "$FILE"
                  	run_eww
                 else
-                	${pkgs.eww-wayland}/bin/eww --config "$CFG" close \
+                	${pkgs.eww}/bin/eww --config "$CFG" close \
         					       bg clock leftdash sysbars network power-buttons
                   rm "$FILE"
                 fi
@@ -119,7 +119,7 @@ in
           bind = , XF86MonBrightnessUp, exec, ${pkgs.avizo}/bin/lightctl up
           bind = , XF86MonBrightnessDown, exec, ${pkgs.avizo}/bin/lightctl down
 
-          exec-once=${pkgs.eww-wayland}/bin/eww daemon
+          exec-once=${pkgs.eww}/bin/eww daemon
           exec-once=systemctl --user start avizo.service
           exec-once=${pkgs.hyprpaper}/bin/hyprpaper
 
@@ -165,7 +165,7 @@ in
 
       programs.eww = {
         enable = true;
-        package = pkgs.eww-wayland;
+        package = pkgs.eww;
         configDir = ./eww;
       };
 
