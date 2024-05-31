@@ -1,5 +1,6 @@
 keys:
   - &user_storvik E331E028418C84083868F8C99B6E461A1028E09A
+  - &user_storvik_age age1ne0lgy3ma0mjw20k98rlw5k7nx5vgx9myap52jrf2rez3f8g8e4qc9hlgc
   - &user_storvik_work 1F9E158F9C72BC95FD81269380576D012891404E
   - &user_storvik_work_age age1dlkh7r5rx56ma6uz4s0m8k8t7hz0em2mrc8xl9y4uxsg4cjmwvcqetxua2
   - &user_retronix_age age1uep5c7y7p5c7vz6d4nqqhuuvrt29ankedcctdn4x9sudyvpgxghs4lancv
@@ -12,6 +13,8 @@ creation_rules:
       - pgp:
           - *user_storvik
           - *user_storvik_work
+        age:
+          - *user_storvik_age
   - path_regex: hosts/storvik-live/secrets.ya?ml$
     key_groups:
       - pgp:

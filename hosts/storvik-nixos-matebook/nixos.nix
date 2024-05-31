@@ -39,11 +39,14 @@
     };
   };
 
-  sops.gnupg.home = "/home/storvik/.gnupg";
-  sops.defaultSopsFile = ./secrets.yaml;
+  sops = {
+    # gnupg.home = "/home/storvik/.gnupg";
+    age.sshKeyPaths = [ "/home/storvik/.ssh/id_ed25519" ];
+    defaultSopsFile = ./secrets.yaml;
 
-  sops.secrets.mullvad_privateKey = { };
-  sops.secrets.swg_privateKey = { };
+    secrets.mullvad_privateKey = { };
+    secrets.swg_privateKey = { };
+  };
 
   networking.wg-quick.interfaces.mull = {
     address = [ "10.67.191.187/32" "fc00:bbbb:bbbb:bb01::4:bfba/128" ];
