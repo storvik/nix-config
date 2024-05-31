@@ -1,0 +1,184 @@
+(defvar
+  tap-timeout   100
+  hold-timeout  200
+  tt $tap-timeout
+  ht $hold-timeout)
+
+;; Define aliases for the keys needed for home row mods
+(defalias
+  ;; home row mods
+  a (tap-hold $tt $ht a lmet)
+  r (tap-hold $tt $ht r lalt)
+  s (tap-hold $tt $ht s lctl)
+  t (tap-hold $tt $ht t lsft)
+  n (tap-hold $tt $ht n rsft)
+  e (tap-hold $tt $ht e rctl)
+  i (tap-hold $tt $ht i lalt) ;; send lalt instead of ralt, as ralt is Alt Gr (alt + ctl)
+  o (tap-hold $tt $ht o lmet)
+
+  # S-3
+  ' (macro ' spc)
+
+  empty (layer-switch empty)
+
+  caps (tap-hold $tt $ht esc lctl)
+  spc (tap-hold $tt $ht spc (layer-toggle navigation))
+  num (tap-hold $tt $ht bspc (layer-toggle numeric))
+  sym (tap-hold $tt $ht ret (layer-toggle symbols))
+  mse (tap-hold $tt $ht z (layer-toggle mouse))
+  fun (tap-hold $tt $ht x (layer-toggle function))
+  med (tap-hold $tt $ht / (layer-toggle media))
+  )
+
+;; (defsrc
+;;   grv         1       2       3       4       5       6       7       8       9       0       -       =       bspc
+;;   tab         q       w       f       p       b       j       l       u       y       ;       [       ]       ret
+;;   caps        a       r       s       t       g       m       n       e       i       o       '       \
+;;   lsft    z       x       c       d       v       102d    k       h       ,       .       /       rsft
+;;                lmet    lalt                        spc                                 rmet     rctl
+;; )
+
+(defsrc
+ grv         1       2       3       4       5       6       7       8       9       0       -       =       bspc
+ tab         q       w       e       r       t       y       u       i       o       p       [       ]       ret
+ caps        a       s       d       f       g       h       j       k       l       ;       '       \
+ lsft    102d    z       x       c       v       b       n       m       ,       .       /       rsft
+ lmet    lalt                        spc                         ralt    rmet    rctl
+ )
+
+(deflayer base
+ grv         1       2       3       4       5       6       7       8       9       0       -       =       bspc
+ tab         q       w       f       p       b       j       l       u       y       ;       [       ]       ret
+ @caps       @a      @r      @s      @t      g       m       @n      @e      @i      @o      @'      @#
+ lsft    @mse    @fun    c       d       v       \       k       h       ,       .       @med    rsft
+ lmet    @num                        @spc                        @sym    rmet    rctl
+ )
+
+(deflayer qwerty
+ grv         1       2       3       4       5       6       7       8       9       0       -       =       bspc
+ tab         q       w       e       r       t       y       u       i       o       p       [       ]       ret
+ @caps       a       s       d       f       g       h       j       k       l       ;       '       @#
+ lsft    \       z       x       c       v       b       n       m       ,       .       /       rsft
+ lmet    lalt                        @spc                        ralt    rmet    rctl
+ )
+
+(defalias
+  + S-=
+  * S-8
+  par1 S-9
+  par2 S-0
+  , (tap-hold $tt $ht , lalt)
+  . (tap-hold $tt $ht . lctl)
+  = (tap-hold $tt $ht = lsft)
+  )
+
+(deflayer numeric
+ _           _       _       _       _       _       _       _       _       _       _       _       _       _
+ _           _       _       _       _       _       @+      7       8       9       @*      _       _       _
+ _           lmet    @,      @.      @=      _      @par1    4       5       6       @par2   _       _
+ _       _       _       _       _       _      _        -       1       2       3       /       _
+ _       _                           _                           0       _       _
+ )
+
+(deflayer function
+ _           _       _       _       _       _       _       _       _       _       _       _       _       _
+ _           _       _       _       _       _       _       f7      f8      f9      f12     _       _       _
+ _           lmet    lalt    lctl    lsft    _       _       f4      f5      f6      f11     _       _
+ _       _       _       _       _       _       _       _       f1       f2      f3      f10     _
+ _       _                           _                           0       _       _
+ )
+
+(defalias
+  å (multi ralt w)
+  ø (multi ralt l)
+  æ (multi ralt z)
+
+  ! S-1
+  at S-2
+  $ S-4
+  % S-5
+  ^ (macro S-6 spc)
+  & S-7
+  ` (macro grv spc)
+  ~ (macro S-grv spc)
+  un S--
+  quo (multi lsft (macro ' spc))
+  bra1 S-[
+  bra2 S-]
+  [ (tap-hold $tt $ht [ lsft)
+  | (tap-hold $tt $ht S-\ lctl)
+  ] (tap-hold $tt $ht ] lalt)
+  )
+
+(deflayer symbols
+ _           _       _       _       _       _       _       _       _       _       _       _       _       _
+ _           @~      @%      @$      @&      @at     _       _       _       _       _       _       _       _
+ _           @^      @æ      @ø      @å      @!      _       @[      @|      @]      lmet    _       _
+ _       _       @#      @'      @quo    @un     _       _       @bra1    \       @bra2   _       _
+ _       _                           _                           _       _       _
+ )
+
+(defalias
+  cpy C-c
+  pst C-v
+  cut C-x
+
+  line (macro home S-end)
+  nnav (tap-dance 500 ((multi (layer-switch navigation) (cmd powershell -c "Toast -Text 'navigation'"))
+                       (multi (layer-switch base) (cmd powershell -c "Toast -Text 'colemak-dh'"))))
+  )
+
+(deflayer navigation
+ _           _       _       _       _       _       _       _       _       _       _       _       _       lrld
+ _           @nnav   _       _       @pst    _       _       @line   _       @cpy    _       _       _       _
+ _           esc     lalt    lctl    lsft    _       left    down    up      rght    _       _       _
+ _       _        del    _       _       _       _       @cut    bspc    _       _       _       _
+ _       _                           _                           _       _       _
+ )
+
+(defalias
+  ma↑ (movemouse-accel-up 1 1000 1 5)
+  ma← (movemouse-accel-left 1 1000 1 5)
+  ma↓ (movemouse-accel-down 1 1000 1 5)
+  ma→ (movemouse-accel-right 1 1000 1 5)
+
+  mw↑ (mwheel-up 50 120)
+  mw↓ (mwheel-down 50 120)
+  mw← (mwheel-left 50 120)
+  mw→ (mwheel-right 50 120)
+  )
+
+(deflayer mouse
+ _           _       _       _       _       _       _       _       _       _       _       _       _       _
+ _           _       _       _       _       _       _       @cut    @cpy    @pst    _       _       _       _
+ _           lmet    lalt    lctl    lsft    _       @ma←    @ma↓    @ma↑    @ma→   _       _        _
+ _       _       _       _       _       _       _       @mw←    @mw↓    @mw↑    @mw→   _       _
+ _       mrgt                        mlft                        _       _       _
+ )
+
+;; Should add:
+;; - Volume / mute
+;; - Next / prev
+;; - Print screen
+
+(defalias
+  qwr (multi (layer-switch qwerty) (cmd powershell -c "Toast -Text 'qwerty'"))
+  cmk (multi (layer-switch base) (cmd powershell -c "Toast -Text 'colemak-dh'"))
+  nav (multi (layer-switch navigation) (cmd powershell -c "Toast -Text 'navigation'"))
+  )
+
+(deflayer media
+ _           _       _       _       _       _       _       _       _       _       _       _       _       _
+ _           @qwr    @cmk    @nav    _       _       _       _       _       _       _       _       _       _
+ _           _       _       _       _       _       _       _       _       _       _       _       _
+ _       _       _       _       _       _       _       _       _       _       _       _       _
+ _       _                           _                           _       _       _
+ )
+
+(deflayer empty
+ _           _       _       _       _       _       _       _       _       _       _       _       _       _
+ _           _       _       _       _       _       _       _       _       _       _       _       _       _
+ _           _       _       _       _       _       _       _       _       _       _       _       _
+ _       _       _       _       _       _       _       _       _       _       _       _       _
+ _       _                           _                           _       _       _
+ )
