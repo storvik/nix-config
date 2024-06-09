@@ -242,6 +242,7 @@ in
         unixtools.netstat
         unixtools.route
         whois
+        nyxt
       ] ++ lib.optionals (cfg.desktop != "none" || cfg.enableWSL) [
         fira-code
         fira-code-symbols
