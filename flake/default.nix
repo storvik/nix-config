@@ -2,7 +2,7 @@
 
 let
 
-  inherit (inputs) home-manager nixpkgs hyprland sops-nix nixos-wsl nix-index-database;
+  inherit (inputs) home-manager ironbar nixpkgs hyprland sops-nix nixos-wsl nix-index-database;
 
 in
 
@@ -23,6 +23,7 @@ in
             imports = [
               (nix-index-database.hmModules.nix-index)
               (hyprland.homeManagerModules.default)
+              (ironbar.homeManagerModules.default)
               (self.outputs.homeManagerModules.default)
               ("${self}/hosts/${hostname}/home.nix")
             ];

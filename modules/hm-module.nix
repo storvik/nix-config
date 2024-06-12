@@ -6,7 +6,7 @@ inputs: { ... }:
     ./hm-modules/options.nix
     (import ./hm-modules/common.nix inputs)
     ./hm-modules/email.nix
-    ./hm-modules/desktop-hyprland.nix
+    (import ./hm-modules/desktop-hyprland.nix inputs)
     ./hm-modules/desktop-tools.nix
     ./hm-modules/devtools.nix
     ./hm-modules/wsl.nix
