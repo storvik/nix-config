@@ -17,6 +17,7 @@ in
     };
 
     home.packages = with pkgs; [
+      codeium
     ] ++ lib.optionals (!builtins.elem "android" cfg.devtools.disabledModules) [
       android.platform-tools
       android-studio
