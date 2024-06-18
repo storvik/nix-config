@@ -83,7 +83,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -109,7 +109,7 @@ null or string
 ` "retro" `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -135,7 +135,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -153,7 +153,7 @@ rclone or rsync command\.
 list of (submodule)
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -174,7 +174,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -195,7 +195,7 @@ string
 ` "pcloud:folder/" `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -216,7 +216,7 @@ string
 ` "/home/user/folder/" `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -237,7 +237,7 @@ string
 ` "rclone" `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -258,7 +258,7 @@ one of “none”, “gnome”, “hyprland”
 ` "none" `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -284,7 +284,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -310,7 +310,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -334,7 +334,7 @@ list of string
 ` [ ] `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -361,7 +361,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -382,7 +382,7 @@ list of string
 ` [ ] `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -408,7 +408,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 
 
@@ -434,6 +434,6 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options\.nix](file:///nix/store/rcgh25kmixp8qys70w0qwxfk1f86wbqf-source/modules/nixos/options.nix)
+ - [https://github.com/storvik/nix-config/modules/nixos/options\.nix](https://github.com/storvik/nix-config/modules/nixos/options.nix)
 
 

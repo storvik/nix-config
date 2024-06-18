@@ -83,7 +83,85 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
+
+
+
+## storvik\.ai\.enable
+
+
+
+Enable ai tools\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
+
+
+
+## storvik\.ai\.enableOllama
+
+
+
+Enable ollama service\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` true `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
+
+
+
+## storvik\.cad
+
+
+
+Enable cad tools\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -109,7 +187,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -130,7 +208,7 @@ one of “none”, “gnome”, “hyprland”
 ` "none" `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -156,7 +234,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -180,7 +258,7 @@ list of string
 ` [ ] `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -206,7 +284,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -232,7 +310,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -258,7 +336,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -284,7 +362,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -310,7 +388,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -334,7 +412,7 @@ list of string
 ` [ ] `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -357,7 +435,7 @@ null or string
 ` null `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -374,7 +452,7 @@ list of package
 ` [ ] `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -400,7 +478,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -426,7 +504,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -452,7 +530,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
 
@@ -483,6 +561,6 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options\.nix](file:///nix/store/c4c884qfrg541zw7g1k325bzlz7qlryr-source/modules/hm-modules/options.nix)
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
 
 
