@@ -127,3 +127,12 @@ pkgs = import nixpkgs {
   };
 };
 ```
+
+## Build docs
+
+Easiest way to update docs is using:
+
+``` shell
+nix build .#packages.nixos-docs && cat result > docs/options.md
+nix build .#packages.hm-docs && cat result > docs/hm-options.md
+```

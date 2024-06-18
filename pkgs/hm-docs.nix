@@ -11,4 +11,4 @@ let
   };
 
 in
-runCommand "hm-options.md" { } ''cat ${hmDoc.optionsCommonMark} >> $out''
+runCommand "hm-options.md" { } ''sed -e 's|file\(.*\)source|https://github.com/storvik/nix-config|' ${hmDoc.optionsCommonMark} | sed -e 's|/nix/store/\(.*\)source|https://github.com/storvik/nix-config|' >> $out''

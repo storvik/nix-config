@@ -11,4 +11,5 @@ let
   };
 
 in
-runCommand "options.md" { } ''cat ${nixosDoc.optionsCommonMark} >> $out''
+
+runCommand "options.md" { } ''sed -e 's|file\(.*\)source|https://github.com/storvik/nix-config|' ${nixosDoc.optionsCommonMark} | sed -e 's|/nix/store/\(.*\)source|https://github.com/storvik/nix-config|' >> $out''
