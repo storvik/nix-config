@@ -11,6 +11,7 @@
     devtools.enable = true;
     texlive = true;
     cad = true;
+    ai.enable = true;
   };
 
   sops = {

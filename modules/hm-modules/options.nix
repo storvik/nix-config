@@ -161,6 +161,25 @@
           Enable social programs, such as signal.
         '';
       };
+    ai = {
+      enable =
+        lib.mkEnableOption null
+        // {
+          default = false;
+          description = lib.mdDoc ''
+            Enable ai tools.
+          '';
+        };
+      enableOllama =
+        lib.mkEnableOption null
+        // {
+          default = true;
+          description = lib.mdDoc ''
+            Enable ollama service.
+          '';
+        };
+    };
+
   };
 
 }
