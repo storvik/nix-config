@@ -1,0 +1,89 @@
+;; `` are just regular quotes
+(defpoll time :interval "5s"
+  `date +'{"hour":"%H","min":"%M"}'`)
+
+(defpoll net :interval "100s"
+  :initial `N/A`
+  `nmcli -t -f SIGNAL,ACTIVE device wifi \
+    | awk -F':' '{if($2=="yes")print$1}'`)
+
+;; TODO: This should be replaced with deflisten, but how?
+(defpoll workspace :interval "1s"
+  `hyprctl monitors -j`)
+
+(defwidget bar []
+  (box :class "bar"
+       (centerbox :orientation "h"
+    (leftmenu)
+    (clock)
+    (rightmenu))))
+
+;; leftmenu
+
+(defwidget leftmenu []
+  (box :class "leftmenu" :valign "center" :space-evenly false :spacing 25 :halign "start"
+    (_workspaces :active-ws "${workspace[0].activeWorkspace.id}")))
+
+(defwidget _workspaces [active-ws]
+  (box :class "ws-box" :valign "center" :space-evenly true :spacing 10 :halign "start"
+    (label :text {active-ws == 1 ? "" : ""})
+    (label :text {active-ws == 2 ? "" : ""})
+    (label :text {active-ws == 3 ? "" : ""})
+    (label :text {active-ws == 4 ? "" : ""})
+    (label :text {active-ws == 5 ? "" : ""})
+    (label :text {active-ws == 6 ? "" : ""})
+    (label :text {active-ws == 7 ? "" : ""})))
+
+;; rightmenu
+
+(defwidget rightmenu []
+  (box :class "rightmenu" :valign "center" :space-evenly false :spacing 25 :halign "end"
+    (_network :strength net :offline "󰤭" :excellent "󰤨" :good "󰤥"
+              :okay "󰤢" :slow "󰤟")
+    (_battery :status {EWW_BATTERY.BAT0.status}
+              :battery {EWW_BATTERY.BAT0.capacity}
+              :charge "󰂄" :one "󰂂" :two "󰂁" :three "󰂀" :four "󰁿"
+              :five "󰁾" :six "󰁽" :seven "󰁼")))
+
+(defwidget clock []
+  (box :class "clock"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    (label :text "${time.hour}:${time.min}")))
+
+;; battery widget
+(defwidget _battery [battery status one two three
+                    four five six seven charge]
+  (box :class "bat-box" :space-evenly false :spacing 8
+    (label :text {status == 'Charging' ? charge :
+      battery < 15 ? seven :
+        battery < 30 ? six :
+          battery < 45 ? five :
+            battery < 60 ? four :
+              battery < 75 ? three :
+                battery < 95 ? two : one})
+    (label :text "${battery}%" :class "bat-percent")))
+
+(defwidget _network [strength offline excellent good okay slow]
+  (box :class "net-box"
+       :space-evenly false
+       :spacing 8
+    (label :text {strength == "" ? offline :
+      strength < 26 ? slow :
+        strength < 51 ? okay :
+          strength < 76 ? good : excellent})))
+
+
+(defwindow storbar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "10px"
+                      :width "99%"
+                      :height "38px"
+                      :anchor "top center")
+  :stacking "bt"
+  :exclusive true
+  :focusable false
+  (bar))

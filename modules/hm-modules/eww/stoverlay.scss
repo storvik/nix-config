@@ -1,0 +1,71 @@
+.leftdash-bg {
+	background-color: #474D59;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.leftdash-heading {
+    color: #81A1C1;
+	font-size : 32px;
+	font-weight : bold;
+    margin-top: 30px;
+}
+
+.leftdash-scales {
+	// background-color: #3A404C;
+    min-height: 180px;
+}
+
+.leftdash-scalebox {
+	background-color: #3A404C;
+}
+
+.leftdash-scale {
+	background-color: #3AF04C;
+	border-radius: 16px;
+}
+
+
+
+.sys_bat {
+    color: #bfc9db;
+    background-color: #0f0f17;
+    border-radius: 10px;
+}
+
+.sysbars scale trough highlight {
+	all: unset;
+    background-color: #bfc9db;
+	border-radius: 24px;
+}
+
+scale trough {
+	all: unset;
+	background-color: #232232;
+	border-radius: 24px;
+	min-height: 130px;
+	min-width: 14px;
+	margin : 10px 0px 0px 0px;
+}
+
+.sysbars-icon {
+    font-family: 'Iosevka Nerd Font';
+}
+
+.network-icon {
+    font-size: 42px;
+    font-family: 'Iosevka Nerd Font';
+}
+
+.power-bg {
+	background-color: #474D59;
+    min-width: 80px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.power-icons {
+    padding-right: 9px;
+    font-size: 60px;
+    font-family: 'Iosevka Nerd Font';
+}

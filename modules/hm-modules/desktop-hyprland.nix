@@ -1,4 +1,4 @@
-inputs: { config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
 
@@ -16,6 +16,30 @@ in
       fuzzel = "${pkgs.fuzzel}/bin/fuzzel";
       grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
       swappy = "${pkgs.swappy}/bin/swappy";
+      ewwCmd = pkgs.writeScriptBin "launch-eww" ''
+                ## Files and cwd
+                FILE="${config.home.homeDirectory}/.cache/eww_launch.dashboard"
+                CFG="${config.xdg.configHome}/eww"
+                ## Run eww daemon if not running already
+                if [[ ! `pidof eww` ]]; then
+                	${pkgs.eww}/bin/eww daemon
+                  sleep 1
+                fi
+                ## Open widgets
+                run_eww() {
+        	        ${pkgs.eww}/bin/eww --config "$CFG" open-many \
+                  		   leftdash sysbars network
+                }
+                ## Launch or close widgets accordingly
+                if [[ ! -f "$FILE" ]]; then
+                	touch "$FILE"
+                 	run_eww
+                else
+                	${pkgs.eww}/bin/eww --config "$CFG" close \
+                  		   leftdash sysbars network
+                  rm "$FILE"
+                fi
+      '';
     in
     lib.mkIf (cfg.desktop == "hyprland") {
 
@@ -31,6 +55,7 @@ in
           bind = $mod SHIFT, RETURN, exec, emacsclient -c -a emacs
           bind = $mod, D, exec, ${fuzzel}
           bind = $mod, L, exec, ${lockCmd}
+          bind = $mod, H, exec, ${ewwCmd}/bin/launch-eww
           bind = $mod, K, exec, ${pkgs.networkmanager_dmenu}/bin/networkmanager_dmenu
           bind = $mod, V, exec,  clipman pick --tool=CUSTOM --tool-args="${fuzzel} -d"
           bind = , Print, exec, ${grimshot} --notify save screen - | ${swappy} -f -
@@ -96,10 +121,12 @@ in
           bind = , XF86MonBrightnessDown, exec, ${pkgs.avizo}/bin/lightctl down
 
           exec-once=systemctl --user start avizo.service
+          exec-once=${pkgs.eww}/bin/eww daemon
+          exec-once=${pkgs.eww}/bin/eww open storbar
 
           general {
-            gaps_in = 5
-            gaps_out = 5
+            gaps_in = 15
+            gaps_out = 15
           }
 
           input {
@@ -138,141 +165,10 @@ in
       # Volume and brightness indicator
       services.avizo.enable = true;
 
-      programs.ironbar = {
+      programs.eww = {
         enable = true;
-        systemd = true;
-        # package = inputs.ironbar;
-        config = {
-          anchor_to_edges = true;
-          position = "top";
-          height = 22;
-          start = [
-            {
-              type = "workspaces";
-              all_monitors = false;
-              # name_map:
-              # '1': 
-              # '2': 
-              # '3': 
-            }
-          ];
-          center = [
-            {
-              type = "focused";
-            }
-          ];
-          end = [
-            # {
-            #   type = "upower";
-            #   format = "{icon} {percentage}%";
-            # }
-            {
-              type = "volume";
-              format = "{icon} {percentage}%";
-              max_volume = 100;
-              icons = {
-                volume_high = "󰕾";
-                volume_medium = "󰖀";
-                volume_low = "󰕿";
-                muted = "󰝟";
-              };
-            }
-            {
-              type = "clock";
-            }
-          ];
-
-        };
-        style = ''
-           @define-color color_bg #2d2d2d;
-          @define-color color_bg_dark #1c1c1c;
-          @define-color color_border #424242;
-          @define-color color_border_active #6699cc;
-          @define-color color_text #ffffff;
-          @define-color color_urgent #8f0a0a;
-
-          /* -- base styles -- */
-
-          * {
-              font-family: Noto Sans Nerd Font, sans-serif;
-              font-size: 12px;
-              border: none;
-              border-radius: 0;
-          }
-
-          box, menubar, button {
-              background-color: @color_bg;
-              background-image: none;
-              box-shadow: none;
-          }
-
-          button, label {
-              color: @color_text;
-          }
-
-          button:hover {
-              background-color: @color_bg_dark;
-          }
-
-          scale trough {
-              min-width: 1px;
-              min-height: 2px;
-          }
-
-          #bar {
-              border-top: 1px solid @color_border;
-          }
-
-          .popup {
-              border: 1px solid @color_border;
-              padding: 1em;
-          }
-
-          /* -- clock -- */
-
-          .clock {
-              font-weight: bold;
-              margin-left: 5px;
-          }
-
-          .popup-clock .calendar-clock {
-              color: @color_text;
-              font-size: 2.5em;
-              padding-bottom: 0.1em;
-          }
-
-          .popup-clock .calendar {
-              background-color: @color_bg;
-              color: @color_text;
-          }
-
-          .popup-clock .calendar .header {
-              padding-top: 1em;
-              border-top: 1px solid @color_border;
-              font-size: 1.5em;
-          }
-
-          .popup-clock .calendar:selected {
-              background-color: @color_border_active;
-          }
-
-          /* -- volume -- */
-
-          .popup-volume .device-box {
-              border-right: 1px solid @color_border;
-          }
-
-          /* -- workspaces -- */
-
-          .workspaces .item.focused {
-              box-shadow: inset 0 -3px;
-              background-color: @color_bg_dark;
-          }
-
-          .workspaces .item:hover {
-              box-shadow: inset 0 -3px;
-          }
-        '';
+        package = pkgs.eww;
+        configDir = ./eww;
       };
 
       # Swayidle locks device, turns off screen and suspends machine

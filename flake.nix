@@ -32,11 +32,6 @@
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
-    ironbar = {
-      url = "github:JakeStanger/ironbar";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     deploy-rs.url = "github:serokell/deploy-rs";
 
     # https://github.com/NixOS/nixpkgs/pull/67576
