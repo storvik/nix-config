@@ -2,6 +2,9 @@
 (defpoll time :interval "5s"
   `date +'{"hour":"%H","min":"%M"}'`)
 
+(defpoll date :interval "180s"
+  `date +'%B %m %y'`)
+
 (defpoll net :interval "100s"
   :initial `N/A`
   `nmcli -t -f SIGNAL,ACTIVE device wifi \
@@ -50,6 +53,7 @@
        :orientation "h"
        :space-evenly false
        :halign "center"
+    (label :text "${date} - ")
     (label :text "${time.hour}:${time.min}")))
 
 ;; battery widget
