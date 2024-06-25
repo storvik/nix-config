@@ -17,7 +17,7 @@
   o (tap-hold $tt $ht o lmet)
 
   # S-3
-  ' (macro ' spc)
+  ;; ' (macro ' spc) ;; windows version
 
   empty (layer-switch empty)
 
@@ -49,7 +49,7 @@
 (deflayer base
  grv         1       2       3       4       5       6       7       8       9       0       -       =       bspc
  tab         q       w       f       p       b       j       l       u       y       ;       [       ]       ret
- @caps       @a      @r      @s      @t      g       m       @n      @e      @i      @o      @'      @#
+ @caps       @a      @r      @s      @t      g       m       @n      @e      @i      @o      '       @#
  lsft    @mse    @fun    c       d       v       \       k       h       ,       .       @med    rsft
  lmet    @num                        @spc                        @sym    rmet    rctl
  )
@@ -102,7 +102,8 @@
   ` (macro grv spc)
   ~ (macro S-grv spc)
   un S--
-  quo (multi lsft (macro ' spc))
+  quo (multi lsft ')                ;; linux version
+  ;; quo (multi lsft (macro ' spc)) ;; windows version
   bra1 S-[
   bra2 S-]
   [ (tap-hold $tt $ht [ lsft)
@@ -114,7 +115,7 @@
  _           _       _       _       _       _       _       _       _       _       _       _       _       _
  _           @~      @%      @$      @&      @at     _       _       _       _       _       _       _       _
  _           @^      @æ      @ø      @å      @!      _       @[      @|      @]      lmet    _       _
- _       _       @#      @'      @quo    @un     _       _       @bra1    \       @bra2   _       _
+ _       _       @#      '       @quo    @un     _       _       @bra1    \       @bra2   _       _
  _       _                           _                           _       _       _
  )
 
