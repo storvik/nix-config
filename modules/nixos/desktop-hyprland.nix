@@ -15,8 +15,8 @@ in
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
 
-    # Fix gtklock
-    security.pam.services.gtklock = { };
+    # PAM hyprlock module
+    security.pam.services.hyprlock = { };
 
     # Login handled by greetd and tuigreet
     services.greetd = {

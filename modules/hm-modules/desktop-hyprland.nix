@@ -12,7 +12,6 @@ in
     let
       hyprctl = "${pkgs.hyprland}/bin/hyprctl";
       notify = "${pkgs.libnotify}/bin/notify-send";
-      lockCmd = "${pkgs.gtklock}/bin/gtklock --daemonize -s ${config.xdg.configHome}/gtklock/style.css";
       fuzzel = "${pkgs.fuzzel}/bin/fuzzel";
       grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
       swappy = "${pkgs.swappy}/bin/swappy";
@@ -54,7 +53,7 @@ in
           bind = $mod, RETURN, exec, foot
           bind = $mod SHIFT, RETURN, exec, emacsclient -c -a emacs
           bind = $mod, D, exec, ${fuzzel}
-          bind = $mod, L, exec, ${lockCmd}
+          bind = $mod, L, exec, hyprlock
           bind = $mod, H, exec, ${ewwCmd}/bin/launch-eww
           bind = $mod, K, exec, ${pkgs.networkmanager_dmenu}/bin/networkmanager_dmenu
           bind = $mod, V, exec,  clipman pick --tool=CUSTOM --tool-args="${fuzzel} -d"
@@ -171,23 +170,68 @@ in
         configDir = ./eww;
       };
 
-      # Swayidle locks device, turns off screen and suspends machine
-      services.swayidle = {
+      programs.hyprlock = {
         enable = true;
-        extraArgs = [ "-w" ];
-        systemdTarget = "hyprland-session.target";
-        events = [
-          { event = "before-sleep"; command = lockCmd; }
-          { event = "lock"; command = lockCmd; }
-        ];
-        timeouts = [
-          { timeout = 900; command = lockCmd; }
-          { timeout = 1800; command = "${hyprctl} dispatch dpms off"; resumeCommand = "${hyprctl} dispatch dpms on"; }
-          { timeout = 1860; command = "systemctl suspend"; } # TODO: Check if this is a good way to suspend machine after screen turns off
-        ];
+        settings = {
+          general = {
+            disable_loading_bar = true;
+            grace = 60;
+            hide_cursor = true;
+            no_fade_in = false;
+          };
+
+          background = [
+            {
+              path = "screenshot";
+              blur_passes = 3;
+              blur_size = 8;
+            }
+          ];
+
+          input-field = [
+            {
+              size = "800, 100";
+              position = "0, -80";
+              monitor = "";
+              dots_center = true;
+              fade_on_empty = false;
+              font_color = "rgb(202, 211, 245)";
+              inner_color = "rgb(91, 96, 120)";
+              outer_color = "rgb(24, 25, 38)";
+              outline_thickness = 5;
+              shadow_passes = 2;
+            }
+          ];
+        };
       };
 
-      # Mako notification service
+      services.hypridle = {
+        enable = true;
+        settings = {
+          general = {
+            after_sleep_cmd = "hyprctl dispatch dpms on";
+            ignore_dbus_inhibit = false;
+            lock_cmd = "hyprlock";
+          };
+
+          listener = [
+            {
+              timeout = 600;
+              on-timeout = "${ewwCmd}/bin/launch-eww";
+            }
+            {
+              timeout = 900;
+              on-timeout = "hyprlock";
+            }
+            {
+              timeout = 1200;
+              on-timeout = "hyprctl dispatch dpms off";
+              on-resume = "hyprctl dispatch dpms on";
+            }
+          ];
+        };
+      };
+
       services.mako = {
         enable = true;
         anchor = "top-center";
@@ -241,25 +285,6 @@ in
           terminal = ${pkgs.foot}/bin/foot
           gui_if_available = true
         '';
-
-        configFile."gtklock/style.css".text = ''
-          @define-color bg rgb(59, 66, 82);
-          @define-color text1 #fff;
-          @define-color text2 #b48ead;
-
-          * {
-            color: @text1;
-          }
-
-          entry#input-field {
-            color: @text2;
-          }
-
-          window {
-            background-color: @bg;
-          }
-        '';
-
 
       };
 
