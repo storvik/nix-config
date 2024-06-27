@@ -188,10 +188,22 @@ in
             }
           ];
 
+          label = {
+            monitor = "";
+            text = "cmd[update:1000] date +'%H:%M:%S'";
+            color = "rgb(202, 211, 245)";
+            font_size = 120;
+            position = "0, 0";
+            halign = "center";
+            valign = "center";
+          };
+
           input-field = [
             {
               size = "800, 100";
-              position = "0, -80";
+              position = "0, -200";
+              halign = "center";
+              valign = "center";
               monitor = "";
               dots_center = true;
               fade_on_empty = false;
