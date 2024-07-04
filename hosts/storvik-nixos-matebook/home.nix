@@ -8,6 +8,7 @@
     waylandTools = true;
     devtools.enable = true;
     designer = true;
+    studio = true;
     social = true;
     media = true;
     texlive = true;

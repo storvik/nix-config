@@ -15,6 +15,7 @@ inputs: { ... }:
     ./hm-modules/ai.nix
     ./hm-modules/social.nix
     ./hm-modules/media.nix
+    ./hm-modules/studio.nix
     ./hm-modules/texlive.nix
     ./hm-modules/forensics.nix
   ];

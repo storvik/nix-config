@@ -508,6 +508,32 @@ boolean
 
 
 
+## storvik\.studio
+
+
+
+Enable programs that can be used to edit audio and video\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [https://github.com/storvik/nix-config/modules/hm-modules/options\.nix](https://github.com/storvik/nix-config/modules/hm-modules/options.nix)
+
+
+
 ## storvik\.texlive
 
 

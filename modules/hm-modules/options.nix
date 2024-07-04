@@ -145,6 +145,14 @@
           Enable cad tools.
         '';
       };
+    studio =
+      lib.mkEnableOption null
+      // {
+        default = false;
+        description = lib.mdDoc ''
+          Enable programs that can be used to edit audio and video.
+        '';
+      };
     media =
       lib.mkEnableOption null
       // {
