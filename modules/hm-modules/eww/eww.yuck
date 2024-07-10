@@ -1,3 +1,10 @@
+;;common stuff, used in multiple eww files
+(defpoll time :interval "5s"
+  `date +'{"hour":"%H","min":"%M"}'`)
+
+(defpoll date :interval "180s"
+  `date +'%B %m %y'`)
+
 ;; include storbar, my statusbar
 (include "storbar.yuck")
 

@@ -2,73 +2,105 @@
 (defpoll brightness :interval "15s" "brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}'")
 
 (defpoll ssid :interval "15s" "nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\: -f2")
-(defpoll ip :interval "15s" "ip -f inet addr show wlp60s0 | sed -En -e 's/.*inet ([0-9.]+).*/\\1/p'")
+(defpoll wireless-ip :interval "15s" "ip -f inet addr show wlp60s0 | sed -En -e 's/.*inet ([0-9.]+).*/\\1/p'")
 
-(defwidget leftdash []
-  (box :class "leftdash-bg" :orientation "v" :space-evenly "false"
-    (label :class "leftdash-heading" :text "Calendar")
-    (calendar :show-heading "true" :show-week-numbers "true")))
-
-(defwindow leftdash
+(defwindow bg
   :monitor 0
   :geometry (geometry
               :x "0"
               :y "0"
-              :width "400px"
-              :height "800px"
-              :anchor "left center")
+              :width "100%"
+              :height "100%")
+  :vm-ignore true
   :stacking "fg"
-  (leftdash))
+  (box :class "bg"))
 
-(defwidget battery-icon [battery status]
-  (label :text {status == 'Charging' ? "󰂄" :
-      battery < 15 ? "󰁺" :
-        battery < 30 ? "󰁼" :
-          battery < 45 ? "󰁽" :
-            battery < 60 ? "󰁿" :
-              battery < 75 ? "󰂁" :
-                battery < 95 ? "󰂂" : "󰁹"}))
+(defwidget profilepic []
+  (box :class "box" :orientation "v" :space-evenly "false"
+    (image :path "assets/avatar.png" :image-height 160 :image-width 160)
+    (label :class "profilepic-username" :halign "center" :text "Petter S. Storvik")))
 
-(defwidget sysbars []
-  (box :orientation "h" :space-evenly "true" :spacing 60 :class "leftdash-scales" :halign "center"
-      (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 20 :vexpand "false" :hexpand "false"
-				(scale :min 0 :max 101 :value brightness :flipped "true" :orientation "v")
-                (label :class "sysbars-icon" :text "󰃠"))
-      (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 20 :vexpand "false" :hexpand "false"
-		   (scale :min 0 :max 101 :value 20 :flipped "true" :orientation "v")
-                (label :class "iconcpu" :text ""))
-      (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 20 :vexpand "false" :hexpand "false"
-				(scale :min 0 :max 101 :value volume :flipped "true" :orientation "v")
-                (label :class "iconcpu" :text ""))
-      (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 20 :vexpand "false" :hexpand "false"
-				(scale :min 0 :max 101 :value {EWW_BATTERY.BAT0.capacity} :flipped "true" :orientation "v")
-                (battery-icon :status {EWW_BATTERY.BAT0.status} :battery {EWW_BATTERY.BAT0.capacity}))))
-
-(defwindow sysbars
+(defwindow profile
   :monitor 0
   :geometry (geometry
-              :x "20"
-              :y "0"
-              :width "380px"
-              :height "180px"
-              :anchor "left center")
+              :x "460"
+              :y "160"
+              :width "160px"
+              :height "160px")
   :stacking "fg"
-  (sysbars))
+  (profilepic))
+
+(defwidget datetimes []
+  (box :class "box" :orientation "v" :space-evenly "false"
+    (label :class "datetime-clock" :halign "start" :text "${time.hour}:${time.min}")
+    (label :class "datetime-date" :halign "start" :text "${date}")
+    (calendar :class "calendar" :show-heading "true" :show-week-numbers "true")))
+
+(defwindow datetime
+  :monitor 0
+  :geometry (geometry
+              :x "650"
+              :y "160"
+              :width "350px"
+              :height "400px")
+  :stacking "fg"
+  (datetimes))
 
 (defwidget network []
-  (box :orientation "h" :space-evenly "false" :spacing 40 :valign "center"
-    (label :class "network-icon" :text "󰖩")
-    (box :orientation "v" :space-evenly "false" :spacing 10 :halign "center" :valign "center"
-      (label :text ssid)
-      (label :text ip))))
+  (box :class "box" :orientation "v" :space-evenly "true"
+    (box :class "network" :orientation "h" :space-evenly "false" :spacing 40 :valign "center"
+      (label :class "network-icon" :text "󰖩")
+      (box :orientation "v" :space-evenly "false" :spacing 10 :valign "center"
+        (label :text ssid :halign "start")
+        (label :text wireless-ip :halign "start")))
+    (box :class "network" :orientation "h" :space-evenly "false" :spacing 40 :valign "center"
+      (label :class "network-icon" :text "󰈀")
+      (box :orientation "v" :space-evenly "false" :spacing 10 :halign "center" :valign "center"
+        (label :text "no device connected" :halign "start")
+        (label :text "no ethernet ip" :halign "start")))))
 
 (defwindow network
   :monitor 0
   :geometry (geometry
-              :x "110"
-              :y "240"
-              :width "380px"
-              :height "180px"
-              :anchor "left bottom")
+              :x "460"
+              :y "592"
+              :width "570px"
+              :height "180px")
   :stacking "fg"
   (network))
+
+(defwidget sysbars []
+  (box :class "box" :orientation "h" :space-evenly "true" :halign "center"
+      (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 4
+				(scale :min 0 :max 101 :value brightness :flipped "true" :orientation "v")
+                (label :class "sysbars-icon" :text "󰃠"))
+      (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 4
+		   (scale :min 0 :max 101 :value 20 :flipped "true" :orientation "v")
+                (label :class "iconcpu" :text ""))
+      (box :class "sysbars" :orientation "v" :space-evenly "false" :spacing 4
+				(scale :min 0 :max 101 :value volume :flipped "true" :orientation "v")
+                (label :class "iconcpu" :text ""))))
+
+(defwindow sysbars
+  :monitor 0
+  :geometry (geometry
+              :x "276"
+              :y "380"
+              :width "570px"
+              :height "180px")
+  :stacking "fg"
+  (sysbars))
+
+(defwidget tray []
+  (box :class "box" :orientation "h"
+    (systray :spacing 4 :orientation "h" :space-evenly true :icon-size 32)))
+
+(defwindow systray
+  :monitor 0
+  :geometry (geometry
+              :x "458"
+              :y "780"
+              :width "574px"
+              :height "60px")
+  :stacking "fg"
+  (tray))

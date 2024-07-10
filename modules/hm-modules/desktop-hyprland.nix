@@ -19,6 +19,8 @@ in
                 ## Files and cwd
                 FILE="${config.home.homeDirectory}/.cache/eww_launch.dashboard"
                 CFG="${config.xdg.configHome}/eww"
+                ## uncomment this line when doing eww widget development
+                CFG="/home/storvik/developer/nix/nix-config/modules/hm-modules/eww"
                 ## Run eww daemon if not running already
                 if [[ ! `pidof eww` ]]; then
                 	${pkgs.eww}/bin/eww daemon
@@ -26,8 +28,9 @@ in
                 fi
                 ## Open widgets
                 run_eww() {
+        	        ${pkgs.eww}/bin/eww --config "$CFG" close storbar
         	        ${pkgs.eww}/bin/eww --config "$CFG" open-many \
-                  		   leftdash sysbars network
+                  		   bg profile datetime sysbars network systray
                 }
                 ## Launch or close widgets accordingly
                 if [[ ! -f "$FILE" ]]; then
@@ -35,7 +38,8 @@ in
                  	run_eww
                 else
                 	${pkgs.eww}/bin/eww --config "$CFG" close \
-                  		   leftdash sysbars network
+                  		   bg profile datetime sysbars network systray
+        	        ${pkgs.eww}/bin/eww --config "$CFG" open storbar
                   rm "$FILE"
                 fi
       '';
@@ -233,7 +237,7 @@ in
             }
             {
               timeout = 900;
-              on-timeout = "hyprlock";
+              on-timeout = "${ewwCmd}/bin/launch-eww ; hyprlock";
             }
             {
               timeout = 1200;

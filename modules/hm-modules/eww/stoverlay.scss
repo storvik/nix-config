@@ -1,36 +1,42 @@
-.leftdash-bg {
+.bg {
+    background: rgba(47, 51, 59, 0.6);
+}
+
+.box {
 	background-color: #474D59;
     border-radius: 10px;
+    padding: 10px;
     margin-left: 20px;
 }
 
-.leftdash-heading {
-    color: #81A1C1;
-	font-size : 32px;
-	font-weight : bold;
-    margin-top: 30px;
+.profilepic-username {
+    margin-top: 12px;
 }
 
-.leftdash-scales {
-	// background-color: #3A404C;
-    min-height: 180px;
+// controls padding between numbers in calendar
+.calendar {
+    padding-top: 15px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
-.leftdash-scalebox {
-	background-color: #3A404C;
+.datetime-clock {
+    font-size: 60px;
+    margin-left: 10px;
 }
 
-.leftdash-scale {
-	background-color: #3AF04C;
-	border-radius: 16px;
+.datetime-date {
+    margin-left: 10px;
+    margin-bottom: 30px;
 }
 
+.network {
+    margin-left: 20px;
+}
 
-
-.sys_bat {
-    color: #bfc9db;
-    background-color: #0f0f17;
-    border-radius: 10px;
+.network-icon {
+    font-size: 42px;
+    font-family: 'Iosevka Nerd Font';
 }
 
 .sysbars scale trough highlight {
@@ -43,29 +49,16 @@ scale trough {
 	all: unset;
 	background-color: #232232;
 	border-radius: 24px;
-	min-height: 130px;
+	min-height: 120px;
 	min-width: 14px;
-	margin : 10px 0px 0px 0px;
+	margin : 20px;
 }
 
 .sysbars-icon {
     font-family: 'Iosevka Nerd Font';
 }
 
-.network-icon {
-    font-size: 42px;
-    font-family: 'Iosevka Nerd Font';
-}
-
-.power-bg {
-	background-color: #474D59;
-    min-width: 80px;
-    border-radius: 10px;
-    margin-right: 20px;
-}
-
-.power-icons {
-    padding-right: 9px;
-    font-size: 60px;
-    font-family: 'Iosevka Nerd Font';
+.tray {
+  background-color: rgba(109, 111, 115, 0.6);
+  font-family: GoMono Nerd Font;
 }
