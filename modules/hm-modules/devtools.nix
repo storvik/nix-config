@@ -45,7 +45,7 @@ in
       nix-prefetch-git
       nix-prefetch-github
     ] ++ lib.optionals (!builtins.elem "python" cfg.devtools.disabledModules) [
-      nodePackages.pyright
+      pyright
     ] ++ lib.optionals (!builtins.elem "rust" cfg.devtools.disabledModules) [
       rust-analyzer-unwrapped
       clippy
