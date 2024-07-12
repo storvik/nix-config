@@ -235,6 +235,7 @@ in
         ripgrep
         dtach
         ltunify
+        localsend
         pdftk
         rclone
         simple-http-server
