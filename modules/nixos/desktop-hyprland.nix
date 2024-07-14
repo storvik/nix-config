@@ -34,10 +34,17 @@ in
 
     services.udisks2.enable = true;
 
+    programs.thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
+
     environment.systemPackages = with pkgs; [
       pamixer
       brightnessctl
-      cinnamon.nemo
       pinentry-qt # needed to use from scripts
       wl-clipboard # needed for copy paste in swappy etc
     ];
