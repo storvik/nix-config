@@ -56,6 +56,9 @@ in
       ];
     };
 
+    # TODO: Make this configurable
+    services.udev.extraRules = builtins.readFile ./probe-rs-udev.rules;
+
     environment.systemPackages = with pkgs; [
       debootstrap
     ] ++ lib.optionals (cfg.desktop != "none") [
