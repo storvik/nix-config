@@ -41,7 +41,7 @@
   :geometry (geometry
               :x "650"
               :y "160"
-              :width "350px"
+              :width "380px"
               :height "400px")
   :stacking "fg"
   (datetimes))

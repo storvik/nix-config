@@ -3,7 +3,7 @@
   `date +'{"hour":"%H","min":"%M"}'`)
 
 (defpoll date :interval "180s"
-  `date +'%B %m %y'`)
+  `date +'%B %d'`)
 
 ;; include storbar, my statusbar
 (include "storbar.yuck")
