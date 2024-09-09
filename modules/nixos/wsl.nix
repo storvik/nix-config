@@ -11,6 +11,7 @@ in
       defaultUser = "storvik";
       startMenuLaunchers = true;
       nativeSystemd = true;
+      useWindowsDriver = true;
     };
   };
 
