@@ -1,6 +1,8 @@
 inputs: { config, lib, pkgs, ... }:
 let
+
   cfg = config.storvik;
+
 in
 {
 
@@ -29,7 +31,9 @@ in
     # home.extraOutputsToInstall = [ "man" ];
 
     # Custom fonts
-    fonts.fontconfig.enable = (cfg.desktop != "none" || cfg.enableWSL);
+    fonts.fontconfig = lib.mkIf pkgs.stdenv.isLinux {
+      enable = (cfg.desktop != "none" || cfg.enableWSL);
+    };
 
     # SSH config
     programs.ssh = {
@@ -38,7 +42,7 @@ in
       includes = [ "~/.ssh/config.d/*" ];
     };
 
-    services.ssh-agent.enable = true;
+    services.ssh-agent.enable = pkgs.stdenv.isLinux;
 
     # Fish shell
     programs.fish = {
@@ -145,7 +149,7 @@ in
       };
     };
 
-    services.gpg-agent = {
+    services.gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
       enable = (!cfg.disableGPG);
       enableBashIntegration = true;
       enableFishIntegration = true;
@@ -153,35 +157,89 @@ in
       extraConfig = "allow-loopback-pinentry";
     };
 
-    programs.foot = {
-      enable = (cfg.desktop != "none");
-      settings = {
-        main = {
-          shell = "${pkgs.fish}/bin/fish";
-          term = "xterm-256color";
 
-          font = "${if cfg.disableNerdfonts then "Iosevka" else "Iosevka Nerd Font"}:size=8";
-          dpi-aware = "yes";
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        shell = {
+          program = "${pkgs.fish}/bin/fish";
         };
+        scrolling = {
+          multiplier = 3;
+        };
+        # window = {
+        #   decorations = "None";
+        # };
         colors = {
-          foreground = "ECEFF1";
-          background = "263238";
-          regular0 = "546E7A"; # black
-          regular1 = "FF5252"; # red
-          regular2 = "5CF19E"; # green
-          regular3 = "FFD740"; # yellow
-          regular4 = "40C4FF"; # blue
-          regular5 = "FF4081"; # magenta
-          regular6 = "64FCDA"; # cyan
-          regular7 = "FFFFFF"; # white
-          bright0 = "B0BEC5"; # bright black
-          bright1 = "FF8A80"; # bright red
-          bright2 = "B9F6CA"; # bright green
-          bright3 = "FFE57F"; # bright yellow
-          bright4 = "80D8FF"; # bright blue
-          bright5 = "FF80AB"; # bright magenta
-          bright6 = "A7FDEB"; # bright cyan
-          bright7 = "FFFFFF"; # bright white
+          primary = {
+            background = "#2e3440";
+            foreground = "#d8dee9";
+            dim_foreground = "#a5abb6";
+          };
+          cursor = {
+            text = "#2e3440";
+            cursor = "#d8dee9";
+          };
+          vi_mode_cursor = {
+            text = "#2e3440";
+            cursor = "#d8dee9";
+          };
+          selection = {
+            text = "CellForeground";
+            background = "#4c566a";
+          };
+          search = {
+            matches = {
+              foreground = "CellBackground";
+              background = "#88c0d0";
+            };
+          };
+          footer_bar = {
+            background = "#434c5e";
+            foreground = "#d8dee9";
+          };
+          normal = {
+            black = "#3b4252";
+            red = "#bf616a";
+            green = "#a3be8c";
+            yellow = "#ebcb8b";
+            blue = "#81a1c1";
+            magenta = "#b48ead";
+            cyan = "#88c0d0";
+            white = "#e5e9f0";
+          };
+          bright = {
+            black = "#4c566a";
+            red = "#bf616a";
+            green = "#a3be8c";
+            yellow = "#ebcb8b";
+            blue = "#81a1c1";
+            magenta = "#b48ead";
+            cyan = "#8fbcbb";
+            white = "#eceff4";
+          };
+          dim = {
+            black = "#373e4d";
+            red = "#94545d";
+            green = "#809575";
+            yellow = "#b29e75";
+            blue = "#68809a";
+            magenta = "#8c738c";
+            cyan = "#6d96a5";
+            white = "#aeb3bb";
+          };
+        };
+        font = {
+          normal = {
+            family = "Iosevka Nerd Font";
+          };
+          bold = {
+            family = "Iosevka Nerd Font";
+          };
+          italic = {
+            family = "Iosevka Nerd Font";
+          };
+          size = 13;
         };
       };
     };
@@ -200,7 +258,7 @@ in
       ] ++ lib.optionals (!cfg.disableEmail) [ epkgs.mu4e ];
     };
 
-    services.emacs = {
+    services.emacs = lib.mkIf pkgs.stdenv.isLinux {
       enable = (!cfg.disableEmacsDaemon);
       defaultEditor = true;
       client = {
@@ -238,7 +296,6 @@ in
         graphviz
         ripgrep
         dtach
-        ltunify
         localsend
         pdftk
         rclone

@@ -20,13 +20,11 @@ in
       codeium
     ] ++ lib.optionals (!builtins.elem "android" cfg.devtools.disabledModules) [
       android.platform-tools
-      android-studio
       apktool
       scrcpy
     ] ++ lib.optionals (!builtins.elem "c" cfg.devtools.disabledModules) [
       clang-tools
       cmake
-      gdb
       protobuf
       ninja
       meson

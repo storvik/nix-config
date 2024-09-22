@@ -2,14 +2,37 @@
 
 let
 
-  inherit (inputs) home-manager nixpkgs hyprland sops-nix nixos-wsl nix-index-database;
+  inherit (inputs) home-manager nixpkgs emacs-overlay hyprland sops-nix nixos-wsl nix-index-database nix-darwin pr67576;
 
 in
 
 {
 
   mkSystem = { hostname, machine, pkgs ? nixpkgs, system ? "x86_64-linux", extraModules ? [ ], ... }@args:
+    let
 
+      # gimp devel pgks
+      pr67576pkgs = import pr67576 {
+        inherit system;
+      };
+
+      # TODO: This should be moved to functon / let
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          allowBroken = true;
+          packageOverrides = pkgs: {
+            gimp = pr67576pkgs.gimp;
+          };
+        };
+        overlays = [
+          (import "${self}/overlays")
+          emacs-overlay.outputs.overlay
+        ];
+      };
+
+    in
     nixpkgs.lib.nixosSystem {
       inherit system pkgs;
 
@@ -46,6 +69,72 @@ in
           networking.hostName = hostname;
         })
       ];
+
+      specialArgs = {
+        inherit inputs;
+      };
+    };
+
+  mkDarwin = { hostname, username ? "storvik", system ? "aarch64-darwin", extraModules ? [ ], ... }@args:
+    let
+
+      # gimp devel pgks
+      pr67576pkgs = import pr67576 {
+        inherit system;
+      };
+
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          allowBroken = true;
+          packageOverrides = pkgs: {
+            gimp = pr67576pkgs.gimp;
+          };
+        };
+        overlays = [
+          (import "${self}/overlays")
+          emacs-overlay.outputs.overlay
+        ];
+      };
+
+    in
+    nix-darwin.lib.darwinSystem {
+      inherit system pkgs;
+
+      modules = [
+        (self.outputs.darwinModules.default)
+        ("${self}/hosts/${hostname}/darwin.nix")
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "backup";
+            users."${username}" = { config, pkgs, ... }: {
+              imports = [
+                (nix-index-database.hmModules.nix-index)
+                (self.outputs.homeManagerModules.default)
+                ("${self}/hosts/${hostname}/home.nix")
+              ];
+            };
+            extraSpecialArgs = {
+              inherit inputs;
+            };
+            sharedModules = [
+              (sops-nix.homeManagerModules.sops)
+            ];
+          };
+          users.users."${username}".home = "/Users/${username}";
+
+          # Set Git commit hash for darwin-version.]
+          system.configurationRevision = self.rev or self.dirtyRev or null;
+
+          # The platform the configuration will be used on.
+          nixpkgs.hostPlatform = system;
+        }
+      ] ++ extraModules;
 
       specialArgs = {
         inherit inputs;

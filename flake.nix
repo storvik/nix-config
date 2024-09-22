@@ -18,6 +18,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     sops-nix = {
@@ -29,7 +34,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -39,78 +43,58 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixos-wsl, deploy-rs, pr67576, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixos-wsl, nix-darwin, sops-nix, deploy-rs, pr67576, ... }@inputs:
     let
-      system = "x86_64-linux";
 
-      # gimp devel pgks
-      pr67576pkgs = import pr67576 {
-        inherit system;
-      };
-
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          allowBroken = true;
-          packageOverrides = pkgs: {
-            gimp = pr67576pkgs.gimp;
-          };
-        };
-        overlays = [
-          (import ./overlays)
-          emacs-overlay.outputs.overlay
-        ];
-      };
+      linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
+      darwinSystems = [ "aarch64-darwin" "x86_64-darwin" ];
+      forAllSystems = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
 
       flakeLib = import ./flake {
         inherit self inputs;
       };
 
-      inherit (flakeLib) mkSystem;
+      inherit (flakeLib) mkSystem mkDarwin;
+
     in
     {
 
       nixosModules.default = import ./modules/module.nix inputs { };
       homeManagerModules.default = import ./modules/hm-module.nix inputs { };
+      darwinModules.default = import ./modules/darwin-module.nix inputs { };
 
       packages = {
-        hm-docs = pkgs.callPackage ./pkgs/hm-docs.nix { inherit nixpkgs; };
-        nixos-docs = pkgs.callPackage ./pkgs/nixos-docs.nix { inherit nixpkgs; };
+        hm-docs = nixpkgs.callPackage ./pkgs/hm-docs.nix { inherit nixpkgs; };
+        nixos-docs = nixpkgs.callPackage ./pkgs/nixos-docs.nix { inherit nixpkgs; };
+        # TODO: Add darwin docs
       };
 
       nixosConfigurations = {
         kalinix = mkSystem {
-          inherit pkgs system;
           username = "storvik";
           hostname = "kalinix";
           machine = "lenovo-e31";
         };
         storvik-nixos-matebook = mkSystem {
-          inherit pkgs system;
           username = "storvik";
           hostname = "storvik-nixos-matebook";
           machine = "matebook";
         };
         home-server = mkSystem {
-          inherit pkgs system;
           username = "storvik";
           hostname = "home-server";
           machine = "intel-nuc";
         };
         retronix = mkSystem {
-          inherit pkgs system;
           username = "storvik";
           hostname = "retronix";
           machine = "samsung-rc720";
         };
         storvik-nixos-wsl = mkSystem {
-          inherit pkgs system;
           hostname = "storvik-nixos-wsl";
           machine = "wsl";
         };
         live-iso = mkSystem {
-          inherit pkgs system;
           username = "storvik";
           hostname = "storvik-live";
           machine = "live";
@@ -124,8 +108,16 @@
         };
       };
 
+      darwinConfigurations = {
+        PSTORVIK-MBP14 = mkDarwin {
+          username = "petter.storvik";
+          hostname = "PSTORVIK-MBP14";
+        };
+      };
+
       # For convenience when running nix build
       live-iso = self.nixosConfigurations.live-iso.config.system.build.isoImage;
+      darwinPackages = self.darwinConfigurations."PSTORVIK-MBP14".pkgs;
 
       deploy.nodes = {
         home-server = {
@@ -160,12 +152,14 @@
       # This is highly advised, and will prevent many possible mistakes, taken from deploy-rs docs
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
-      devShells."${system}".default = pkgs.mkShell {
-        buildInputs = [
-          deploy-rs.defaultPackage."${system}"
-          pkgs.sops
-        ];
-      };
-
+      devShells = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system}; in {
+          default = pkgs.mkShell {
+            buildInputs = [
+              deploy-rs.defaultPackage."${system}"
+              pkgs.sops
+            ];
+          };
+        });
     };
 }

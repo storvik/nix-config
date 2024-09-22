@@ -5,8 +5,9 @@ in
 {
 
   config = lib.mkIf cfg.waylandTools {
+
     # imv image viewer
-    programs.imv = {
+    programs.imv = lib.mkIf pkgs.stdenv.isLinux {
       enable = true;
       settings =
         let
