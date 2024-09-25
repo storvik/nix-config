@@ -27,16 +27,19 @@ creation_rules:
       - pgp:
           - *user_storvik_work
         age:
+          - *user_storvik_age
           - *user_storvik_work_age
   - path_regex: hosts/home-server/secrets.ya?ml$
     key_groups:
       - pgp:
           - *user_storvik_work
         age:
+          - *user_storvik_age
           - *host_home_server
   - path_regex: hosts/retronix/secrets.ya?ml$
     key_groups:
       - pgp:
           - *user_storvik_work
         age:
+          - *user_storvik_age
           - *user_retronix_age
