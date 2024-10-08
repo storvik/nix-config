@@ -2,7 +2,9 @@
 
 {
 
-  storvik = { };
+  storvik = {
+    virtualization = true;
+  };
 
   services.emacs = {
     enable = false;
