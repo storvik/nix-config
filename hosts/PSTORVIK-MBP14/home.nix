@@ -8,6 +8,7 @@
     gitSigningKey = "0x3B7A1B8284072C5A!";
     waylandTools = true;
     devtools.enable = true;
+    designer = true;
     texlive = false;
     cad = false;
     ai.enable = true;

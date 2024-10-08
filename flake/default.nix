@@ -2,7 +2,7 @@
 
 let
 
-  inherit (inputs) home-manager nixpkgs emacs-overlay hyprland sops-nix nixos-wsl nix-index-database nix-darwin pr67576;
+  inherit (inputs) home-manager nixpkgs emacs-overlay hyprland sops-nix nixos-wsl nix-index-database nix-darwin nix-homebrew homebrew-cask homebrew-core homebrew-bundle mac-app-util pr67576;
 
 in
 
@@ -78,20 +78,11 @@ in
   mkDarwin = { hostname, username ? "storvik", system ? "aarch64-darwin", extraModules ? [ ], ... }@args:
     let
 
-      # gimp devel pgks
-      pr67576pkgs = import pr67576 {
-        inherit system;
-      };
-
-
       pkgs = import nixpkgs {
         inherit system;
         config = {
           allowUnfree = true;
           allowBroken = true;
-          packageOverrides = pkgs: {
-            gimp = pr67576pkgs.gimp;
-          };
         };
         overlays = [
           (import "${self}/overlays")
@@ -106,6 +97,7 @@ in
       modules = [
         (self.outputs.darwinModules.default)
         ("${self}/hosts/${hostname}/darwin.nix")
+        mac-app-util.darwinModules.default
         home-manager.darwinModules.home-manager
         {
           home-manager = {
@@ -114,9 +106,10 @@ in
             backupFileExtension = "backup";
             users."${username}" = { config, pkgs, ... }: {
               imports = [
-                (nix-index-database.hmModules.nix-index)
                 (self.outputs.homeManagerModules.default)
                 ("${self}/hosts/${hostname}/home.nix")
+                mac-app-util.homeManagerModules.default
+                (nix-index-database.hmModules.nix-index)
               ];
             };
             extraSpecialArgs = {
@@ -133,6 +126,24 @@ in
 
           # The platform the configuration will be used on.
           nixpkgs.hostPlatform = system;
+        }
+        nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            enable = true;
+            enableRosetta = true;
+
+            user = username;
+
+            taps = {
+              "homebrew/homebrew-core" = homebrew-core;
+              "homebrew/homebrew-cask" = homebrew-cask;
+              "homebrew/homebrew-bundle" = homebrew-bundle;
+            };
+
+            mutableTaps = false;
+            autoMigrate = true;
+          };
         }
       ] ++ extraModules;
 

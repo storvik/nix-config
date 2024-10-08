@@ -98,6 +98,13 @@ in
     programs.lsd = {
       enable = true;
       enableAliases = true;
+      settings = {
+        icons.separator = "  ";
+        ignore-globs = [
+          ".git"
+          ".hg"
+        ];
+      };
     };
 
     programs.starship = {
@@ -251,7 +258,7 @@ in
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs-pgtk;
+      package = if pkgs.stdenv.isLinux then pkgs.emacs-pgtk else pkgs.emacs-macport;
       extraPackages = epkgs: [
         epkgs.treesit-grammars.with-all-grammars
         epkgs.jinx

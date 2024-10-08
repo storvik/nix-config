@@ -13,4 +13,14 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 5;
 
+
+  homebrew = {
+    enable = true;
+    casks = [
+      "coolterm"
+      "slack"
+      "syncthing"
+    ];
+  };
+
 }

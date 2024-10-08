@@ -6,14 +6,15 @@ My NixOS configuration using nix flakes.
 
 ## Hosts
 
-| Host                   | Machine       | Description                                            | Features            |
-|------------------------|---------------|--------------------------------------------------------|---------------------|
-| storvik-nixos-wsl      | wsl           | NixOS config used on Windows Subsystem for Linux       |                     |
-| storvik-nixos-matebook | matebook      | Config used on Huawei Matebook, my main Linux computer | hyprland emacs foot |
-| retronix               | samsung-rc720 | Retro gaming computer using RetroArch                  | gnome retroarch     |
-| kalinix                | lenovo-e31    | Laptop set up with various forensics tooling           | hyprland forensics  |
-| storvik-nixos-nuc      | intel-nuc     | NUC used as home server for backup etc                 |                     |
-| storvik-live           | live          | Live USB with my config                                |                     |
+| Host                   | Machine       | Description                                            | Features                   |
+|------------------------|---------------|--------------------------------------------------------|----------------------------|
+| storvik-nixos-wsl      | wsl           | NixOS config used on Windows Subsystem for Linux       |                            |
+| storvik-nixos-matebook | matebook      | Config used on Huawei Matebook, my main Linux computer | hyprland emacs             |
+| retronix               | samsung-rc720 | Retro gaming computer using RetroArch                  | gnome retroarch            |
+| kalinix                | lenovo-e31    | Laptop set up with various forensics tooling           | hyprland forensics         |
+| storvik-nixos-nuc      | intel-nuc     | NUC used as home server for backup etc                 |                            |
+| storvik-live           | live          | Live USB with my config                                |                            |
+| PSTORVIK-MBP14         | macbook pro   | Config for Macbook pro using nix-darwin                | yabai skhd emacs alacritty |
 
 ## Structure
 
@@ -75,6 +76,18 @@ Each should contain `home.nix` and / or `nixos.nix`, which should define host co
 3. Install nix-flakes by importing `./modules/nixos/nixsettings.nix` in `/etc/nixos/configuration.nix`
 4. `sudo nixos-rebuild switch --impure --flake .#storvik-nixos-lenovo`
 
+### MacOS
+
+1. Install dependencies `xcode-select --install`
+2. Install Nix from [Determinate system](https://github.com/DeterminateSystems/nix-installer)
+3. Build configuration and switch to it `nix run nix-darwin -- switch --flake .#PSTORVIK-MBP14`
+
+After initial build / switch system is rebuilt using `darwin-rebuild switch --flake .`.
+
+#### Rosetta
+
+Apple Silicon Macs can install Rosetta in order to run Intel binaries.
+Rosetta is installed by running, `softwareupdate --install-rosetta --agree-to-license`.
 
 ## Create live USB
 

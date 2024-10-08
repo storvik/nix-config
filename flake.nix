@@ -23,6 +23,28 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     sops-nix = {
@@ -34,6 +56,7 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -43,7 +66,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, emacs-overlay, nixos-wsl, nix-darwin, sops-nix, deploy-rs, pr67576, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-wsl, nix-darwin, sops-nix, deploy-rs, pr67576, ... }@inputs:
     let
 
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
