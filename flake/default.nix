@@ -85,8 +85,8 @@ in
           allowBroken = true;
         };
         overlays = [
-          (import "${self}/overlays")
           emacs-overlay.outputs.overlay
+          (import "${self}/overlays")
         ];
       };
 

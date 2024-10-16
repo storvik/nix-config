@@ -1,3 +1,4 @@
 [
   ./clpm
+  ./emacs
 ]

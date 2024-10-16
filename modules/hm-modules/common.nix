@@ -258,11 +258,7 @@ in
 
     programs.emacs = {
       enable = true;
-      package = if pkgs.stdenv.isLinux then pkgs.emacs-pgtk else pkgs.emacs-macport;
-      extraPackages = epkgs: [
-        epkgs.treesit-grammars.with-all-grammars
-        epkgs.jinx
-      ] ++ lib.optionals (!cfg.disableEmail) [ epkgs.mu4e ];
+      package = pkgs.storvik-emacs-withPackages;
     };
 
     services.emacs = lib.mkIf pkgs.stdenv.isLinux {
@@ -277,47 +273,32 @@ in
       };
     };
 
-    home.packages =
-      with pkgs; let
-        ent = writeScriptBin "github-ent" ''
-          #!${pkgs.bash}/bin/bash
-          git config user.name "petter-storvik_goodtech"
-          git config user.email "petter.storvik@goodtech.no"
-        '';
-        priv = writeScriptBin "github-priv" ''
-          #!${pkgs.bash}/bin/bash
-          git config user.name "storvik"
-          git config user.email "petterstorvik@gmail.com"
-        '';
-      in
-      [
-        ent
-        priv
-        (aspellWithDicts (dicts: with dicts; [ en en-computers en-science nb ]))
-        (hunspellWithDicts (with hunspellDicts; [ en-us-large nb-no ]))
-        # have to install dictionaries separately in order for enchant (used by emacs jinx) to find them
-        hunspellDicts.en-us-large
-        hunspellDicts.nb-no
-        nuspell
-        enchant
-        graphviz
-        ripgrep
-        dtach
-        localsend
-        pdftk
-        rclone
-        simple-http-server
-        tree
-        unixtools.netstat
-        unixtools.route
-        whois
-      ] ++ lib.optionals (cfg.desktop != "none" || cfg.enableWSL) [
-        fira-code
-        fira-code-symbols
-        iosevka
-      ] ++ lib.optionals (!cfg.disableNerdfonts) [
-        nerdfonts
-      ];
+    home.packages = with pkgs; [
+      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science nb ]))
+      (hunspellWithDicts (with hunspellDicts; [ en-us-large nb-no ]))
+      # have to install dictionaries separately in order for enchant (used by emacs jinx) to find them
+      hunspellDicts.en-us-large
+      hunspellDicts.nb-no
+      nuspell
+      enchant
+      graphviz
+      ripgrep
+      dtach
+      localsend
+      pdftk
+      rclone
+      simple-http-server
+      tree
+      unixtools.netstat
+      unixtools.route
+      whois
+    ] ++ lib.optionals (cfg.desktop != "none" || cfg.enableWSL) [
+      fira-code
+      fira-code-symbols
+      iosevka
+    ] ++ lib.optionals (!cfg.disableNerdfonts) [
+      nerdfonts
+    ];
 
   };
 
