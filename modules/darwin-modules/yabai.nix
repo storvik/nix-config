@@ -35,6 +35,7 @@ in
       enable = true;
       skhdConfig = ''
         alt - return : alacritty
+        shift + alt - return : emacsclient -c
 
         alt - q : yabai -m window --close
 
