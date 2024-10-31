@@ -15,7 +15,7 @@ in
     users.users.storvik = {
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG/cetz89/SRWucBZPsARH8pnHwXCW9MGrHmNJyhHMCC petterstorvik@gmail.com" # matebook
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBoFq88oaivkC4bqCUINV6DRwg6Qfkd+a8gC6Mc68EKB petter.storvik@goodtech.no" # lenovo
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7BiFWuBc2PTpQ/wSrL76nDw0+TDuyjaNR0hlToZgoq petter.storvik@tive.com " # macbook
       ];
     };
 

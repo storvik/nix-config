@@ -27,8 +27,8 @@ in
           };
         };
         overlays = [
-          (import "${self}/overlays")
           emacs-overlay.outputs.overlay
+          (import "${self}/overlays")
         ];
       };
 
