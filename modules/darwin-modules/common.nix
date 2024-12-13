@@ -81,6 +81,7 @@ in
       pkgs.fira-code-symbols
       pkgs.iosevka
       pkgs.nerdfonts
+    security.pam.enableSudoTouchIdAuth = true;
     ];
 
   };
