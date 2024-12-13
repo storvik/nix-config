@@ -14,6 +14,11 @@ creation_rules:
         age:
           - *user_storvik_age
           - *user_storvik_macbook_age
+  - path_regex: hosts/PSTORVIK-MBP14/secrets.ya?ml$
+    key_groups:
+      - age:
+          - *user_storvik_age
+          - *user_storvik_macbook_age
   - path_regex: hosts/storvik-live/secrets.ya?ml$
     key_groups:
       - pgp:

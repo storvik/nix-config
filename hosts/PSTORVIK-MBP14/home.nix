@@ -14,4 +14,18 @@
     ai.enable = true;
   };
 
+  sops = {
+    # gnupg.home = "/home/storvik/.gnupg"; # Using gpg didn't work, sops-nix service didn't start
+    age.sshKeyPaths = [ "/Users/petter.storvik/.ssh/id_ed25519" ];
+    defaultSopsFile = ./secrets.yaml;
+
+    secrets.petter_storvik_dev = { };
+    secrets.petter_svartisenfestivalen_no = { };
+    secrets.petter_storvik_tive_com = { };
+
+    secrets.openai_key = { };
+    secrets.anthropic_key = { };
+  };
+
+
 }
