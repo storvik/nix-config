@@ -18,6 +18,7 @@
     enable = true;
     casks = [
       "coolterm"
+      "signal"
       "slack"
       "syncthing"
     ];
