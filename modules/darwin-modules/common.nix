@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+inputs: { config, lib, pkgs, ... }:
 let
   cfg = config.storvik;
 in
@@ -18,13 +18,37 @@ in
       extra-platforms = x86_64-darwin aarch64-darwin
     '';
 
+    # This line is a prerequisite
+    nix.settings.trusted-users = [ "@admin" ];
+
+    # Nifty linux builder
+    nix.linux-builder = {
+      enable = true;
+      ephemeral = true;
+      maxJobs = 4;
+      config = {
+        virtualisation = {
+          darwin-builder = {
+            diskSize = 40 * 1024;
+            memorySize = 8 * 1024;
+          };
+          cores = 6;
+        };
+      };
+    };
+
     nixpkgs.config = {
       allowBroken = true;
       allowUnfree = true;
     };
 
+    # Use nixpkgs from this flake in nix-shell etc
+    nix.registry.nixpkgs.flake = inputs.nixpkgs;
+    nix.channel.enable = false;
+
     # Create /etc/zshrc that loads the nix-darwin environment.
     programs.zsh.enable = true; # default shell on catalina
+    programs.bash.enable = true;
     programs.fish.enable = true;
 
     system.defaults = {
@@ -38,9 +62,10 @@ in
       };
       finder = {
         AppleShowAllExtensions = true;
-        ShowPathbar = true;
+        CreateDesktop = false;
         FXEnableExtensionChangeWarning = false;
         FXPreferredViewStyle = "clmv";
+        ShowPathbar = true;
       };
       screensaver.askForPasswordDelay = 10;
       # Disable animation when switching screens or opening apps

@@ -4,7 +4,7 @@ inputs: { ... }:
 
   imports = [
     ./darwin-modules/options.nix
-    ./darwin-modules/common.nix
+    (import ./darwin-modules/common.nix inputs)
     ./darwin-modules/yabai.nix
     ./darwin-modules/virtualization.nix
   ];
