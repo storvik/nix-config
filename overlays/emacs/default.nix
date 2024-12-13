@@ -28,16 +28,11 @@ self: super: rec {
                 url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/fix-window-role.patch";
                 sha256 = "+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
               })
-              # Use poll instead of select to get file descriptors
-              (super.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-30/poll.patch";
-                sha256 = "sha256-bQW9LPmJhMAtP2rftndTdjw0uipPyOp5oXqtIcs7i/Q=";
-              })
               # Add setting to enable rounded window with no decoration (still
               # have to alter default-frame-alist)
               (super.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-30/round-undecorated-frame.patch";
-                sha256 = "uYIxNTyfbprx5mCqMNFVrBcLeo+8e21qmBE3lpcnd+4=";
+                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-31/round-undecorated-frame.patch";
+                sha256 = "sha256-iMn/aYtTKyJx3k1n2kVYU0TdriIFPjYSmKh9mEdXrpE=";
               })
               # Make Emacs aware of OS-level light/dark mode
               # https://github.com/d12frosted/homebrew-emacs-plus#system-appearance-change
