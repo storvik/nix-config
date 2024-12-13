@@ -22,6 +22,14 @@
           Disable Emacs daemon.
         '';
       };
+    disableEmacs =
+      lib.mkEnableOption null
+      // {
+        default = false;
+        description = lib.mdDoc ''
+          Disable Emacs daemon.
+        '';
+      };
     disableNerdfonts =
       lib.mkEnableOption null
       // {
