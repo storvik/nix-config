@@ -23,9 +23,7 @@ in
       apktool
       scrcpy
     ] ++ lib.optionals (!builtins.elem "c" cfg.devtools.disabledModules) [
-      clang-tools
       cmake
-      protobuf
       ninja
       meson
     ] ++ lib.optionals (!builtins.elem "go" cfg.devtools.disabledModules) [
