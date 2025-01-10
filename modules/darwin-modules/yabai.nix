@@ -4,31 +4,64 @@ let
 in
 {
 
-  config = lib.mkIf (!cfg.disableYabai) {
+  config = lib.mkIf (cfg.enableYabai) {
 
-    services.yabai = {
-      enable = true;
-      # enableScriptingAddition = true; # should probably turn this on, but requires SIP to be disabled.
-      config = {
-        layout = "bsp";
-        window_placement = "second_child"; # New window spawns to the right if vertical split, or bottom if horizontal split
-        top_padding = 12;
-        bottom_padding = 12;
-        left_padding = 12;
-        right_padding = 12;
-        window_gap = 12;
-        mouse_follows_focus = "on"; # center mouse on window with focus
-        mouse_modifier = "alt"; # modifier for clicking and dragging with mouse
-        mouse_action1 = "move"; # set modifier + left-click drag to move window
-        mouse_action2 = "resize"; # set modifier + right-click drag to resize window
-        mouse_drop_action = "swap"; # when window is dropped in center of another window, swap them (on edges it will split it)
+    services.yabai =
+      let
+        yabai-emacs-handle = pkgs.writeShellScript "yabai-emacs-handle" ''
+          data=$(yabai -m query --windows --window $YABAI_WINDOW_ID)
 
+          title=$(echo $data | jq .title)
+          display=$(echo $data | jq .display)
+
+          if [[ $title =~ "capture-popup" && $display == 1 ]]; then
+              yabai -m window $YABAI_WINDOW_ID --toggle float --move abs:430:230
+              yabai -m window $YABAI_WINDOW_ID --resize abs:655:300
+              yabai -m window $YABAI_WINDOW_ID --focus
+          elif [[ $title =~ "minimal-popup" && $display == 1 ]]; then
+              yabai -m window $YABAI_WINDOW_ID --toggle float --move abs:430:230
+              yabai -m window $YABAI_WINDOW_ID --resize abs:655:200
+              yabai -m window $YABAI_WINDOW_ID --focus
+          elif [[ $title =~ "large-popup" && $display == 1 ]]; then
+              yabai -m window $YABAI_WINDOW_ID --toggle float --move abs:350:130
+              yabai -m window $YABAI_WINDOW_ID --resize abs:730:600
+              yabai -m window $YABAI_WINDOW_ID --focus
+          else
+              false
+          fi
+        '';
+      in
+      {
+        enable = true;
+        # enableScriptingAddition = true; # should probably turn this on, but requires SIP to be disabled.
+        config = {
+          layout = "bsp";
+          window_placement = "second_child"; # New window spawns to the right if vertical split, or bottom if horizontal split
+          top_padding = 12;
+          bottom_padding = 12;
+          left_padding = 12;
+          right_padding = 12;
+          window_gap = 12;
+          mouse_follows_focus = "on"; # center mouse on window with focus
+          mouse_modifier = "alt"; # modifier for clicking and dragging with mouse
+          mouse_action1 = "move"; # set modifier + left-click drag to move window
+          mouse_action2 = "resize"; # set modifier + right-click drag to resize window
+          mouse_drop_action = "swap"; # when window is dropped in center of another window, swap them (on edges it will split it)
+
+        };
+        extraConfig = ''
+          yabai -m rule --add app="^System Settings$" manage=off
+          yabai -m rule --add app="^Calculator$" manage=off
+          yabai -m rule --add app="^Karabiner-Elements$" manage=off
+          yabai -m signal --add event=window_created app="Emacs" action="${yabai-emacs-handle}"
+        '';
       };
-      extraConfig = ''
-        yabai -m rule --add app="^System Settings$" manage=off
-        yabai -m rule --add app="^Calculator$" manage=off
-        yabai -m rule --add app="^Karabiner-Elements$" manage=off
-      '';
+
+    services.jankyborders = {
+      enable = true;
+      active_color = "0xFFE1E3E4";
+      inactive_color = "0xFF494D64";
+      width = 4.0;
     };
 
     services.skhd = {
@@ -128,6 +161,10 @@ in
         ctrl + alt - q : yabai --stop-service
         ctrl + alt - s : yabai --start-service
         ctrl + alt - r : yabai --restart-service
+
+        # some handy emacs commands
+        cmd + ctrl - c : emacsclient -e '(popup-frame-org-capture)' || yabai -m window --focus recent
+        cmd + ctrl - x : emacsclient -e '(popup-frame-calc)' || yabai -m window --focus recent
       '';
     };
 
