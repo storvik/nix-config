@@ -31,8 +31,8 @@ self: super: rec {
               # Add setting to enable rounded window with no decoration (still
               # have to alter default-frame-alist)
               (super.fetchpatch {
-                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-31/round-undecorated-frame.patch";
-                sha256 = "sha256-iMn/aYtTKyJx3k1n2kVYU0TdriIFPjYSmKh9mEdXrpE=";
+                url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/43bda51ad5a3febbc04bfe8de1da4501214a615d/patches/emacs-31/round-undecorated-frame.patch";
+                sha256 = "sha256-/SX8rF4GMA7bobfQ4/F9BTSEigeOd9jgN0jvQ1M0MSs=";
               })
               # Make Emacs aware of OS-level light/dark mode
               # https://github.com/d12frosted/homebrew-emacs-plus#system-appearance-change
