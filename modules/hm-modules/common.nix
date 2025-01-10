@@ -168,15 +168,15 @@ in
     programs.alacritty = {
       enable = true;
       settings = {
-        shell = {
+        terminal.shell = {
           program = "${pkgs.fish}/bin/fish";
         };
         scrolling = {
           multiplier = 3;
         };
-        # window = {
-        #   decorations = "None";
-        # };
+        window = {
+          decorations = "buttonless";
+        };
         colors = {
           primary = {
             background = "#2e3440";
@@ -257,7 +257,7 @@ in
     };
 
     programs.emacs = {
-      enable = true;
+      enable = (!cfg.disableEmacs);
       package = pkgs.storvik-emacs-withPackages;
     };
 
@@ -297,7 +297,9 @@ in
       fira-code-symbols
       iosevka
     ] ++ lib.optionals (!cfg.disableNerdfonts) [
-      nerdfonts
+      nerd-fonts.fira-code
+      nerd-fonts.iosevka
+      nerd-fonts.symbols-only
     ];
 
   };
