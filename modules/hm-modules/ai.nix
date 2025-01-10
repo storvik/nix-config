@@ -6,6 +6,7 @@ in
 
   config = lib.mkIf (cfg.ai.enable) {
     home.packages = with pkgs; [
+      aider-chat
       ollama
     ];
 
