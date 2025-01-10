@@ -76,12 +76,18 @@ in
       # spaces.spans-displays = true;
     };
 
-    fonts.packages = [
-      pkgs.fira-code
-      pkgs.fira-code-symbols
-      pkgs.iosevka
-      pkgs.nerdfonts
     security.pam.enableSudoTouchIdAuth = true;
+
+    fonts.packages = with pkgs; [
+      iosevka
+      nerd-fonts.fira-code
+      nerd-fonts.iosevka
+      nerd-fonts.symbols-only
+    ];
+
+    environment.systemPackages = with pkgs; [
+      coreutils-prefixed
+      ollama
     ];
 
   };
