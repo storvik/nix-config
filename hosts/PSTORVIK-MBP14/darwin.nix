@@ -3,6 +3,7 @@
 {
 
   storvik = {
+    enableAerospace = true;
     virtualization = true;
   };
 

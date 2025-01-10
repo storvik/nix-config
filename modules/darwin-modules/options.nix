@@ -4,12 +4,22 @@
 
   options.storvik = {
 
-    disableYabai =
+    enableAerospace =
       lib.mkEnableOption null
       // {
         default = false;
         description = lib.mdDoc ''
-          Disable Yabai tiling window manager for MacOs.
+          Enable Aerospace tiling window manager for MacOs.
+        '';
+      };
+
+
+    enableYabai =
+      lib.mkEnableOption null
+      // {
+        default = false;
+        description = lib.mdDoc ''
+          Enable Yabai tiling window manager for MacOs.
         '';
       };
 
