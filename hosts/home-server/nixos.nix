@@ -106,5 +106,48 @@
     ];
   };
 
+  hardware.bluetooth.enable = true;
+
+  virtualisation.oci-containers.containers."homeassistant" = {
+    autoStart = true;
+    image = "ghcr.io/home-assistant/home-assistant:2024.11.1";
+    volumes = [
+      "/home/storvik/developer/ha:/config" # persistent config on host
+      "/etc/localtime:/etc/localtime:ro" # fixes time
+      "/var/run/dbus:/run/dbus:ro" # fixes bluetooth
+    ];
+    extraOptions = [
+      # Disable access to zigbee dongle, using zigbee2mqtt instead
+      # "--device=/dev/ttyUSB0" # usb dongle for zigbee
+      "--network=host"
+      "--privileged"
+    ];
+  };
+
+  services.mosquitto = {
+    enable = true;
+    listeners = [{
+      acl = [ "pattern readwrite #" ];
+      omitPasswordAuth = true;
+      settings.allow_anonymous = true;
+    }];
+  };
+
+  services.zigbee2mqtt = {
+    enable = true;
+    settings = {
+      homeassistant = true;
+      permit_join = true;
+      serial = {
+        # adapter = "ember";
+        port = "/dev/ttyUSB0";
+        rtscts = true;
+      };
+      frontend = true;
+      mqtt = {
+        server = "mqtt://localhost:1883";
+      };
+    };
+  };
 
 }
