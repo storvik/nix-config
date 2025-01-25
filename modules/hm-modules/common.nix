@@ -117,7 +117,7 @@ in
       enableBashIntegration = true;
       enableFishIntegration = true;
       settings = {
-        search_mode = "prefix";
+        search_mode = "fuzzy";
       };
     };
 
