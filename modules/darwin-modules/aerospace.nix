@@ -6,6 +6,10 @@ in
 
   config = lib.mkIf (cfg.enableAerospace) {
 
+    environment.systemPackages = with pkgs; [
+      maccy # added here in order to select in System Settings -> Privacy & Security -> Accessibility
+    ];
+
     services = {
       aerospace = {
         enable = true;
@@ -18,7 +22,9 @@ in
             outer.top = 10;
             outer.right = 10;
           };
-          after-startup-command = [ ];
+          after-startup-command = [
+            "exec-and-forget open ${pkgs.maccy}/Applications/Maccy.app"
+          ];
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
           accordion-padding = 30;
@@ -48,6 +54,8 @@ in
             ctrl-enter = "exec-and-forget open -na alacritty";
             shift-ctrl-enter = "exec-and-forget ${pkgs.storvik-emacs-withPackages}/bin/emacsclient -c";
 
+            ctrl-semicolon = "exec-and-forget ${pkgs.storvik-emacs-withPackages}/bin/emacsclient -e '(popup-frame-org-capture)'";
+            ctrl-y = "exec-and-forget ${pkgs.storvik-emacs-withPackages}/bin/emacsclient -e '(popup-frame-calc)'";
             ctrl-m = "focus left";
             ctrl-n = "focus down";
             ctrl-e = "focus up";
@@ -61,6 +69,7 @@ in
             ctrl-slash = "layout tiles horizontal vertical";
             ctrl-comma = "layout accordion horizontal vertical";
 
+            ctrl-q = "close";
             ctrl-f = "fullscreen";
             ctrl-shift-f = "layout floating tiling";
 
